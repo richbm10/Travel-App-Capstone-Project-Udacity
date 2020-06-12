@@ -1,0 +1,28 @@
+{
+    "name": "image_service",
+    "version": "1.0.0",
+    "description": "Micro-service to fetch images of a location.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/richbm10/Travel-App-Capstone-Project-Udacity.git"
+    },
+    "keywords": [
+        "Micro-service",
+        "images",
+        "PixabayAPI"
+    ],
+    "author": "Ricardo Bonilla Morales",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity/issues"
+    },
+    "homepage": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity#readme",
+    "dependencies": {
+        "bunyan": "^1.8.12",
+        "express": "^4.16.4",
+        "node-fetch": "^2.6.0"
+    }
+}

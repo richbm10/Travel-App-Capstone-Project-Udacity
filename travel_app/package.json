@@ -1,8 +1,7 @@
 {
-    "name": "travel-app-capstone-project-udacity",
+    "name": "travel_app",
     "version": "1.0.0",
     "description": "Travel application for organizing trips that have real locations with real time data. The application uses a micro services architecture, for requesting data from third party APIs, and storing data in the database.",
-    "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -11,10 +10,11 @@
         "url": "git+https://github.com/richbm10/Travel-App-Capstone-Project-Udacity.git"
     },
     "keywords": [
-        "Weather",
+        "Travel-app",
+        "Micro-services",
+        "APIs",
         "Location",
-        "Country",
-        "Micro-services"
+        "Weather"
     ],
     "author": "Ricardo Bonilla Morales",
     "license": "ISC",
@@ -23,9 +23,7 @@
     },
     "homepage": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity#readme",
     "dependencies": {
-        "bunyan": "^1.8.12",
         "express": "^4.16.4",
-        "semver": "^7.3.2",
         "babel-polyfill": "^6.26.0",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",

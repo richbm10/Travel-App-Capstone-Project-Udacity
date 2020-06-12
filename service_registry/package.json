@@ -1,0 +1,28 @@
+{
+    "name": "service_registry",
+    "version": "1.0.0",
+    "description": "Service register and unregister of different micro services for the Travel App.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/richbm10/Travel-App-Capstone-Project-Udacity.git"
+    },
+    "keywords": [
+        "Micro-services",
+        "Service-registry",
+        "Server"
+    ],
+    "author": "Ricardo Bonilla Morales",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity/issues"
+    },
+    "homepage": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity#readme",
+    "dependencies": {
+        "bunyan": "^1.8.12",
+        "express": "^4.16.4",
+        "semver": "^7.3.2"
+    }
+}
