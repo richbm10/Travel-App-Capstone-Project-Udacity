@@ -16,6 +16,8 @@ const { LocationServices } = require('./lib/Location');
 module.exports = (config) => {
     const log = config.log();
 
+    const locationServices = LocationServices.getInstance();
+
     // Add a request logging middleware in development mode
     if (service.get('env') === 'development') {
         service.use((req, res, next) => {
@@ -24,20 +26,17 @@ module.exports = (config) => {
         });
     }
 
-    service.get('/list', async(req, res, next) => {
-        try {
-            //return res.json(await speakers.getList());
-        } catch (err) {
-            return next(err);
-        }
+    service.get('/country/:iso', async(req, res, next) => {
+        const query = locationServices.queryCountryISOCode(req.params.iso);
+        const middleware = await locationServices.getCountryDetails(query, (data) => { return res.send(data); }, (err) => { return next(err); });
+        return middleware;
     });
 
-    // eslint-disable-next-line no-unused-vars
     service.use((error, req, res, next) => {
         res.status(error.status || 500);
         // Log out the error to the console
         log.error(error);
-        return res.json({
+        return res.send({
             error: {
                 message: error.message,
             },
