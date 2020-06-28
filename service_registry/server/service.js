@@ -1,7 +1,15 @@
 const express = require('express');
 const ServiceRegistry = require('./lib/ServiceRegistry');
 const service = express();
-// const ServiceRegistry = require('./ServiceRegistry');
+
+/* Dependencies */
+const bodyParser = require('body-parser');
+service.use(bodyParser.urlencoded({ extended: false }));
+service.use(bodyParser.json());
+
+// Cors for cross origin allowance
+const cors = require('cors');
+service.use(cors());
 
 module.exports = (config) => {
     const log = config.log();
@@ -20,7 +28,7 @@ module.exports = (config) => {
         const serviceIp = req.connection.remoteAddress.includes('::') ? `[${req.connection.remoteAddress}]` : req.connection.remoteAddress;
 
         const serviceKey = serviceRegistry.register(serviceName, serviceVersion, serviceIp, servicePort);
-        return res.json({ result: serviceKey });
+        return res.send({ result: serviceKey });
     });
 
     service.delete('/register/:serviceName/:serviceVersion/:servicePort', (req, res) => {
@@ -29,23 +37,22 @@ module.exports = (config) => {
         const serviceIp = req.connection.remoteAddress.includes('::') ? `[${req.connection.remoteAddress}]` : req.connection.remoteAddress;
 
         const serviceKey = serviceRegistry.unregister(serviceName, serviceVersion, serviceIp, servicePort);
-        return res.json({ result: serviceKey });
+        return res.send({ result: serviceKey });
     });
 
     service.get('/find/:serviceName/:serviceVersion', (req, res) => {
         const { serviceName, serviceVersion } = req.params;
         const svc = serviceRegistry.get(serviceName, serviceVersion);
         if (!svc)
-            return res.status(404).json({ result: 'Service not found' });
-        return res.json(svc);
+            return res.status(404).send({ result: 'Service not found' });
+        return res.send(svc);
     });
 
-    // eslint-disable-next-line no-unused-vars
     service.use((error, req, res, next) => {
         res.status(error.status || 500);
         // Log out the error to the console
         log.error(error);
-        return res.json({
+        return res.send({
             error: {
                 message: error.message,
             },
