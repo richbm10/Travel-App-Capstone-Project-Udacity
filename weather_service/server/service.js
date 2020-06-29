@@ -30,20 +30,20 @@ module.exports = (config) => {
         });
     }
 
-    service.get('/wather/current/:lat/:lon', async(req, res, next) => {
+    service.get('/weather/current/:lat/:lon', async(req, res, next) => {
         const query = weatherServices.queryLocationCurrentWeather(req.params.lat, req.params.lon);
         try {
-            const data = await weatherServices.getWeather(query);
+            const data = await weatherServices.getCurrentWeather(query);
             return res.send(data);
         } catch (err) {
             return next(err);
         }
     });
 
-    service.get('/wather/forecast/:lat/:lon', async(req, res, next) => {
+    service.get('/weather/forecast/:lat/:lon', async(req, res, next) => {
         const query = weatherServices.queryLocationForecastWeather(req.params.lat, req.params.lon);
         try {
-            const data = await weatherServices.getWeather(query);
+            const data = await weatherServices.getForecastWeather(query);
             return res.send(data);
         } catch (err) {
             return next(err);

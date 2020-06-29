@@ -7,17 +7,28 @@ const WeatherServices = (function() {
             if (!instance) {
                 instance = {
                     apis: {
-                        weatherbitAPI: 'https://api.weatherbit.io/v2.0/'
+                        weatherbitAPI: 'https://api.weatherbit.io/v2.0/',
+                        openWeatherMapAPI: 'http://samples.openweathermap.org/data/2.5/'
                     },
                     queryLocationCurrentWeather: function(latitude, longitude) {
-                        return `current?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHERBIT_KEY}`;
+                        return `weather?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_MAP_KEY}`;
                     },
                     queryLocationForecastWeather: function(latitude, longitude) {
                         return `forecast/daily?lat=${latitude}&lon=${longitude}&key=${process.env.WEATHERBIT_KEY}`;
                     },
-                    getWeather: async function(query) {
+                    getCurrentWeather: async function(query) {
+                        const response = await axios.get(this.apis.openWeatherMapAPI + query);
+                        const { weather, main, sys } = response.data;
+                        return { weather, main, sys };
+                    },
+                    getForecastWeather: async function(query) {
                         const response = await axios.get(this.apis.weatherbitAPI + query);
-                        return response.data;
+                        const dailyWeather = response.data.data;
+                        const responseDailyWeather = dailyWeather.map((day) => {
+                            const { pop, max_temp, min_temp, weather } = day;
+                            return { pop, max_temp, min_temp, weather };
+                        });
+                        return { responseDailyWeather };
                     }
                 };
             }
