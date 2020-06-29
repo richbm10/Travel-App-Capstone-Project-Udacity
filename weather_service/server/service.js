@@ -11,10 +11,16 @@ service.use(bodyParser.json());
 const cors = require('cors');
 service.use(cors());
 
+/* Set environment variables */
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { WeatherServices } = require('./lib/Weather');
 
 module.exports = (config) => {
     const log = config.log();
+
+    const weatherServices = WeatherServices.getInstance();
 
     // Add a request logging middleware in development mode
     if (service.get('env') === 'development') {
@@ -24,9 +30,21 @@ module.exports = (config) => {
         });
     }
 
-    service.get('/list', async(req, res, next) => {
+    service.get('/wather/current/:lat/:lon', async(req, res, next) => {
+        const query = weatherServices.queryLocationCurrentWeather(req.params.lat, req.params.lon);
         try {
-            //return res.json(await speakers.getList());
+            const data = await weatherServices.getWeather(query);
+            return res.send(data);
+        } catch (err) {
+            return next(err);
+        }
+    });
+
+    service.get('/wather/forecast/:lat/:lon', async(req, res, next) => {
+        const query = weatherServices.queryLocationForecastWeather(req.params.lat, req.params.lon);
+        try {
+            const data = await weatherServices.getWeather(query);
+            return res.send(data);
         } catch (err) {
             return next(err);
         }
