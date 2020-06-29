@@ -1,10 +1,34 @@
+const axios = require('axios');
+const url = require('url');
+const crypto = require('crypto');
+const fs = require('fs');
+const util = require('util');
+
+const fsexists = util.promisify(fs.exists);
+
+const CircuitBraker = require('../lib/CircuitBraker');
+const circuitBraker = new CircuitBraker();
+
 const LocationServices = (function() {
     let instance;
     return {
         getInstance: () => {
             if (!instance) {
                 instance = {
-                    serviceData: {},
+                    serviceRegistryUrl: '',
+                    servicesVersion: '',
+                    cache: {},
+                    setInstance: function({ serviceRegistryUrl, servicesVersion }) {
+                        this.serviceRegistryUrl = serviceRegistryUrl;
+                        this.servicesVersion = servicesVersion;
+                    },
+                    getCountryDetails: async function(isoCode) {
+                        const { ip, port } = await this.getService('location_service');
+                        return this.callService({
+                            method: 'get',
+                            url: `http://${ip}:${port}/country/${isoCode}`
+                        });
+                    },
                     callService: async(requestOptions) => {
                         const servicePath = url.parse(requestOptions.url).path;
                         const cacheKey = crypto.createHash('md5').update(requestOptions.method + servicePath).digest('hex');

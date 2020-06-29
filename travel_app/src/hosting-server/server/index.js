@@ -17,8 +17,11 @@ app.use(cors());
 /* Initializing the main project folder */
 app.use(express.static('dist'));
 
+const { LocationServices } = require('./lib/Location');
+
 const config = configs[app.get('env')];
 
+const locationServices = LocationServices.getInstance();
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
@@ -33,7 +36,8 @@ if (app.get('env') === 'development') {
 }
 
 app.use('/', routes({
-    log
+    log,
+    locationServices
 }));
 
 app.use((error, req, res, next) => {

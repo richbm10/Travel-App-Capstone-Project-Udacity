@@ -4,7 +4,7 @@ const bunyan = require('bunyan');
 const pjs = require('../../../package.json');
 
 // Get some meta info from the package.json
-const { name, version } = pjs;
+const { name, servicesVersion } = pjs;
 
 // Set up a logger
 const getLogger = (serviceName, serviceVersion, level) => bunyan.createLogger({ name: `${serviceName}:${serviceVersion}`, level });
@@ -13,20 +13,20 @@ const getLogger = (serviceName, serviceVersion, level) => bunyan.createLogger({ 
 module.exports = {
     development: {
         name,
-        version,
+        servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
-        log: () => getLogger(name, version, 'debug'),
+        log: () => getLogger(name, servicesVersion, 'debug'),
     },
     production: {
         name,
-        version,
+        servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
-        log: () => getLogger(name, version, 'info'),
+        log: () => getLogger(name, servicesVersion, 'info'),
     },
     test: {
         name,
-        version,
+        servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
-        log: () => getLogger(name, version, 'fatal'),
+        log: () => getLogger(name, servicesVersion, 'fatal'),
     },
 };
