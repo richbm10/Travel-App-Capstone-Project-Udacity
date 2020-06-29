@@ -11,10 +11,16 @@ service.use(bodyParser.json());
 const cors = require('cors');
 service.use(cors());
 
+/* Set environment variables */
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { ImageServices } = require('./lib/Image');
 
 module.exports = (config) => {
     const log = config.log();
+
+    const imageServices = ImageServices.getInstance();
 
     // Add a request logging middleware in development mode
     if (service.get('env') === 'development') {
@@ -24,15 +30,16 @@ module.exports = (config) => {
         });
     }
 
-    service.get('/list', async(req, res, next) => {
+    service.get('/images/location/:address', async(req, res, next) => {
+        const query = imageServices.queryLocationImages(req.params.address);
         try {
-            //return res.json(await speakers.getList());
+            const data = await imageServices.getImages(query);
+            return res.send(data);
         } catch (err) {
             return next(err);
         }
     });
 
-    // eslint-disable-next-line no-unused-vars
     service.use((error, req, res, next) => {
         res.status(error.status || 500);
         // Log out the error to the console
