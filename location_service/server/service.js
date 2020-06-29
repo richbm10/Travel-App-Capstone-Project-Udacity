@@ -31,9 +31,19 @@ module.exports = (config) => {
     }
 
     service.get('/location/country/:iso', async(req, res, next) => {
-        const query = locationServices.queryCountryISOCode(req.params.iso);
+        const query = locationServices.queryCountry(req.params.iso);
         try {
-            const data = await locationServices.getCountryDetails(query);
+            const data = await locationServices.getCountries(query);
+            return res.send(data);
+        } catch (err) {
+            return next(err);
+        }
+    });
+
+    service.get('/location/countries', async(req, res, next) => {
+        const query = locationServices.queryCountries;
+        try {
+            const data = await locationServices.getCountries(query);
             return res.send(data);
         } catch (err) {
             return next(err);

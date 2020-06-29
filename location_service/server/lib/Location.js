@@ -11,19 +11,25 @@ const LocationServices = (function() {
                         mapQuestGeocodingAPI: 'http://www.mapquestapi.com/geocoding/v1/'
                     },
                     serviceData: {},
-                    queryCountryISOCode: function(isoCode) {
+                    queryCountry: function(isoCode) {
                         return `alpha/${isoCode}?fields=name;capital;population;flag;currencies`;
                     },
+                    queryCountries: 'all?fields=name;flag',
                     queryAddress: function(location) {
                         return `address/?key=${process.env.MAPQUEST_KEY}&location=${location}`;
                     },
-                    getCountryDetails: async function(query) {
+                    getCountries: async function(query) {
                         const response = await axios.get(this.apis.countriesAPI + query);
                         return response.data;
                     },
                     getAddress: async function(query) {
                         const response = await axios.get(this.apis.mapQuestGeocodingAPI + query);
-                        return response.data;
+                        const dataLocations = response.data.results[0].locations;
+                        const responseLocations = dataLocations.map((dataLocation) => {
+                            const { adminArea5, adminArea4, adminArea3, adminArea1, latLng } = dataLocation;
+                            return { city: adminArea5, county: adminArea4, state: adminArea3, country: adminArea1, latLng };
+                        });
+                        return { responseLocations };
                     }
                 };
             }
