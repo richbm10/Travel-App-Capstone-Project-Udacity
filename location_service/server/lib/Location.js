@@ -10,7 +10,6 @@ const LocationServices = (function() {
                         countriesAPI: 'https://restcountries.eu/rest/v2/',
                         mapQuestGeocodingAPI: 'http://www.mapquestapi.com/geocoding/v1/'
                     },
-                    serviceData: {},
                     queryCountry: function(isoCode) {
                         return `alpha/${isoCode}?fields=name;capital;population;flag;currencies`;
                     },
