@@ -14,8 +14,9 @@ const LocationServices = (function() {
                         return `alpha/${isoCode}`;
                     },
                     getCountryDetails: async function(query) {
-                        const data = await axios.get(this.apis.countriesAPI + query);
-                        return data;
+                        const response = await axios.get(this.apis.countriesAPI + query);
+                        console.log('CountriesAPIResponse', response.data);
+                        return response.data;
                     }
                 };
             }

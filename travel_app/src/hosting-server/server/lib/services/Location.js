@@ -60,7 +60,6 @@ const LocationServices = (function() {
                         return result;
                     },
                     getService: async function(servicename) {
-                        console.log(`${this.serviceRegistryUrl}/find/${servicename}/${this.servicesVersion}`);
                         const response = await axios.get(`${this.serviceRegistryUrl}/find/${servicename}/${this.servicesVersion}`);
                         return response.data;
                     }
