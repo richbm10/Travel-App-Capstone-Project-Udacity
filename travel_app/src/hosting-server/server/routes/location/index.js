@@ -25,7 +25,7 @@ module.exports = (param) => {
         //Must call multiple promises for the page data
         const promises = [];
         if (req.query.location !== undefined) {
-            const qLocation = req.query.location.split('-');
+            const qLocation = req.query.location.split(';');
             if (qLocation.length === 2) {
                 const [isoCountry, location] = qLocation;
                 promises.push(locationServices.getCountryDetails(isoCountry));

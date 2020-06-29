@@ -19,8 +19,6 @@ const LocationServices = (function() {
                     servicesVersion: '',
                     cache: {},
                     setInstance: function({ serviceRegistryUrl, servicesVersion }) {
-                        console.log('setInstanceParam1', serviceRegistryUrl);
-                        console.log('setInstanceParam2', servicesVersion);
                         this.serviceRegistryUrl = serviceRegistryUrl;
                         this.servicesVersion = servicesVersion;
                     },
@@ -28,7 +26,7 @@ const LocationServices = (function() {
                         const { ip, port } = await this.getService('location_service');
                         return this.callService({
                             method: 'get',
-                            url: `http://${ip}:${port}/country/${isoCode}`
+                            url: `http://${ip}:${port}/location/country/${isoCode}`
                         });
                     },
                     callService: async function(requestOptions) {

@@ -62,9 +62,9 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.listen(process.env.hosting_server_port, () => {
+app.listen(process.env.HOSTING_SERVER_PORT, () => {
     log.info(
-        `Hi there! I'm listening on port ${process.env.hosting_server_port} in ${app.get('env')} mode.`,
+        `Hi there! I'm listening on port ${process.env.HOSTING_SERVER_PORT} in ${app.get('env')} mode.`,
     );
 });
 

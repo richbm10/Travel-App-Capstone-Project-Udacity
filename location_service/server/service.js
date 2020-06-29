@@ -11,6 +11,10 @@ service.use(bodyParser.json());
 const cors = require('cors');
 service.use(cors());
 
+/* Set environment variables */
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { LocationServices } = require('./lib/Location');
 
 module.exports = (config) => {
@@ -26,10 +30,20 @@ module.exports = (config) => {
         });
     }
 
-    service.get('/country/:iso', async(req, res, next) => {
+    service.get('/location/country/:iso', async(req, res, next) => {
         const query = locationServices.queryCountryISOCode(req.params.iso);
         try {
             const data = await locationServices.getCountryDetails(query);
+            return res.send(data);
+        } catch (err) {
+            return next(err);
+        }
+    });
+
+    service.get('/location/:address', async(req, res, next) => {
+        const query = locationServices.queryAddress(req.params.address);
+        try {
+            const data = await locationServices.getAddress(query);
             return res.send(data);
         } catch (err) {
             return next(err);

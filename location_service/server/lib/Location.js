@@ -7,15 +7,22 @@ const LocationServices = (function() {
             if (!instance) {
                 instance = {
                     apis: {
-                        countriesAPI: 'https://restcountries.eu/rest/v2/'
+                        countriesAPI: 'https://restcountries.eu/rest/v2/',
+                        mapQuestGeocodingAPI: 'http://www.mapquestapi.com/geocoding/v1/'
                     },
                     serviceData: {},
                     queryCountryISOCode: function(isoCode) {
-                        return `alpha/${isoCode}`;
+                        return `alpha/${isoCode}?fields=name;capital;population;flag;currencies`;
+                    },
+                    queryAddress: function(location) {
+                        return `address/?key=${process.env.MAPQUEST_KEY}&location=${location}`;
                     },
                     getCountryDetails: async function(query) {
                         const response = await axios.get(this.apis.countriesAPI + query);
-                        console.log('CountriesAPIResponse', response.data);
+                        return response.data;
+                    },
+                    getAddress: async function(query) {
+                        const response = await axios.get(this.apis.mapQuestGeocodingAPI + query);
                         return response.data;
                     }
                 };
