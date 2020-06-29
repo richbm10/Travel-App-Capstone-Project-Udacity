@@ -28,8 +28,12 @@ module.exports = (config) => {
 
     service.get('/country/:iso', async(req, res, next) => {
         const query = locationServices.queryCountryISOCode(req.params.iso);
-        const middleware = await locationServices.getCountryDetails(query, (data) => { return res.send(data); }, (err) => { return next(err); });
-        return middleware;
+        try {
+            const data = await locationServices.getCountryDetails(query);
+            return res.send(data);
+        } catch (err) {
+            return next(err);
+        }
     });
 
     service.use((error, req, res, next) => {

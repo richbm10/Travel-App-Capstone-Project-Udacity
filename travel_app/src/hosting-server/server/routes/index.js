@@ -8,6 +8,7 @@ module.exports = (param) => {
     const { log } = param;
 
     router.get('/', function(req, res) {
+        console.log('SALUDOS');
         // res.sendFile('dist/index.html');
     });
 

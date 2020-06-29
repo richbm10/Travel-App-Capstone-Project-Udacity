@@ -10,9 +10,10 @@ module.exports = (param) => {
         //res.sendFile('dist/index.html');
     });
 
-    router.get('/location-detail', function(req, res) {
-        //res.sendFile('dist/index.html');
-    });
+    // router.get('/location-detail', function(req, res) {
+    //     console.log('BOMBOCLAT-1');
+    //     //res.sendFile('dist/index.html');
+    // });
 
     /*
         Input: latitude, longitude, and location.
@@ -20,14 +21,16 @@ module.exports = (param) => {
         the micro-services.
         Ouput: location-detail page data.
     */
-    router.get('/location-detail', function(req, res) {
+    router.get('/location-detail', async function(req, res, next) {
+        console.log('BOMBOCLAT');
         //Must call multiple promises for the page data
         const promises = [];
         if (req.query.location !== undefined) {
             const qLocation = req.query.location.split('-');
             if (qLocation.length === 2) {
+                console.log('NICE');
                 const [isoCountry, location] = qLocation;
-                promises.push(locationServices.getCountryDetails());
+                promises.push(locationServices.getCountryDetails(isoCountry));
             }
         }
 
@@ -35,6 +38,7 @@ module.exports = (param) => {
 
         try {
             const data = await Promise.all(promises);
+            console.log('GOOD');
             return res.send(data);
         } catch (err) {
             return next(err);

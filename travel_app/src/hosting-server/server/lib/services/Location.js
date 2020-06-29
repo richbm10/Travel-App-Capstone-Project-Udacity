@@ -6,7 +6,7 @@ const util = require('util');
 
 const fsexists = util.promisify(fs.exists);
 
-const CircuitBraker = require('../lib/CircuitBraker');
+const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
 const LocationServices = (function() {
@@ -19,6 +19,8 @@ const LocationServices = (function() {
                     servicesVersion: '',
                     cache: {},
                     setInstance: function({ serviceRegistryUrl, servicesVersion }) {
+                        console.log('setInstanceParam1', serviceRegistryUrl);
+                        console.log('setInstanceParam2', servicesVersion);
                         this.serviceRegistryUrl = serviceRegistryUrl;
                         this.servicesVersion = servicesVersion;
                     },
@@ -29,7 +31,7 @@ const LocationServices = (function() {
                             url: `http://${ip}:${port}/country/${isoCode}`
                         });
                     },
-                    callService: async(requestOptions) => {
+                    callService: async function(requestOptions) {
                         const servicePath = url.parse(requestOptions.url).path;
                         const cacheKey = crypto.createHash('md5').update(requestOptions.method + servicePath).digest('hex');
                         let cacheFile = null;
@@ -57,8 +59,9 @@ const LocationServices = (function() {
                         }
                         return result;
                     },
-                    getService: async(servicename) => {
-                        const response = await axios.get(`${this.serviceRegistryUrl}/find/${servicename}/${this.serviceVersionIdentifier}`);
+                    getService: async function(servicename) {
+                        console.log(`${this.serviceRegistryUrl}/find/${servicename}/${this.servicesVersion}`);
+                        const response = await axios.get(`${this.serviceRegistryUrl}/find/${servicename}/${this.servicesVersion}`);
                         return response.data;
                     }
                 };
