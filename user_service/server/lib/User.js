@@ -5,13 +5,13 @@ const UserServices = (function() {
             if (!instance) {
                 instance = {
                     users: [{
-                        id: 1,
+                        id: 0,
                         name: 'Ricardo',
                         lastName: 'Bonilla Morales',
                         username: 'richi_bonilla10',
-                        plannedTrips: 1,
+                        idCounter: 1,
                         trips: [{
-                            id: 1,
+                            id: 0,
                             name: 'USA Trip',
                             checkList: ['Pack my pills', 'Exchange my cash into dollars in the airport'],
                             notes: 'Hotel: Marriott\nReservation: 1123412',
@@ -34,10 +34,11 @@ const UserServices = (function() {
                     createTrip: function(userId, trip) {
                         for (let user of this.users) {
                             if (user.id === userId) {
-                                user.trips.push(trip);
-                                break;
+                                user.trips.push({ id: user.idCounter++, ...trip });
+                                return { success: { status: 200, message: 'The trip was created.' } };
                             }
                         }
+                        throw 'The user is not registered';
                     },
                     updateTrip: function(userId, pTrip) {
                         for (let user of this.users) {
@@ -45,23 +46,27 @@ const UserServices = (function() {
                                 for (let trip of user.trips) {
                                     if (trip.id === pTrip.id) {
                                         trip = pTrip;
-                                        break;
+                                        return { success: { status: 200, message: 'The trip was updated.' } };
                                     }
                                 }
-                                break;
+                                throw 'The trip is not registered.';
                             }
                         }
+                        throw 'The user is not registered.';
                     },
                     deleteTrip: function(userId, tripId) {
                         for (let user of this.users) {
                             if (user.id === userId) {
+                                const plannedTrips = user.trips.length;
                                 const trips = user.trips.map((trip) => {
                                     if (trip.id !== tripId) return trip;
                                 });
                                 user.trips = trips;
-                                break;
+                                if (user.trips.length === plannedTrips) throw 'The trip is not registered.';
+                                return { success: { status: 200, message: 'The trip was deleted.' } };
                             }
                         }
+                        throw 'The user is not registered.';
                     }
                 };
             }
