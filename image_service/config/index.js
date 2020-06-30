@@ -14,19 +14,19 @@ module.exports = {
     development: {
         name,
         version,
-        serviceTimeout: 30,
+        serviceRegisterInterval: 20000,
         log: () => getLogger(name, version, 'debug'),
     },
     production: {
         name,
         version,
-        serviceTimeout: 30,
+        serviceRegisterInterval: 20000,
         log: () => getLogger(name, version, 'info'),
     },
     test: {
         name,
         version,
-        serviceTimeout: 30,
+        serviceRegisterInterval: 20000,
         log: () => getLogger(name, version, 'fatal'),
     },
 };

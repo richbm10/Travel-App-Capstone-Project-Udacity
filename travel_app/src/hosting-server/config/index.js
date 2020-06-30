@@ -13,18 +13,21 @@ const getLogger = (serviceName, serviceVersion, level) => bunyan.createLogger({ 
 module.exports = {
     development: {
         name,
+        hostPort: 8000,
         servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
         log: () => getLogger(name, servicesVersion, 'debug'),
     },
     production: {
         name,
+        hostPort: 8000,
         servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
         log: () => getLogger(name, servicesVersion, 'info'),
     },
     test: {
         name,
+        hostPort: 8000,
         servicesVersion,
         serviceRegistryUrl: 'http://localhost:3000',
         log: () => getLogger(name, servicesVersion, 'fatal'),

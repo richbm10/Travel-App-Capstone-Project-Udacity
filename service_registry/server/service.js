@@ -11,6 +11,10 @@ service.use(bodyParser.json());
 const cors = require('cors');
 service.use(cors());
 
+/* Set environment variables */
+const dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = (config) => {
     const log = config.log();
     const serviceRegistry = new ServiceRegistry(log);

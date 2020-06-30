@@ -19,7 +19,7 @@ server.on('listening', () => {
 
     registerService();
 
-    const interval = setInterval(registerService, 20000);
+    const interval = setInterval(registerService, config.serviceRegisterInterval);
     const cleanup = async() => {
         clearInterval(interval);
         await unregisterService();

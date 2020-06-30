@@ -25,7 +25,6 @@ const { LocationServices } = require('./lib/services/Location');
 const config = configs[app.get('env')];
 
 const locationServices = LocationServices.getInstance();
-console.log(config);
 locationServices.setInstance(config);
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
@@ -62,9 +61,9 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.listen(process.env.HOSTING_SERVER_PORT, () => {
+app.listen(process.env.PORT || config.hostPort, () => {
     log.info(
-        `Hi there! I'm listening on port ${process.env.HOSTING_SERVER_PORT} in ${app.get('env')} mode.`,
+        `Hi there! I'm listening on port ${process.env.PORT || config.hostPort} in ${app.get('env')} mode.`,
     );
 });
 
