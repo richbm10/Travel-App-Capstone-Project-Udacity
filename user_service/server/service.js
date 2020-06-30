@@ -31,7 +31,8 @@ module.exports = (config) => {
             const data = userServices.getUser(req.params.username);
             return res.send(data);
         } catch (err) {
-            return next(err);
+            const error = new Error(err);
+            return next(error);
         }
     });
 
@@ -40,7 +41,8 @@ module.exports = (config) => {
             const message = userServices.createTrip(req.params.userId, req.body);
             return res.send(message);
         } catch (err) {
-            return next(err);
+            const error = new Error(err);
+            return next(error);
         }
     });
 
@@ -49,7 +51,8 @@ module.exports = (config) => {
             const message = userServices.updateTrip(req.params.userId, req.body);
             return res.send(message);
         } catch (err) {
-            return next(err);
+            const error = new Error(err);
+            return next(error);
         }
     });
 
@@ -69,7 +72,7 @@ module.exports = (config) => {
         log.error(error);
         return res.send({
             error: {
-                status: error.status,
+                status: error.status || 500,
                 message: error.message,
             },
         });

@@ -50,13 +50,13 @@ module.exports = (config) => {
         }
     });
 
-    // eslint-disable-next-line no-unused-vars
     service.use((error, req, res, next) => {
         res.status(error.status || 500);
         // Log out the error to the console
         log.error(error);
-        return res.json({
+        return res.send({
             error: {
+                status: error.status || 500,
                 message: error.message,
             },
         });

@@ -29,44 +29,46 @@ const UserServices = (function() {
                         const data = this.users.find((user) => {
                             return user.username === username;
                         });
-                        return { data };
+                        if (data === null) {
+                            throw new Error('The username is not registered.');
+                        }
+                        return data;
                     },
                     createTrip: function(userId, trip) {
                         for (let user of this.users) {
-                            if (user.id === userId) {
+                            if (user.id == userId) {
                                 user.trips.push({ id: user.idCounter++, ...trip });
                                 return { success: { status: 200, message: 'The trip was created.' } };
                             }
                         }
-                        throw 'The user is not registered';
+                        throw new Error('The user is not registered.');
                     },
                     updateTrip: function(userId, pTrip) {
                         for (let user of this.users) {
-                            if (user.id === userId) {
+                            if (user.id == userId) {
                                 for (let trip of user.trips) {
                                     if (trip.id === pTrip.id) {
                                         trip = pTrip;
                                         return { success: { status: 200, message: 'The trip was updated.' } };
                                     }
                                 }
-                                throw 'The trip is not registered.';
+                                throw new Error('The trip is not registered.');
                             }
                         }
-                        throw 'The user is not registered.';
+                        throw new Error('The user is not registered.');
                     },
                     deleteTrip: function(userId, tripId) {
                         for (let user of this.users) {
-                            if (user.id === userId) {
-                                const plannedTrips = user.trips.length;
-                                const trips = user.trips.map((trip) => {
-                                    if (trip.id !== tripId) return trip;
+                            if (user.id == userId) {
+                                const index = user.trips.findIndex((trip) => {
+                                    return trip.id == tripId;
                                 });
-                                user.trips = trips;
-                                if (user.trips.length === plannedTrips) throw 'The trip is not registered.';
+                                if (index === -1) throw new Error('The trip is not registered.');
+                                user.trips.splice(index, 1);
                                 return { success: { status: 200, message: 'The trip was deleted.' } };
                             }
                         }
-                        throw 'The user is not registered.';
+                        throw new Error('The user is not registered.');
                     }
                 };
             }

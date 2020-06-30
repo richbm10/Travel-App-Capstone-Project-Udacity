@@ -66,6 +66,7 @@ module.exports = (config) => {
         log.error(error);
         return res.send({
             error: {
+                status: error.status || 500,
                 message: error.message,
             },
         });
