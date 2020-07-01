@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
-const LocationServices = (function() {
+const WeatherServices = (function() {
     let instance;
     return {
         getInstance: () => {
@@ -18,25 +18,18 @@ const LocationServices = (function() {
                         this.serviceRegistryUrl = serviceRegistryUrl;
                         this.servicesVersion = servicesVersion;
                     },
-                    getCountryDetails: async function(isoCode) {
-                        const { ip, port } = await this.getService('location_service');
+                    getCurrentWeather: async function(lat, lon) {
+                        const { ip, port } = await this.getService('weather_service');
                         return this.callService({
                             method: 'get',
-                            url: `http://${ip}:${port}/location/country/${isoCode}`
+                            url: `http://${ip}:${port}/weather/current/${lat}/${lon}`
                         });
                     },
-                    getCountries: async function() {
-                        const { ip, port } = await this.getService('location_service');
+                    getForecastWeather: async function(lat, lon) {
+                        const { ip, port } = await this.getService('weather_service');
                         return this.callService({
                             method: 'get',
-                            url: `http://${ip}:${port}/location/countries`
-                        });
-                    },
-                    getAddress: async function(address) {
-                        const { ip, port } = await this.getService('location_service');
-                        return this.callService({
-                            method: 'get',
-                            url: `http://${ip}:${port}/location/${address}`
+                            url: `http://${ip}:${port}/weather/forecast/${lat}/${lon}`
                         });
                     },
                     callService: async function(requestOptions) {
@@ -65,4 +58,4 @@ const LocationServices = (function() {
     };
 })();
 
-exports.LocationServices = LocationServices;
+exports.WeatherServices = WeatherServices;

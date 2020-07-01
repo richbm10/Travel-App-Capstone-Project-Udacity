@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
-const LocationServices = (function() {
+const UserServices = (function() {
     let instance;
     return {
         getInstance: () => {
@@ -18,25 +18,34 @@ const LocationServices = (function() {
                         this.serviceRegistryUrl = serviceRegistryUrl;
                         this.servicesVersion = servicesVersion;
                     },
-                    getCountryDetails: async function(isoCode) {
-                        const { ip, port } = await this.getService('location_service');
+                    getUser: async function(username) {
+                        const { ip, port } = await this.getService('user_service');
                         return this.callService({
                             method: 'get',
-                            url: `http://${ip}:${port}/location/country/${isoCode}`
+                            url: `http://${ip}:${port}/user/${username}`
                         });
                     },
-                    getCountries: async function() {
-                        const { ip, port } = await this.getService('location_service');
+                    createTrip: async function(userId, trip) {
+                        const { ip, port } = await this.getService('user_service');
                         return this.callService({
-                            method: 'get',
-                            url: `http://${ip}:${port}/location/countries`
+                            method: 'put',
+                            url: `http://${ip}:${port}/user/trip/${userId}`,
+                            data: trip
                         });
                     },
-                    getAddress: async function(address) {
-                        const { ip, port } = await this.getService('location_service');
+                    updateTrip: async function(userId, trip) {
+                        const { ip, port } = await this.getService('user_service');
                         return this.callService({
-                            method: 'get',
-                            url: `http://${ip}:${port}/location/${address}`
+                            method: 'post',
+                            url: `http://${ip}:${port}/user/trip/${userId}`,
+                            data: trip
+                        });
+                    },
+                    deleteTrip: async function(userId, tripId) {
+                        const { ip, port } = await this.getService('user_service');
+                        return this.callService({
+                            method: 'delete',
+                            url: `http://${ip}:${port}/user/trip/${userId}/${tripId}`
                         });
                     },
                     callService: async function(requestOptions) {
@@ -65,4 +74,4 @@ const LocationServices = (function() {
     };
 })();
 
-exports.LocationServices = LocationServices;
+exports.UserServices = UserServices;
