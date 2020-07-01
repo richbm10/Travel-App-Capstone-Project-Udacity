@@ -1,0 +1,18 @@
+@import '../../resets';
+@import '../../global';
+@import '../../theme/theme';
+@import '../../components/hero-header/hero-header';
+@import '../../components/navbar/navbar';
+@import '../../components/trip-card/trip-card';
+@import '../../components/add-button/add-button';
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 95vw 1fr;
+    grid-template-rows: 30vh 7vh 1fr;
+}
+
+main {
+    grid-area: 3/2/4/3;
+    background-color: #e42424;
+}

@@ -5,16 +5,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: ['babel-polyfill', './src/client/app/index.js'],
+    entry: {
+        index: ['babel-polyfill', './src/client/app/pages/index/index.js']
+    },
     mode: 'development',
-    devtool: 'source-map',
     stats: 'verbose',
     output: {
         libraryTarget: 'var',
-        library: 'Client'
+        library: 'Client',
+        filename: './pages/[name]/[name].js',
     },
     devServer: {
-        port: 8000,
+        port: 8000
     },
     module: {
         rules: [{
@@ -44,11 +46,11 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/index.html",
-            filename: "./index.html",
+            template: "./src/client/app/pages/index/index.html",
+            filename: "./pages/index/index.html",
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css"
+            filename: "./pages/[name]/[name].css"
         }),
         new CleanWebpackPlugin({
             // Write Logs to Console

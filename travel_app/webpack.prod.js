@@ -8,7 +8,9 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 
 module.exports = {
-    entry: ['babel-polyfill', './src/client/app/index.js'],
+    entry: {
+        index: ['babel-polyfill', './src/client/app/pages/index/index.js']
+    },
     mode: 'production',
     output: {
         libraryTarget: 'var',
@@ -46,7 +48,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/index.html",
+            template: "./src/client/app/pages/index/index.html",
             filename: "./index.html",
         }),
         new MiniCssExtractPlugin({

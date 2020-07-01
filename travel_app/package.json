@@ -5,7 +5,10 @@
     "description": "Travel application for organizing trips that have real locations with real time data. The application uses a micro services architecture, for requesting data from third party APIs, and storing data in the database.",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start-hosting-server": "node src/hosting-server/server/index.js | bunyan"
+        "start-hosting-server": "node src/hosting-server/server/index.js | bunyan",
+        "build-dev-app": "webpack --config webpack.dev.js",
+        "build-prod-app": "webpack --config webpack.prod.js",
+        "build-dev-server-app": "webpack-dev-server  --config webpack.dev.js --open"
     },
     "repository": {
         "type": "git",
