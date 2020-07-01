@@ -21,11 +21,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { LocationServices } = require('./lib/services/Location');
+const { WeatherServices } = require('./lib/services/Weather');
+const { ImageServices } = require('./lib/services/Image');
+const { UserServices } = require('./lib/services/User');
 
 const config = configs[app.get('env')];
 
 const locationServices = LocationServices.getInstance();
+const weatherServices = WeatherServices.getInstance();
+const imageServices = ImageServices.getInstance();
+const userServices = UserServices.getInstance();
 locationServices.setInstance(config);
+weatherServices.setInstance(config);
+imageServices.setInstance(config);
+userServices.setInstance(config);
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
@@ -46,8 +55,10 @@ if (app.get('env') === 'development') {
 }
 
 app.use('/', routes({
-    log,
-    locationServices
+    locationServices,
+    weatherServices,
+    imageServices,
+    userServices
 }));
 
 app.use((error, req, res, next) => {
@@ -56,6 +67,7 @@ app.use((error, req, res, next) => {
     log.error(error);
     return res.send({
         error: {
+            status: error.status || 500,
             message: error.message,
         },
     });

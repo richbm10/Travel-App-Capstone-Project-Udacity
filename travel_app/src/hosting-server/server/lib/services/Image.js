@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
-const LocationServices = (function() {
+const ImageServices = (function() {
     let instance;
     return {
         getInstance: () => {
@@ -18,25 +18,11 @@ const LocationServices = (function() {
                         this.serviceRegistryUrl = serviceRegistryUrl;
                         this.servicesVersion = servicesVersion;
                     },
-                    getCountryDetails: async function(isoCode) {
-                        const { ip, port } = await this.getService('location_service');
+                    getImages: async function(address) {
+                        const { ip, port } = await this.getService('image_service');
                         return this.callService({
                             method: 'get',
-                            url: `http://${ip}:${port}/location/country/${isoCode}`
-                        });
-                    },
-                    getCountries: async function() {
-                        const { ip, port } = await this.getService('location_service');
-                        return this.callService({
-                            method: 'get',
-                            url: `http://${ip}:${port}/location/countries`
-                        });
-                    },
-                    getAddress: async function(address) {
-                        const { ip, port } = await this.getService('location_service');
-                        return this.callService({
-                            method: 'get',
-                            url: `http://${ip}:${port}/location/${address}`
+                            url: `http://${ip}:${port}/images/location/${address}`
                         });
                     },
                     callService: async function(requestOptions) {
@@ -65,4 +51,4 @@ const LocationServices = (function() {
     };
 })();
 
-exports.LocationServices = LocationServices;
+exports.ImageServices = ImageServices;
