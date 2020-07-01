@@ -6,7 +6,7 @@ module.exports = (param) => {
 
     const { userServices } = param;
 
-    router.get('/user/:username', async(req, res, next) => {
+    router.get('/:username', async(req, res, next) => {
         try {
             const data = await userServices.getUser(req.params.username);
             return res.send(data);
@@ -15,7 +15,7 @@ module.exports = (param) => {
         }
     });
 
-    router.put('/user/trip/:userId', async(req, res, next) => {
+    router.put('/trip/:userId', async(req, res, next) => {
         try {
             const message = await userServices.createTrip(req.params.userId, req.body);
             return res.send(message);
@@ -24,7 +24,7 @@ module.exports = (param) => {
         }
     });
 
-    router.post('/user/trip/:userId', async(req, res, next) => {
+    router.post('/trip/:userId', async(req, res, next) => {
         try {
             const message = await userServices.updateTrip(req.params.userId, req.body);
             return res.send(message);
@@ -33,7 +33,7 @@ module.exports = (param) => {
         }
     });
 
-    router.delete('/user/trip/:userId/:tripId', async(req, res, next) => {
+    router.delete('/trip/:userId/:tripId', async(req, res, next) => {
         try {
             const message = await userServices.deleteTrip(req.params.userId, req.params.tripId);
             return res.send(message);
