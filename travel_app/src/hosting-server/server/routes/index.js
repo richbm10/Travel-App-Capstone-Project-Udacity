@@ -5,6 +5,7 @@ const router = express.Router();
 const locationRoute = require('./location');
 const weatherRoute = require('./weather');
 const imageRoute = require('./image');
+const userRoute = require('./user');
 
 module.exports = (param) => {
 
@@ -71,6 +72,7 @@ module.exports = (param) => {
     router.use('/location', locationRoute(param));
     router.use('/weather', weatherRoute(param));
     router.use('/image', imageRoute(param));
+    router.use('/user', userRoute(param));
 
     return router;
 };

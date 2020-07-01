@@ -6,7 +6,7 @@ module.exports = (param) => {
 
     const { imageServices } = param;
 
-    service.get('/images/location/:address/:top', async(req, res, next) => {
+    router.get('/images/location/:address/:top', async(req, res, next) => {
         try {
             const images = await imageServices.getImages(req.params.address);
             const data = [];
