@@ -1,0 +1,16 @@
+.trip-card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+    display: grid;
+    grid-template-columns: 95vw;
+    grid-template-rows: 1fr 20vh 25vh;
+    justify-content: center;
+    align-content: stretch;
+    #actions {
+        width: 15vw;
+        height: 5vh;
+        place-self: start end;
+    }
+    .slides {
+        grid-area: 2/1/3/2;
+    }
+}
