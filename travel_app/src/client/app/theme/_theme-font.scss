@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+$font-stack: 'Roboto',
+sans-serif;
+html {
+    font-size: 16px;
+    font-family: $font-stack;
+}
+
+.hero-text {
+    font-size: 3.6875rem; //59px
+}
+
+.text-A {
+    font-size: 1.125rem; //18px
+}
+
+.text-B {
+    font-size: 1rem; //16px
+}
+
+.text-C {
+    font-size: 0.875rem; //14px
+}
+
+.text-D {
+    font-size: 0.625rem; //10px
+}

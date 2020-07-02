@@ -6,10 +6,21 @@
     justify-content: center;
 }
 
-.column-container {
+%flex-column {
     display: flex;
     flex-flow: column nowrap;
+}
+
+.column-container-A {
+    @extend %flex-column;
     align-items: center;
     align-content: center;
+    justify-content: flex-start;
+}
+
+.column-container-B {
+    @extend %flex-column;
+    align-items: flex-start;
+    align-content: flex-start;
     justify-content: flex-start;
 }

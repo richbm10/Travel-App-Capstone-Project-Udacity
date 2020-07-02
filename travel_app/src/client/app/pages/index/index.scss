@@ -1,6 +1,7 @@
 @import '../../resets';
 @import '../../global';
-@import '../../theme/theme';
+@import '../../theme/theme-color';
+@import '../../theme/theme-font';
 @import '../../components/hero-header/hero-header';
 @import '../../components/navbar/navbar';
 @import '../../components/trip-card/trip-card';
@@ -14,5 +15,4 @@ body {
 
 main {
     grid-area: 3/2/4/3;
-    background-color: #141313;
 }
