@@ -11,10 +11,12 @@ body {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 95vw 1fr;
-    grid-template-rows: 30vh 7vh 1fr;
+    grid-template-rows: 25vh 7vh 1fr;
+    overflow: hidden;
 }
 
 main {
     grid-area: 3/2/4/3;
     padding-bottom: 5vh;
+    overflow-y: scroll;
 }

@@ -1,0 +1,27 @@
+@import '../../resets';
+@import '../../global';
+@import '../../theme/theme-color';
+@import '../../theme/theme-font';
+@import '../../components/header/header';
+@import '../../components/add-button/add-button';
+@import '../../components/hero-slide-location/hero-slide-location';
+@import '../../components/footer/footer';
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 95vw 1fr;
+    grid-template-rows: 7vh 1fr 9vh;
+    overflow: hidden;
+}
+
+main {
+    grid-area: 2/2/3/3;
+    padding-bottom: 5vh;
+    overflow-y: scroll;
+    div {
+        width: 100%;
+        height: 20%;
+        background-color: #ccffcc;
+        margin-top: 10%;
+    }
+}
