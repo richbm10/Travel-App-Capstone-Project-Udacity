@@ -1,5 +1,17 @@
 header {
-    width: 100%;
     grid-area: 1/1/2/4;
-    background-color: #ccddcc;
+    display: grid;
+    grid-template-columns: 10vw 1fr 10vw;
+    place-items: center center;
+    place-content: center center;
+    border-bottom: 1px solid $third-color;
+    span {
+        grid-area: 1/2/2/3;
+        color: $second-color;
+    }
+    #back {
+        width: 10vw;
+        height: 5vh;
+        grid-area: 1/1/2/2;
+    }
 }
