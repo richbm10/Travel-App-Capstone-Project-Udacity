@@ -24,3 +24,11 @@
     align-content: flex-start;
     justify-content: flex-start;
 }
+
+.avatar {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    border-radius: 50%;
+}
