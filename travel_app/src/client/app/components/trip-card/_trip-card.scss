@@ -1,0 +1,32 @@
+.trip-card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+    display: grid;
+    grid-template-columns: 95vw;
+    grid-template-rows: 1fr 30vh 3vh 12vh 1fr;
+    justify-items: center;
+    margin-top: 2vh;
+    .actions {
+        width: 15vw;
+        height: 5vh;
+        place-self: start end;
+    }
+    .hero-slide-location {
+        width: 90%;
+        height: 100%;
+    }
+    .content {
+        width: 90%;
+        align-self: center;
+        span {
+            color: $second-color;
+            font-weight: bold;
+        }
+        .more {
+            color: $third-color;
+        }
+    }
+    .text-D {
+        place-self: start end;
+        margin-right: 5%;
+    }
+}

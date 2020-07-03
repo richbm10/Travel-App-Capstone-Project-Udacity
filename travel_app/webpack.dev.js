@@ -5,16 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: ['babel-polyfill', './src/client/app/index.js'],
+    entry: {
+        'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js']
+    },
     mode: 'development',
-    devtool: 'source-map',
     stats: 'verbose',
     output: {
         libraryTarget: 'var',
-        library: 'Client'
-    },
-    devServer: {
-        port: 8000,
+        library: 'Client',
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
     },
     module: {
         rules: [{
@@ -27,28 +27,36 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
+                test: /\.html$/,
+                use: 'html-loader'
+            },
+            {
                 test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'assets/fonts/[name].[ext]'
+                    name: '[name].[ext]',
+                    outputPath: 'assets/fonts/',
+                    publicPath: '../../assets/fonts/'
                 }
             },
             {
                 test: /\.(png|jp(e*)g|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'assets/images/[name].[ext]'
+                    name: '[name].[ext]',
+                    outputPath: 'assets/images/',
+                    publicPath: '../../assets/images/'
                 }
             }
         ]
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/index.html",
-            filename: "./index.html",
+            template: "./src/client/app/pages/index/index.html",
+            filename: "./pages/index/index.html",
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css"
+            filename: "./[name].css"
         }),
         new CleanWebpackPlugin({
             // Write Logs to Console
