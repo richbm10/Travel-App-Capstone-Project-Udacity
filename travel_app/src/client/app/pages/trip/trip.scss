@@ -1,0 +1,52 @@
+@import '../../resets';
+@import '../../global';
+@import '../../theme/theme-color';
+@import '../../theme/theme-font';
+@import '../../components/header/header';
+@import '../../components/line-input/line-input';
+@import '../../components/check-list/check-list';
+@import '../../components/location-card/location-card';
+@import '../../components/add-button/add-button';
+@import '../../components/hero-slide-location/hero-slide-location';
+@import '../../components/footer/footer';
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 95vw 1fr;
+    grid-template-rows: 6vh 1fr 9vh;
+    overflow: hidden;
+}
+
+main {
+    grid-area: 2/2/3/3;
+    padding-bottom: 5vh;
+    overflow-y: scroll;
+    h2 {
+        color: $second-color;
+        align-self: flex-start;
+        margin: 2vh 0 0 5%;
+    }
+    #notes {
+        width: 95%;
+        border: 1px solid $third-color;
+        border-radius: 2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:focus {
+            border: 1px solid $second-color;
+        }
+        textarea {
+            height: 95%;
+            overflow: auto;
+            outline: none;
+            color: $second-color;
+            font-family: inherit;
+            width: inherit;
+            border: none;
+            &::placeholder {
+                color: $third-color;
+            }
+        }
+    }
+}
