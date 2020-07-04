@@ -23,10 +23,13 @@ main {
         margin-top: 2vh;
     }
     .hero-slide-location {
+        flex: 0 0 auto;
         margin-top: 2vh;
+        height: 30vh;
         &+.row-container {
             .progress-circle {
                 margin: 0.7vh 0.4vw;
+                height: 0.8vh;
             }
         }
     }
