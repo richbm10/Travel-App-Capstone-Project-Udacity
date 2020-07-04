@@ -6,7 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js']
+        'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js'],
+        'pages/trip/trip': ['babel-polyfill', './src/client/app/pages/trip/trip.js']
     },
     mode: 'development',
     stats: 'verbose',
@@ -54,6 +55,12 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/client/app/pages/index/index.html",
             filename: "./pages/index/index.html",
+            chunks: ['pages/index/index']
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/client/app/pages/trip/trip.html",
+            filename: "./pages/trip/trip.html",
+            chunks: ['pages/trip/trip']
         }),
         new MiniCssExtractPlugin({
             filename: "./[name].css"
