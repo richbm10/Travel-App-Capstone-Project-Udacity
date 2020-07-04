@@ -5,6 +5,7 @@
 @import '../../components/header/header';
 @import '../../components/line-input/line-input';
 @import '../../components/check-list/check-list';
+@import '../../components/location-card/location-card';
 @import '../../components/add-button/add-button';
 @import '../../components/hero-slide-location/hero-slide-location';
 @import '../../components/footer/footer';
@@ -26,19 +27,26 @@ main {
         margin: 2vh 0 0 5%;
     }
     #notes {
-        overflow: auto;
-        outline: none;
-        padding: 2% 5%;
-        width: 100%;
+        width: 95%;
         border: 1px solid $third-color;
         border-radius: 2vh;
-        color: $second-color;
-        font-family: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &:focus {
             border: 1px solid $second-color;
         }
-        &::placeholder {
-            color: $third-color;
+        textarea {
+            height: 95%;
+            overflow: auto;
+            outline: none;
+            color: $second-color;
+            font-family: inherit;
+            width: inherit;
+            border: none;
+            &::placeholder {
+                color: $third-color;
+            }
         }
     }
 }
