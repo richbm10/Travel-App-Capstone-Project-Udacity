@@ -1,11 +1,11 @@
-$component: '.select-combo';
-#{$component} {
+$component: 'select-combo';
+.#{$component} {
     margin-top: 2vh;
     width: 95%;
     label {
         cursor: pointer;
     }
-    #{$component}__options-container {
+    .#{$component}__options-container {
         margin-top: 2vh;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
         color: $second-color;
@@ -24,22 +24,24 @@ $component: '.select-combo';
             background-color: $third-color;
             border-radius: 8px;
         }
-        &#{$component}__options-container--active {
+        &.#{$component}__options-container--active {
             max-height: 25vh;
             opacity: 1;
             overflow-y: scroll;
-            +#{$component}__selected {
-                #{$component}__drop-down {
+            +.#{$component}__selected {
+                .#{$component}__drop-down {
                     //rotates icon when options active
                     transform: rotateX(180deg);
                 }
             }
-            ~#{$component}__search-box input {
+            ~.#{$component}__search-box {
                 opacity: 1;
-                pointer-events: auto;
+                input {
+                    pointer-events: auto;
+                }
             }
         }
-        #{$component}__option {
+        .#{$component}__option {
             &:hover {
                 background-color: $third-color;
             }
@@ -48,7 +50,7 @@ $component: '.select-combo';
             }
         }
     }
-    #{$component}__selected {
+    .#{$component}__selected {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
         border-radius: 8px;
         margin-bottom: 8px;
@@ -56,39 +58,47 @@ $component: '.select-combo';
         width: 97%;
         order: 0;
         justify-content: space-between;
-        #{$component}__drop-down {
+        .#{$component}__drop-down {
             height: 5vh;
             width: 8vw;
             transition: all 0.4s;
         }
     }
-    #{$component}__option,
-    #{$component}__selected {
+    .#{$component}__option,
+    .#{$component}__selected {
         padding: 2%;
         cursor: pointer;
     }
-    #{$component}__search-box {
+    .#{$component}__search-box {
+        justify-content: space-between;
+        background-color: $third-color;
         width: 100%;
+        padding: 2% 0.5%;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+        transition: all 0.4s;
         input {
-            width: 95%;
+            flex-grow: 2;
             height: 5vh;
-            padding: 2%;
-            border-radius: 8px;
             z-index: 100;
-            border: 1px solid transparent;
+            border: none;
             color: $second-color;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-            opacity: 0;
             pointer-events: none;
-            transition: all 0.4s;
             font-size: inherit;
             font-family: inherit;
+            margin: 0 1%;
+            background-color: transparent;
         }
         input:focus {
             outline: none;
         }
         input::placeholder {
             color: $second-color;
+        }
+        ##{$component}__search {
+            height: 5vh;
+            width: 8vw;
         }
     }
 }

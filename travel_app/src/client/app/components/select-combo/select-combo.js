@@ -37,3 +37,55 @@ const filterList = searchTerm => {
         }
     });
 };
+
+
+//###############################################################################################################
+
+const combos = document.querySelectorAll(".select-combo__selected");
+const optionsContainers = document.querySelectorAll(".select-combo__options-container");
+const searchBoxes = document.querySelectorAll(".select-combo__search-box input");
+
+function filterList(index, searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    optionsContainers[index].querySelectorAll(".select-combo__option").forEach(option => {
+        let label = option.querySelector('label').textContent.toLowerCase();
+        if (label.indexOf(searchTerm) != -1) {
+            option.style.display = "block";
+        } else {
+            option.style.display = "none";
+        }
+    });
+}
+
+function comboClickCallback(index) {
+    optionsContainers[index].classList.toggle("select-combo__options-container--active");
+
+    searchBoxes[index].value = "";
+    filterList(index, "");
+
+    if (optionsContainer[index].classList.contains("select-combo__options-container--active")) {
+        searchBox.focus();
+    }
+};
+
+let i = 0;
+combos.forEach((combo) => {
+    combo.addEventListener('click', () => {
+        comboClickCallback(i);
+    });
+    optionList = optionsContainers[i].querySelectorAll(".select-combo__option");
+    optionList.forEach((option) => {
+        option.addEventListener("click", () => {
+            combo.textContent = option.querySelector("label").textContent;
+            optionsContainer[i].classList.remove("select-combo__options-container--active");
+        });
+    });
+    i++;
+});
+
+optionsList.forEach(o => {
+    o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("select-combo__options-container--active");
+    });
+});
