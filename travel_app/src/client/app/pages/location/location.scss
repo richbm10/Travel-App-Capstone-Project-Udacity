@@ -17,6 +17,9 @@ main {
     grid-area: 2/2/3/3;
     padding-bottom: 5vh;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     h2 {
         color: $second-color;
         align-self: flex-start;

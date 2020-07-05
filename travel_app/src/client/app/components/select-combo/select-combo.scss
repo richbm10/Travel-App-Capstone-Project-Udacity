@@ -1,112 +1,94 @@
-.select-box {
+$component: '.select-combo';
+#{$component} {
     margin-top: 2vh;
     width: 95%;
-}
-
-.select-box .options-container {
-    margin-top: 2vh;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-    color: $second-color;
-    max-height: 0;
-    width: 100%;
-    opacity: 0;
-    transition: all 0.4s;
-    border-radius: 8px;
-    overflow: hidden;
-    order: 1;
-}
-
-.selected {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: $second-color;
-    width: 97%;
-    order: 0;
-}
-
-.selected::after {
-    //selected icon
-    content: "";
-    background: url("../../../assets/icons/arrow_drop_down-24px.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 32px;
-    transition: all 0.4s;
-}
-
-.select-box .options-container.active {
-    max-height: 25vh;
-    opacity: 1;
-    overflow-y: scroll;
-}
-
-.select-box .options-container.active+.selected::after {
-    //transform icon
-    transform: rotateX(180deg);
-}
-
-.select-box .options-container::-webkit-scrollbar {
-    width: 1vw;
-    background-color: none;
-}
-
-.select-box .options-container::-webkit-scrollbar-thumb {
-    background-color: $third-color;
-    border-radius: 8px;
-}
-
-.select-box .option,
-.selected {
-    padding: 2%;
-    cursor: pointer;
-}
-
-.select-box .option:hover {
-    background-color: $third-color;
-}
-
-.select-box label {
-    cursor: pointer;
-}
-
-.select-box .option .radio {
-    display: none;
-}
-
-
-/* Searchbox */
-
-.search-box {
-    width: 100%;
-}
-
-.search-box input {
-    width: 95%;
-    height: 5vh;
-    padding: 2%;
-    border-radius: 8px;
-    z-index: 100;
-    border: 1px solid transparent;
-    color: $second-color;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s;
-    font-size: inherit;
-    font-family: inherit;
-}
-
-.search-box input:focus {
-    outline: none;
-}
-
-.search-box input::placeholder {
-    color: $second-color;
-}
-
-.select-box .options-container.active~.search-box input {
-    opacity: 1;
-    pointer-events: auto;
+    label {
+        cursor: pointer;
+    }
+    #{$component}__options-container {
+        margin-top: 2vh;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+        color: $second-color;
+        max-height: 0;
+        width: 100%;
+        opacity: 0;
+        transition: all 0.4s;
+        border-radius: 8px;
+        overflow: hidden;
+        order: 1;
+        &::-webkit-scrollbar {
+            width: 1vw;
+            background-color: none;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $third-color;
+            border-radius: 8px;
+        }
+        &#{$component}__options-container--active {
+            max-height: 25vh;
+            opacity: 1;
+            overflow-y: scroll;
+            +#{$component}__selected {
+                #{$component}__drop-down {
+                    //rotates icon when options active
+                    transform: rotateX(180deg);
+                }
+            }
+            ~#{$component}__search-box input {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+        #{$component}__option {
+            &:hover {
+                background-color: $third-color;
+            }
+            input[type='radio'] {
+                display: none;
+            }
+        }
+    }
+    #{$component}__selected {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        color: $second-color;
+        width: 97%;
+        order: 0;
+        justify-content: space-between;
+        #{$component}__drop-down {
+            height: 5vh;
+            width: 8vw;
+            transition: all 0.4s;
+        }
+    }
+    #{$component}__option,
+    #{$component}__selected {
+        padding: 2%;
+        cursor: pointer;
+    }
+    #{$component}__search-box {
+        width: 100%;
+        input {
+            width: 95%;
+            height: 5vh;
+            padding: 2%;
+            border-radius: 8px;
+            z-index: 100;
+            border: 1px solid transparent;
+            color: $second-color;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s;
+            font-size: inherit;
+            font-family: inherit;
+        }
+        input:focus {
+            outline: none;
+        }
+        input::placeholder {
+            color: $second-color;
+        }
+    }
 }

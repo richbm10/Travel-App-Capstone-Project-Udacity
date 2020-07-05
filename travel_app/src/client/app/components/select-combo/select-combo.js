@@ -1,16 +1,16 @@
-const selected = document.querySelector(".selected");
-const optionsContainer = document.querySelector(".options-container");
-const searchBox = document.querySelector(".search-box input");
+const selected = document.querySelector(".select-combo__selected");
+const optionsContainer = document.querySelector(".select-combo__options-container");
+const searchBox = document.querySelector(".select-combo__search-box input");
 
-const optionsList = document.querySelectorAll(".option");
+const optionsList = document.querySelectorAll(".select-combo__option");
 
 selected.addEventListener("click", () => {
-    optionsContainer.classList.toggle("active");
+    optionsContainer.classList.toggle("select-combo__options-container--active");
 
     searchBox.value = "";
     filterList("");
 
-    if (optionsContainer.classList.contains("active")) {
+    if (optionsContainer.classList.contains("select-combo__options-container--active")) {
         searchBox.focus();
     }
 });
@@ -18,7 +18,7 @@ selected.addEventListener("click", () => {
 optionsList.forEach(o => {
     o.addEventListener("click", () => {
         selected.innerHTML = o.querySelector("label").innerHTML;
-        optionsContainer.classList.remove("active");
+        optionsContainer.classList.remove("select-combo__options-container--active");
     });
 });
 
