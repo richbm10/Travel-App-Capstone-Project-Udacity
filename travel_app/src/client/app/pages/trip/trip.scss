@@ -7,7 +7,6 @@
 @import '../../components/check-list/check-list';
 @import '../../components/location-card/location-card';
 @import '../../components/add-button/add-button';
-@import '../../components/hero-slide-location/hero-slide-location';
 @import '../../components/footer/footer';
 body {
     display: grid;
@@ -48,5 +47,8 @@ main {
                 color: $third-color;
             }
         }
+    }
+    #add-button {
+        bottom: 10%;
     }
 }
