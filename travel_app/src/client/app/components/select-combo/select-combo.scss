@@ -49,11 +49,24 @@ $component: 'select-combo';
             }
         }
         .#{$component}__option {
+            justify-content: flex-start;
             &:hover {
                 background-color: $third-color;
             }
             input[type='radio'] {
                 display: none;
+            }
+            label {
+                margin-left: 3%;
+            }
+            .avatar {
+                background-image: url('https://restcountries.eu/data/col.svg');
+                width: 5.5vw;
+                height: 3vh;
+            }
+            .location {
+                width: 6vw;
+                height: 4vh;
             }
         }
     }

@@ -47,7 +47,7 @@ function filterList(optionsContainer, searchTerm) {
     optionsContainer.querySelectorAll(".select-combo__option").forEach(option => {
         let label = option.querySelector('label').textContent.toLowerCase();
         if (label.indexOf(searchTerm) != -1) {
-            option.style.display = "block";
+            option.style.display = "flex";
         } else {
             option.style.display = "none";
         }
