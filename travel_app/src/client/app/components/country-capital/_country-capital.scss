@@ -1,0 +1,41 @@
+$component: 'country-capital';
+.#{$component} {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    span {
+        color: $first-color;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .avatar {
+        background-image: url('https://restcountries.eu/data/col.svg');
+        width: 5vw;
+        height: 3vh;
+        align-self: flex-start;
+        margin-right: 5%;
+    }
+    .column-container-A {
+        width: 40%;
+        height: 100%;
+        background-color: $second-color;
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        justify-content: space-evenly;
+        .#{$component}__country {
+            align-self: flex-start;
+        }
+        .#{$component}__icon {
+            width: 8vw;
+            height: 4vh;
+            margin-right: 5%;
+        }
+        .row-container {
+            margin-top: 5%;
+            width: 100%;
+        }
+    }
+}
