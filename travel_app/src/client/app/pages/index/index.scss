@@ -20,3 +20,11 @@ main {
     padding-bottom: 5vh;
     overflow-y: scroll;
 }
+
+.hero-header {
+    grid-area: 1/1/2/4;
+}
+
+.navbar {
+    grid-area: 2/1/3/4;
+}
