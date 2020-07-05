@@ -10,7 +10,7 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    .slide-element {
+    .__slide-element {
         scroll-snap-align: center;
         flex-shrink: 0;
         width: 100%;
@@ -42,16 +42,17 @@
         height: 3vh;
         margin-left: 5%;
     }
-}
-
-.progress-circle {
-    width: 2vw;
-    height: 0.5vh;
-    border-radius: 100%;
-    border: 1px solid $second-color;
-    margin: 0.5% 5%;
-    &.active {
-        background-color: $second-color;
+    &+.row-container {
+        .progress-circle {
+            width: 2vw;
+            height: 0.5vh;
+            border-radius: 100%;
+            border: 1px solid $second-color;
+            margin: 0.5% 5%;
+            &.active {
+                background-color: $second-color;
+            }
+        }
     }
 }
 

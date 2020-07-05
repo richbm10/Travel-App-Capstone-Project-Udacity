@@ -1,12 +1,16 @@
 header {
     grid-area: 1/1/2/4;
     display: grid;
-    grid-template-columns: 10vw 1fr 10vw;
+    grid-template-columns: 10vw 1fr 20vw;
     place-items: center center;
     place-content: center center;
     border-bottom: 1px solid $third-color;
     span {
         color: $second-color;
+    }
+    a {
+        color: $confirm-color;
+        font-weight: bold;
     }
     #back {
         width: 10vw;

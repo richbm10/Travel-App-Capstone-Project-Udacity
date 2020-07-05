@@ -1,0 +1,38 @@
+$component: 'current-weather';
+.#{$component} {
+    margin-top: 2vh;
+    display: grid;
+    width: 100%;
+    grid-template-rows: 15vh 10vh;
+    color: $first-color;
+    background-color: #28B9F9;
+    border-radius: 2vh;
+    span {
+        white-space: nowrap;
+    }
+    .#{$component}__temp {
+        grid-area: 1/1/2/2;
+        margin-bottom: 5%;
+        place-self: end center;
+        ##{$component}__temp-icon {
+            width: 15vw;
+            height: 7vh;
+        }
+    }
+    .#{$component}__sunrise-sunset {
+        grid-area: 1/2/3/3;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        ##{$component}__sunrise-icon,
+        ##{$component}__sunset-icon {
+            width: 12vw;
+            height: 6vh;
+        }
+    }
+    .#{$component}__description {
+        grid-area: 2/1/3/2;
+        place-self: start center;
+        width: 90%;
+    }
+}

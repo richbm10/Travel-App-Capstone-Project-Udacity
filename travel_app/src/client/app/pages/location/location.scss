@@ -1,0 +1,40 @@
+@import '../../resets';
+@import '../../global';
+@import '../../theme/theme-color';
+@import '../../theme/theme-font';
+@import '../../components/header/header';
+@import '../../components/select-combo/select-combo.scss';
+@import '../../components/hero-slide-location/hero-slide-location';
+@import '../../components/current-weather/current-weather';
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 85vw 1fr;
+    grid-template-rows: 6vh 1fr;
+    overflow: hidden;
+}
+
+main {
+    grid-area: 2/2/3/3;
+    padding-bottom: 5vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    h2 {
+        color: $second-color;
+        align-self: flex-start;
+        margin-top: 2vh;
+    }
+    .hero-slide-location {
+        flex: 0 0 auto;
+        margin-top: 2vh;
+        height: 30vh;
+        &+.row-container {
+            .progress-circle {
+                margin: 0.7vh 0.4vw;
+                height: 0.8vh;
+            }
+        }
+    }
+}
