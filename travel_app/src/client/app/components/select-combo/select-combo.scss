@@ -36,8 +36,15 @@ $component: 'select-combo';
             }
             ~.#{$component}__search-box {
                 opacity: 1;
+                height: fit-content;
                 input {
+                    height: 5%;
+                    opacity: 1;
                     pointer-events: auto;
+                }
+                ##{$component}__search {
+                    height: 5%;
+                    opacity: 1;
                 }
             }
         }
@@ -76,11 +83,14 @@ $component: 'select-combo';
         padding: 2% 0.5%;
         border-radius: 8px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+        height: 0;
         opacity: 0;
-        transition: all 0.4s;
+        transition: all 0.8s;
         input {
+            height: 0;
+            opacity: 0;
+            transition: all 0.8s;
             flex-grow: 2;
-            height: 5vh;
             z-index: 100;
             border: none;
             color: $second-color;
@@ -97,7 +107,9 @@ $component: 'select-combo';
             color: $second-color;
         }
         ##{$component}__search {
-            height: 5vh;
+            height: 0;
+            opacity: 0;
+            transition: all 0.8s;
             width: 8vw;
         }
     }

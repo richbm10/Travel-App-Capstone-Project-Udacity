@@ -41,13 +41,10 @@
 
 //###############################################################################################################
 
-const combos = document.querySelectorAll(".select-combo__selected");
-const optionsContainers = document.querySelectorAll(".select-combo__options-container");
-const searchBoxes = document.querySelectorAll(".select-combo__search-box input");
 
-function filterList(index, searchTerm) {
+function filterList(optionsContainer, searchTerm) {
     searchTerm = searchTerm.toLowerCase();
-    optionsContainers[index].querySelectorAll(".select-combo__option").forEach(option => {
+    optionsContainer.querySelectorAll(".select-combo__option").forEach(option => {
         let label = option.querySelector('label').textContent.toLowerCase();
         if (label.indexOf(searchTerm) != -1) {
             option.style.display = "block";
@@ -57,31 +54,54 @@ function filterList(index, searchTerm) {
     });
 }
 
-function comboClickCallback(index) {
-    optionsContainers[index].classList.toggle("select-combo__options-container--active");
+function comboClickCallback(optionsContainer, searchBox) {
+    optionsContainer.classList.toggle("select-combo__options-container--active");
 
-    searchBoxes[index].value = "";
-    filterList(index, "");
+    searchBox.value = "";
+    filterList(optionsContainer, "");
 
-    if (optionsContainer[index].classList.contains("select-combo__options-container--active")) {
+    if (optionsContainer.classList.contains("select-combo__options-container--active")) {
         searchBox.focus();
     }
 };
 
-let i = 0;
-combos.forEach((combo) => {
-    combo.addEventListener('click', () => {
-        comboClickCallback(i);
+function buildSelectCombo(selectCombo) {
+    const selected = document.querySelector(`${selectCombo} > .select-combo__selected`);
+    const optionsContainer = document.querySelector(`${selectCombo} > .select-combo__options-container`);
+    const searchBox = document.querySelector(`${selectCombo} > .select-combo__search-box input`);
+
+    selected.addEventListener('click', () => {
+        comboClickCallback(optionsContainer, searchBox);
     });
-    optionList = optionsContainers[i].querySelectorAll(".select-combo__option");
+    optionList = optionsContainer.querySelectorAll(`${selectCombo} .select-combo__option`);
     optionList.forEach((option) => {
         option.addEventListener("click", () => {
-            combo.textContent = option.querySelector("label").textContent;
-            optionsContainer[i].classList.remove("select-combo__options-container--active");
+            selected.querySelector(`${selectCombo} span`).textContent = option.querySelector(`${selectCombo} label`).textContent;
+            optionsContainer.classList.remove("select-combo__options-container--active");
         });
     });
-    searchBoxes[i].addEventListener("keyup", (e) => {
-        filterList(index, e.target.value);
+    searchBox.addEventListener("keyup", (e) => {
+        filterList(optionsContainer, e.target.value);
     });
-    i++;
-});
+}
+
+buildSelectCombo('#country-search');
+
+buildSelectCombo('#location-search');
+
+// combos.forEach((combo, index) => {
+//     combo.addEventListener('click', () => {
+//         comboClickCallback(index);
+//     });
+//     optionList = optionsContainers[index].querySelectorAll(".select-combo__option");
+//     optionList.forEach((option) => {
+//         option.addEventListener("click", () => {
+//             console.log(index);
+//             combo.querySelector("#span-1").textContent = option.querySelector("label").textContent;
+//             optionsContainers[index].classList.remove("select-combo__options-container--active");
+//         });
+//     });
+//     searchBoxes[index].addEventListener("keyup", (e) => {
+//         filterList(index, e.target.value);
+//     });
+// });
