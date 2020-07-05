@@ -1,2 +1,6 @@
 import './location.scss';
-import '../../components/select-combo/select-combo';
+import { buildSelectCombo } from '../../components/select-combo/select-combo';
+
+buildSelectCombo('#country-search');
+
+buildSelectCombo('#location-search');

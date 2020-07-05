@@ -29,7 +29,7 @@ function buildSelectCombo(selectCombo) {
     selected.addEventListener('click', () => {
         comboClickCallback(optionsContainer, searchBox);
     });
-    optionList = optionsContainer.querySelectorAll(`${selectCombo} .select-combo__option`);
+    const optionList = optionsContainer.querySelectorAll(`${selectCombo} .select-combo__option`);
     optionList.forEach((option) => {
         option.addEventListener("click", () => {
             selected.querySelector(`${selectCombo} span`).textContent = option.querySelector(`${selectCombo} label`).textContent;
@@ -41,23 +41,4 @@ function buildSelectCombo(selectCombo) {
     });
 }
 
-buildSelectCombo('#country-search');
-
-buildSelectCombo('#location-search');
-
-// combos.forEach((combo, index) => {
-//     combo.addEventListener('click', () => {
-//         comboClickCallback(index);
-//     });
-//     optionList = optionsContainers[index].querySelectorAll(".select-combo__option");
-//     optionList.forEach((option) => {
-//         option.addEventListener("click", () => {
-//             console.log(index);
-//             combo.querySelector("#span-1").textContent = option.querySelector("label").textContent;
-//             optionsContainers[index].classList.remove("select-combo__options-container--active");
-//         });
-//     });
-//     searchBoxes[index].addEventListener("keyup", (e) => {
-//         filterList(index, e.target.value);
-//     });
-// });
+export { buildSelectCombo };
