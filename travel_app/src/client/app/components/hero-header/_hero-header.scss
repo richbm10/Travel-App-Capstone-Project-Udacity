@@ -1,19 +1,14 @@
 .hero-header {
-    grid-area: 1/1/2/4;
-    img {
-        width: 100%;
-        height: 100%;
+    .column-container-B {
+        margin-left: 5%;
     }
-    .row-container {
+    #hero-header__user {
         position: relative;
         left: 5%;
         bottom: 45%;
         width: fit-content;
         color: $first-color;
         white-space: nowrap;
-    }
-    .column-container-B {
-        margin-left: 5%;
     }
     #hero-img {
         width: 100%;

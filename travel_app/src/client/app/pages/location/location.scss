@@ -14,10 +14,15 @@ body {
     overflow: hidden;
 }
 
+header {
+    grid-area: 1/1/2/4;
+}
+
 main {
     grid-area: 2/2/3/3;
     padding-bottom: 5vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -30,7 +35,7 @@ main {
         flex: 0 0 auto;
         margin-top: 2vh;
         height: 30vh;
-        &+.row-container {
+        +.row-container {
             .progress-circle {
                 margin: 0.7vh 0.4vw;
                 height: 0.8vh;

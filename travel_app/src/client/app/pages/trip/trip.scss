@@ -7,7 +7,6 @@
 @import '../../components/check-list/check-list';
 @import '../../components/location-card/location-card';
 @import '../../components/add-button/add-button';
-@import '../../components/hero-slide-location/hero-slide-location';
 @import '../../components/footer/footer';
 body {
     display: grid;
@@ -17,10 +16,15 @@ body {
     overflow: hidden;
 }
 
+header {
+    grid-area: 1/1/2/4;
+}
+
 main {
     grid-area: 2/2/3/3;
     padding-bottom: 5vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     h2 {
         color: $second-color;
         align-self: flex-start;
@@ -49,4 +53,11 @@ main {
             }
         }
     }
+    #add-button {
+        bottom: 10%;
+    }
+}
+
+footer {
+    grid-area: 3/1/4/4;
 }

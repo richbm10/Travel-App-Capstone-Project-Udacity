@@ -42,7 +42,7 @@
         height: 3vh;
         margin-left: 5%;
     }
-    &+.row-container {
+    +.row-container {
         .progress-circle {
             width: 2vw;
             height: 0.5vh;
