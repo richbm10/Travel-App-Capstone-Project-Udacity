@@ -22,6 +22,7 @@ main {
     grid-area: 2/2/3/3;
     padding-bottom: 5vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     &::-webkit-scrollbar {
         display: none;
     }
