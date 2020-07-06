@@ -16,10 +16,15 @@ body {
     overflow: hidden;
 }
 
+header {
+    grid-area: 1/1/2/4;
+}
+
 main {
     grid-area: 2/2/3/3;
     padding-bottom: 5vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     h2 {
         color: $second-color;
         align-self: flex-start;
@@ -51,4 +56,8 @@ main {
     #add-button {
         bottom: 10%;
     }
+}
+
+footer {
+    grid-area: 3/1/4/4;
 }

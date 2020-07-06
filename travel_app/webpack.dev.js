@@ -8,7 +8,8 @@ module.exports = {
     entry: {
         'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js'],
         'pages/trip/trip': ['babel-polyfill', './src/client/app/pages/trip/trip.js'],
-        'pages/location/location': ['babel-polyfill', './src/client/app/pages/location/location.js']
+        'pages/location/location': ['babel-polyfill', './src/client/app/pages/location/location.js'],
+        'pages/location-detail/location-detail': ['babel-polyfill', './src/client/app/pages/location-detail/location-detail.js']
     },
     mode: 'development',
     stats: 'verbose',
@@ -67,6 +68,11 @@ module.exports = {
             template: "./src/client/app/pages/location/location.html",
             filename: "./pages/location/location.html",
             chunks: ['pages/location/location']
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/client/app/pages/location-detail/location-detail.html",
+            filename: "./pages/location-detail/location-detail.html",
+            chunks: ['pages/location-detail/location-detail']
         }),
         new MiniCssExtractPlugin({
             filename: "./[name].css"
