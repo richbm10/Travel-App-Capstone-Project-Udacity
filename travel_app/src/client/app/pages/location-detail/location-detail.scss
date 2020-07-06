@@ -7,6 +7,7 @@
 @import '../../components/hero-slide-location/hero-slide-location';
 @import '../../components/country-capital/country-capital';
 @import '../../components/current-weather/current-weather';
+@import '../../components/forecast-weather/forecast-weather';
 body {
     display: grid;
     height: 100vh;
@@ -31,6 +32,16 @@ main {
     }
     .current-weather {
         width: 90%;
+    }
+    .forecast-weather {
+        flex: 0 0 auto;
+    }
+    #forecast-weather-container {
+        align-self: flex-end;
+        .forecast-weather-container__next-icon {
+            width: 4vw;
+            height: 2vh;
+        }
     }
 }
 
