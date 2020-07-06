@@ -40,11 +40,18 @@ main {
     #forecast-weather-container {
         width: 100%;
         position: relative;
-        .forecast-weather-container__next-icon {
+        .forecast-weather-container__next-icon-R {
             position: absolute;
             width: 9vw;
             height: 5vh;
             right: -3%;
+        }
+        .forecast-weather-container__next-icon-L {
+            position: absolute;
+            width: 9vw;
+            height: 5vh;
+            transform: rotate(180deg);
+            left: -3%;
         }
     }
 }
