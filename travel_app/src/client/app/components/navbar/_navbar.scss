@@ -6,16 +6,14 @@
     &.row-container {
         justify-content: space-around;
     }
+    a:hover {
+        cursor: pointer;
+    }
     .active {
         color: $second-color;
-    }
-    .active::after {
-        content: '';
-        width: 100%;
-        height: 1px;
-        display: block;
-        background-color: $second-color;
-        position: relative;
-        top: 2vh;
+        height: 100%;
+        display: flex;
+        border-bottom: 1px solid #707070;
+        align-items: center;
     }
 }

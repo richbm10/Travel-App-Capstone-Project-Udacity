@@ -26,3 +26,31 @@ html {
 .text-D {
     font-size: 0.625rem; //10px
 }
+
+//Queries for ipad and portrait desktop
+@media only screen and (min-width: 700px) {
+    .text-B {
+        font-size: 1.5rem;
+    }
+    .text-C {
+        font-size: 1.2rem;
+        line-height: 1.75rem;
+    }
+    .text-D {
+        font-size: 0.95rem;
+    }
+}
+
+//Queries for ipad and portrait desktop
+@media only screen and (min-width: 1000px) {
+    .text-B {
+        font-size: 2.2rem;
+    }
+    .text-C {
+        font-size: 1.7rem;
+        line-height: 2.2rem;
+    }
+    .text-D {
+        font-size: 1.3rem;
+    }
+}

@@ -38,8 +38,8 @@
     }
     .avatar {
         background-image: url('https://restcountries.eu/data/col.svg');
-        width: 5vw;
-        height: 3vh;
+        width: 20px;
+        height: 20px;
         margin-left: 5%;
     }
     +.row-container {
@@ -52,6 +52,16 @@
             &.active {
                 background-color: $second-color;
             }
+        }
+    }
+}
+
+//Queries for ipad and portrait desktop
+@media only screen and (min-width: 1000px) {
+    .hero-slide-location {
+        .avatar {
+            width: 40px;
+            height: 40px;
         }
     }
 }

@@ -9,13 +9,13 @@
 @import '../../components/hero-slide-location/hero-slide-location';
 body {
     display: grid;
-    grid-template-columns: 1fr 95vw 1fr;
     grid-template-rows: 25vh 7vh 68vh;
     overflow: hidden;
 }
 
 main {
-    grid-area: 3/2/4/3;
+    grid-area: 3/1/4/4;
+    padding-bottom: 5vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
