@@ -1,11 +1,12 @@
 .hero-header {
+    position: relative;
     .column-container-B {
         margin-left: 5%;
     }
     #hero-header__user {
-        position: relative;
+        position: absolute;
         left: 5%;
-        bottom: 40%;
+        bottom: 5%;
         width: fit-content;
         color: $first-color;
         white-space: nowrap;
@@ -25,8 +26,8 @@
     }
 }
 
-//Queries for ipad and portrait desktop
-@media only screen and (min-width: 700px) {
+//Ipad
+@media only screen and (min-device-width: 700px) {
     .hero-header {
         .avatar {
             width: 80px;
@@ -35,12 +36,22 @@
     }
 }
 
-//Queries for ipad and portrait desktop
-@media only screen and (min-width: 1000px) {
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) {
     .hero-header {
         .avatar {
             width: 130px;
             height: 115px;
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) {
+    .hero-header {
+        .avatar {
+            width: 100px;
+            height: 80px;
         }
     }
 }

@@ -31,15 +31,16 @@
     }
 }
 
-//Queries for ipad and portrait desktop
-@media only screen and (min-width: 700px) {
+//Ipad
+@media only screen and (min-device-width: 700px) {
     .trip-card {
         grid-template-columns: 70vw;
     }
 }
 
-@media only screen and (min-width: 1100px) {
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 900px) {
     .trip-card {
-        grid-template-columns: 40vw;
+        grid-template-columns: fit-content(400px);
     }
 }

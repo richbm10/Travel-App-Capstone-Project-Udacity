@@ -44,8 +44,8 @@
     }
     +.row-container {
         .progress-circle {
-            width: 2vw;
-            height: 0.5vh;
+            width: 7px;
+            height: 5px;
             border-radius: 100%;
             border: 1px solid $second-color;
             margin: 0.5% 5%;
@@ -56,12 +56,34 @@
     }
 }
 
-//Queries for ipad and portrait desktop
-@media only screen and (min-width: 1000px) {
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .hero-slide-location {
+        +.row-container {
+            .progress-circle {
+                width: 14px;
+                height: 10px;
+            }
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) {
     .hero-slide-location {
         .avatar {
             width: 40px;
             height: 40px;
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) {
+    .hero-slide-location {
+        .avatar {
+            width: 30px;
+            height: 30px;
         }
     }
 }
