@@ -10,9 +10,8 @@
 @import '../../components/footer/footer';
 body {
     display: grid;
-    height: 100vh;
     grid-template-columns: 1fr 95vw 1fr;
-    grid-template-rows: 6vh 1fr 9vh;
+    grid-template-rows: 6vh 85vh 9vh;
     overflow: hidden;
 }
 
@@ -22,7 +21,6 @@ header {
 
 main {
     grid-area: 2/2/3/3;
-    padding-bottom: 5vh;
     overflow-y: scroll;
     overflow-x: hidden;
     h2 {

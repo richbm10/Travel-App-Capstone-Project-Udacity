@@ -8,9 +8,8 @@
 @import '../../components/current-weather/current-weather';
 body {
     display: grid;
-    height: 100vh;
     grid-template-columns: 1fr 85vw 1fr;
-    grid-template-rows: 6vh 1fr;
+    grid-template-rows: 6vh 94vh;
     overflow: hidden;
 }
 
