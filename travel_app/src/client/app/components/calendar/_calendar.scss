@@ -1,29 +1,41 @@
 $component: 'calendar';
 .#{$component} {
     width: 100%;
+    height: 100%;
+    padding-bottom: 5vh;
     %calendar-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        width: 90%;
+        width: 100%;
+        place-items: center center;
+        place-content: center center;
+        gap: 5% 0;
     }
     h3 {
         color: $second-color;
         align-self: flex-start;
-        margin-top: 1vh;
+        margin-top: 2vh;
     }
     ##{$component}__days-header {
         @extend %calendar-grid;
         margin-top: 2vh;
         color: $third-color;
         overflow: hidden;
-        >.column-container-A {
+        +.column-container-A {
             overflow-y: scroll;
             overflow-x: hidden;
+            height: 100%;
             .#{$component}__days {
                 @extend %calendar-grid;
                 color: $second-color;
-                margin-top: 1vh;
-                height: 30vh;
+                margin-top: 4vh;
+                margin-bottom: 3vh;
+                span {
+                    height: 5vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
                 .#{$component}__day-reserved {
                     color: $third-color;
                 }
@@ -31,16 +43,17 @@ $component: 'calendar';
                     color: $first-color;
                     background-color: $second-color;
                     border-radius: 100%;
-                    width: 100%;
+                    width: 80%;
                     height: 100%;
                 }
             }
         }
         ##{$component}__days-header-line {
-            grid-area: 2/1/3/4;
-            width: 110%;
+            grid-area: 2/1/3/8;
+            width: 100%;
             height: 0;
             border: 1px solid $third-color;
+            margin-top: 2%;
         }
     }
 }

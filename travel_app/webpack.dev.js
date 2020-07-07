@@ -9,7 +9,8 @@ module.exports = {
         'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js'],
         'pages/trip/trip': ['babel-polyfill', './src/client/app/pages/trip/trip.js'],
         'pages/location/location': ['babel-polyfill', './src/client/app/pages/location/location.js'],
-        'pages/location-detail/location-detail': ['babel-polyfill', './src/client/app/pages/location-detail/location-detail.js']
+        'pages/location-detail/location-detail': ['babel-polyfill', './src/client/app/pages/location-detail/location-detail.js'],
+        'pages/location-calendar/location-calendar': ['babel-polyfill', './src/client/app/pages/location-calendar/location-calendar.js']
     },
     mode: 'development',
     stats: 'verbose',
@@ -73,6 +74,11 @@ module.exports = {
             template: "./src/client/app/pages/location-detail/location-detail.html",
             filename: "./pages/location-detail/location-detail.html",
             chunks: ['pages/location-detail/location-detail']
+        }),
+        new HtmlWebPackPlugin({
+            template: "./src/client/app/pages/location-calendar/location-calendar.html",
+            filename: "./pages/location-calendar/location-calendar.html",
+            chunks: ['pages/location-calendar/location-calendar']
         }),
         new MiniCssExtractPlugin({
             filename: "./[name].css"
