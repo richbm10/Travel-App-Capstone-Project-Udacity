@@ -1,16 +1,14 @@
 footer {
     display: grid;
-    grid-template-columns: 30vw 1fr 30vw;
+    grid-template-columns: 1fr 1fr 1fr;
     place-items: center center;
     place-content: center center;
     border-top: 1px solid $third-color;
-    &:not(:last-child) {
-        color: $second-color;
-    }
     span {
         white-space: nowrap;
+        color: $second-color;
     }
-    span:nth-child(3) {
+    a {
         color: $confirm-color;
         font-weight: bold;
     }
