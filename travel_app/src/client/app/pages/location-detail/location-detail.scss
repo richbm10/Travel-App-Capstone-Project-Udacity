@@ -10,9 +10,8 @@
 @import '../../components/forecast-weather/forecast-weather';
 body {
     display: grid;
-    height: 100vh;
     grid-template-columns: 1fr 93vw 1fr;
-    grid-template-rows: 6vh 25vh 3vh 1fr;
+    grid-template-rows: 6vh 25vh 3vh 66vh;
     overflow: hidden;
 }
 
