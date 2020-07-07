@@ -59,3 +59,9 @@ main {
 footer {
     grid-area: 3/1/4/4;
 }
+
+@media only screen and (min-width: 768px) {
+    body {
+        grid-template-columns: 1fr 95vw 1fr;
+    }
+}

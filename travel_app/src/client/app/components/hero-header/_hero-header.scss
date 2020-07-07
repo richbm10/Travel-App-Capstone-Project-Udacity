@@ -1,11 +1,12 @@
 .hero-header {
+    position: relative;
     .column-container-B {
         margin-left: 5%;
     }
     #hero-header__user {
-        position: relative;
+        position: absolute;
         left: 5%;
-        bottom: 45%;
+        bottom: 5%;
         width: fit-content;
         color: $first-color;
         white-space: nowrap;
@@ -20,7 +21,37 @@
     }
     .avatar {
         background-image: url('../../../assets/images/profile_picture.jpg');
-        width: 20vw;
-        height: 10vh;
+        width: 60px;
+        height: 50px;
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .hero-header {
+        .avatar {
+            width: 80px;
+            height: 70px;
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) {
+    .hero-header {
+        .avatar {
+            width: 130px;
+            height: 115px;
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) {
+    .hero-header {
+        .avatar {
+            width: 100px;
+            height: 80px;
+        }
     }
 }
