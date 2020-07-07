@@ -10,9 +10,8 @@
 @import '../../components/forecast-weather/forecast-weather';
 body {
     display: grid;
-    height: 100vh;
     grid-template-columns: 1fr 93vw 1fr;
-    grid-template-rows: 6vh 25vh 3vh 1fr;
+    grid-template-rows: 6vh 25vh 3vh 66vh;
     overflow: hidden;
 }
 
@@ -40,11 +39,18 @@ main {
     #forecast-weather-container {
         width: 100%;
         position: relative;
-        .forecast-weather-container__next-icon {
+        .forecast-weather-container__next-icon-R {
             position: absolute;
             width: 9vw;
             height: 5vh;
             right: -3%;
+        }
+        .forecast-weather-container__next-icon-L {
+            position: absolute;
+            width: 9vw;
+            height: 5vh;
+            transform: rotate(180deg);
+            left: -3%;
         }
     }
 }

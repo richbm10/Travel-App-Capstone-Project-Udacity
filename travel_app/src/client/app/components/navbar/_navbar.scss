@@ -1,6 +1,8 @@
 .navbar {
     color: $third-color;
     border-bottom: 1px solid $third-color;
+    background-color: $first-color;
+    z-index: 1;
     &.row-container {
         justify-content: space-around;
     }

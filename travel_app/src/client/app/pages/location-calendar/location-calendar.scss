@@ -1,0 +1,31 @@
+@import '../../resets';
+@import '../../global';
+@import '../../theme/theme-color';
+@import '../../theme/theme-font';
+@import '../../components/header/header';
+@import '../../components/calendar/calendar';
+@import '../../components/footer/footer';
+body {
+    display: grid;
+    grid-template-columns: 1fr 90vw 1fr;
+    grid-template-rows: 6vh 85vh 9vh; //TODO: ADD MAIN HEIGHT IN ALL PAGES
+    overflow: hidden;
+}
+
+header {
+    grid-area: 1/1/2/4;
+}
+
+h2 {
+    color: $second-color;
+    align-self: flex-start;
+    margin-top: 2vh;
+}
+
+main {
+    grid-area: 2/2/3/3;
+}
+
+footer {
+    grid-area: 3/1/4/4;
+}
