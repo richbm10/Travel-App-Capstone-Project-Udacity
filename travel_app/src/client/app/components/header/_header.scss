@@ -4,6 +4,7 @@ header {
     place-items: center center;
     place-content: center center;
     border-bottom: 1px solid $third-color;
+    background-color: $first-color;
     z-index: 1;
     span {
         color: $second-color;

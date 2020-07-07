@@ -7,9 +7,8 @@
 @import '../../components/footer/footer';
 body {
     display: grid;
-    height: 100vh;
     grid-template-columns: 1fr 90vw 1fr;
-    grid-template-rows: 6vh 1fr 9vh;
+    grid-template-rows: 6vh 85vh 9vh; //TODO: ADD MAIN HEIGHT IN ALL PAGES
     overflow: hidden;
 }
 
@@ -25,9 +24,6 @@ h2 {
 
 main {
     grid-area: 2/2/3/3;
-    padding-bottom: 5vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 footer {

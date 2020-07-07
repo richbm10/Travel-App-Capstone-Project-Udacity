@@ -4,6 +4,7 @@ footer {
     place-items: center center;
     place-content: center center;
     border-top: 1px solid $third-color;
+    background-color: $first-color;
     z-index: 1;
     span {
         white-space: nowrap;
