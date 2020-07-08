@@ -13,8 +13,8 @@
     }
     .avatar {
         background-image: url('https://restcountries.eu/data/col.svg');
-        width: 5vw;
-        height: 3vh;
+        width: 20px;
+        height: 20px;
         margin-left: 5%;
     }
     .row-container {
@@ -35,8 +35,54 @@
             opacity: 0.8;
         }
         .actions {
-            width: 8vw;
-            height: 4vh;
+            width: 25px;
+            height: 25px;
         }
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .location-card {
+        width: 75vw;
+        .row-container {
+            .actions {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) {
+    .location-card {
+        .avatar {
+            width: 40px;
+            height: 40px;
+        }
+        .row-container {
+            .actions {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) {
+    .location-card {
+        .avatar {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 800px) {
+    .location-card {
+        max-width: 350px
     }
 }

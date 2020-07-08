@@ -32,3 +32,8 @@
     vertical-align: middle;
     border-radius: 50%;
 }
+
+a:hover,
+svg:hover {
+    cursor: pointer;
+}

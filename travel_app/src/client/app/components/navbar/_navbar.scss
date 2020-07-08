@@ -6,9 +6,6 @@
     &.row-container {
         justify-content: space-around;
     }
-    a:hover {
-        cursor: pointer;
-    }
     .active {
         color: $second-color;
         height: 100%;
