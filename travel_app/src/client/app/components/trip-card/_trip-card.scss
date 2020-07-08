@@ -1,8 +1,8 @@
 .trip-card {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
     display: grid;
-    grid-template-columns: 95vw;
-    grid-template-rows: 1fr 30vh 3vh 12vh 1fr;
+    grid-template-columns: 90vw;
+    grid-template-rows: 5vh 30vh 3vh 12vh 4vh;
     justify-items: center;
     margin-top: 2vh;
     .actions {
@@ -28,5 +28,19 @@
     .text-D {
         place-self: start end;
         margin-right: 5%;
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .trip-card {
+        grid-template-columns: 70vw;
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 900px) {
+    .trip-card {
+        grid-template-columns: fit-content(400px);
     }
 }
