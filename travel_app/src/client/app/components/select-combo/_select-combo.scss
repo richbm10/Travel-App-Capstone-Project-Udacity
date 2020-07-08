@@ -91,7 +91,7 @@ $component: 'select-combo';
     }
     .#{$component}__search-box {
         justify-content: space-between;
-        background-color: $third-color;
+        background-color: $fourth-color;
         width: 100%;
         padding: 2% 0.5%;
         border-radius: 8px;
@@ -118,6 +118,8 @@ $component: 'select-combo';
         }
         input::placeholder {
             color: $second-color;
+            font-size: inherit;
+            font-family: inherit;
         }
         ##{$component}__search {
             height: 0;

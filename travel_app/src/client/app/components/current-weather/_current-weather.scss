@@ -2,13 +2,16 @@ $component: 'current-weather';
 .#{$component} {
     margin-top: 2vh;
     display: grid;
-    width: 100%;
+    width: 90%;
     grid-template-rows: 15vh 10vh;
     color: $first-color;
     background-color: #28B9F9;
     border-radius: 2vh;
     span {
         white-space: nowrap;
+    }
+    div {
+        display: block;
     }
     .#{$component}__temp {
         grid-area: 1/1/2/2;
