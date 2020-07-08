@@ -23,3 +23,12 @@ form {
         }
     }
 }
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 700px) {
+    form {
+        .line-input {
+            grid-template-columns: 500px 1fr;
+        }
+    }
+}

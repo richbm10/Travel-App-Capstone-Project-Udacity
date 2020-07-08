@@ -29,6 +29,9 @@ html {
 
 //Ipad
 @media only screen and (min-device-width: 700px) {
+    .text-A {
+        font-size: 1.62rem;
+    }
     .text-B {
         font-size: 1.5rem;
     }
@@ -43,6 +46,9 @@ html {
 
 //Ipad Pro
 @media only screen and (min-device-width: 1000px) {
+    .text-A {
+        font-size: 2.32rem;
+    }
     .text-B {
         font-size: 2.2rem;
     }
@@ -57,6 +63,9 @@ html {
 
 //Desktop
 @media only screen and (min-device-width: 1200px) {
+    .text-A {
+        font-size: 1.62rem;
+    }
     .text-B {
         font-size: 1.5rem;
     }
