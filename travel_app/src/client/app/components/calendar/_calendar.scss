@@ -20,10 +20,9 @@ $component: 'calendar';
         @extend %calendar-grid;
         margin-top: 2vh;
         color: $third-color;
-        overflow: hidden;
+        overflow: inherit;
         +.column-container-A {
-            overflow-y: scroll;
-            overflow-x: hidden;
+            overflow: inherit;
             height: 100%;
             .#{$component}__days {
                 @extend %calendar-grid;
@@ -35,6 +34,9 @@ $component: 'calendar';
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
                 .#{$component}__day-reserved {
                     color: $third-color;
@@ -54,6 +56,38 @@ $component: 'calendar';
             height: 0;
             border: 1px solid $third-color;
             margin-top: 2%;
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 700px) {
+    .#{$component} {
+        ##{$component}__days-header {
+            +.column-container-A {
+                .#{$component}__days {
+                    .#{$component}__day-selected {
+                        width: 50%;
+                        height: 80%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 900px) {
+    .#{$component} {
+        ##{$component}__days-header {
+            +.column-container-A {
+                .#{$component}__days {
+                    .#{$component}__day-selected {
+                        width: 40%;
+                        height: 80%;
+                    }
+                }
+            }
         }
     }
 }
