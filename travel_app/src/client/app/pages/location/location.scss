@@ -42,18 +42,12 @@ main {
         margin-top: 2vh;
         height: 30vh;
         width: 90%;
-        +.row-container {
-            .progress-circle {
-                margin: 0.7vh 0.4vw;
-                height: 0.8vh;
-            }
-        }
     }
 }
 
 //Ipad
 @media only screen and (min-device-width: 700px) {
     main {
-        grid-template-columns: 1fr 75vw 1fr;
+        grid-template-columns: 1fr 70vw 1fr;
     }
 }
