@@ -48,16 +48,14 @@ main {
     #forecast-weather-container {
         width: 100%;
         position: relative;
+        .forecast-weather-container__next-icon-L,
         .forecast-weather-container__next-icon-R {
             position: absolute;
-            width: 5vw;
-            height: 9vh;
+            width: 20px;
+            height: 30px;
             right: -3%;
         }
         .forecast-weather-container__next-icon-L {
-            position: absolute;
-            width: 5vw;
-            height: 9vh;
             transform: rotate(180deg);
             left: -3%;
         }
@@ -90,22 +88,48 @@ main {
 //Ipad
 @media only screen and (min-device-width: 700px) {
     body {
-        grid-template-rows: 6vh 40vh 54vh;
+        grid-template-rows: 6vh 35vh 59vh;
     }
     main {
         grid-template-columns: 1fr 70vw 1fr;
     }
+    #main-container {
+        #forecast-weather-container {
+            .forecast-weather-container__next-icon-L,
+            .forecast-weather-container__next-icon-R {
+                width: 30px;
+                height: 40px;
+            }
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) {
+    #main-container {
+        #forecast-weather-container {
+            .forecast-weather-container__next-icon-L,
+            .forecast-weather-container__next-icon-R {
+                width: 40px;
+                height: 50px;
+            }
+        }
+    }
 }
 
 //Desktop
-// @media only screen and (min-device-width: 1200px) and (min-width: 700px) {
-//     main {
-//         grid-template-columns: 1fr 60vw 1fr;
-//     }
-// }
+@media only screen and (min-device-width: 1200px) and (min-width: 700px) {
+    body {
+        grid-template-rows: 6vh 45vh 49vh;
+    }
+    main {
+        grid-template-columns: 1fr 60vw 1fr;
+    }
+}
+
 //Desktop
-// @media only screen and (min-device-width: 1200px) and (min-width: 1000px) {
-//     main {
-//         grid-template-columns: 1fr 550px 1fr;
-//     }
-// }
+@media only screen and (min-device-width: 1200px) and (min-width: 1000px) {
+    main {
+        grid-template-columns: 1fr 700px 1fr;
+    }
+}
