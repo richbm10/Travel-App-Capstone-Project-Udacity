@@ -1,4 +1,5 @@
 header {
+    overflow: inherit;
     display: grid;
     grid-template-columns: 10vw 1fr 10vw;
     place-items: center center;
@@ -12,6 +13,7 @@ header {
     a {
         color: $confirm-color;
         font-weight: bold;
+        width: 150%;
     }
     #back {
         width: 10vw;

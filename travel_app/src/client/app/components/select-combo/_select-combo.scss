@@ -38,12 +38,13 @@ $component: 'select-combo';
                 opacity: 1;
                 height: fit-content;
                 input {
-                    height: 5%;
+                    height: 0%;
                     opacity: 1;
                     pointer-events: auto;
                 }
                 ##{$component}__search {
-                    height: 5%;
+                    height: 30px;
+                    width: 30px;
                     opacity: 1;
                 }
             }
@@ -61,12 +62,12 @@ $component: 'select-combo';
             }
             .avatar {
                 background-image: url('https://restcountries.eu/data/col.svg');
-                width: 5.5vw;
-                height: 3vh;
+                width: 20px;
+                height: 20px;
             }
             .location {
-                width: 6vw;
-                height: 4vh;
+                width: 20px;
+                height: 20px;
             }
         }
     }
@@ -91,7 +92,7 @@ $component: 'select-combo';
     }
     .#{$component}__search-box {
         justify-content: space-between;
-        background-color: $third-color;
+        background-color: $fourth-color;
         width: 100%;
         padding: 2% 0.5%;
         border-radius: 8px;
@@ -118,12 +119,63 @@ $component: 'select-combo';
         }
         input::placeholder {
             color: $second-color;
+            font-size: inherit;
+            font-family: inherit;
         }
         ##{$component}__search {
             height: 0;
+            width: 0;
             opacity: 0;
             transition: all 0.8s;
             width: 8vw;
+        }
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .#{$component} {
+        .#{$component}__options-container {
+            &.#{$component}__options-container--active {
+                ~.#{$component}__search-box {
+                    ##{$component}__search {
+                        height: 40px;
+                        width: 40px;
+                        opacity: 1;
+                    }
+                }
+            }
+            .#{$component}__option {
+                .avatar,
+                .location {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) and (max-device-width: 1200px) {
+    .#{$component} {
+        .#{$component}__options-container {
+            &.#{$component}__options-container--active {
+                ~.#{$component}__search-box {
+                    ##{$component}__search {
+                        height: 50px;
+                        width: 50px;
+                        opacity: 1;
+                    }
+                }
+            }
+            .#{$component}__option {
+                .avatar,
+                .location {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
         }
     }
 }
