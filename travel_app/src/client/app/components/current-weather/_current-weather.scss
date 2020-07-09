@@ -2,7 +2,8 @@ $component: 'current-weather';
 .#{$component} {
     margin-top: 2vh;
     display: grid;
-    width: 100%;
+    width: 90%;
+    grid-template-columns: 60% 40%;
     grid-template-rows: 15vh 10vh;
     color: $first-color;
     background-color: #28B9F9;
@@ -14,25 +15,61 @@ $component: 'current-weather';
         grid-area: 1/1/2/2;
         margin-bottom: 5%;
         place-self: end center;
-        ##{$component}__temp-icon {
-            width: 15vw;
-            height: 7vh;
-        }
     }
     .#{$component}__sunrise-sunset {
         grid-area: 1/2/3/3;
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-evenly;
-        ##{$component}__sunrise-icon,
-        ##{$component}__sunset-icon {
-            width: 12vw;
-            height: 6vh;
-        }
     }
     .#{$component}__description {
         grid-area: 2/1/3/2;
         place-self: start center;
+    }
+    .row-container {
         width: 90%;
+        justify-content: space-evenly;
+    }
+    ##{$component}__temp-icon {
+        width: 55px;
+        height: 55px;
+    }
+    ##{$component}__sunrise-icon,
+    ##{$component}__sunset-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .#{$component} {
+        .#{$component}__temp {
+            justify-content: center;
+        }
+        ##{$component}__temp-icon {
+            width: 85px;
+            height: 85px;
+        }
+        ##{$component}__sunrise-icon,
+        ##{$component}__sunset-icon {
+            width: 55px;
+            height: 55px;
+        }
+    }
+}
+
+//Ipad Pro
+@media only screen and (min-device-width: 1000px) and (max-device-width: 1200px) {
+    .#{$component} {
+        ##{$component}__temp-icon {
+            width: 95px;
+            height: 95px;
+        }
+        ##{$component}__sunrise-icon,
+        ##{$component}__sunset-icon {
+            width: 65px;
+            height: 65px;
+        }
     }
 }
