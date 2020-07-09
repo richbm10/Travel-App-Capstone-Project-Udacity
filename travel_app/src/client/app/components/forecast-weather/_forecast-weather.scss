@@ -27,19 +27,33 @@ $component: 'forecast-weather';
         width: 16%;
         height: 90%;
         justify-content: space-evenly;
-        .#{$component}__temp-icon {
-            width: 8vw;
-            height: 4vh;
-        }
-        .#{$component}__rain-icon {
-            width: 4vw;
-            height: 2vh;
-        }
         .#{$component}__v-line {
             height: 30%;
             width: 0;
             border-left: 3px solid rgba(255, 255, 255, 0.8);
             border-radius: 1vw;
+        }
+    }
+    .#{$component}__temp-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .#{$component}__rain-icon {
+        width: 15px;
+        height: 10px;
+    }
+}
+
+//Ipad
+@media only screen and (min-device-width: 700px) {
+    .#{$component} {
+        .#{$component}__temp-icon {
+            width: 30px;
+            height: 30px;
+        }
+        .#{$component}__rain-icon {
+            width: 15px;
+            height: 10px;
         }
     }
 }
