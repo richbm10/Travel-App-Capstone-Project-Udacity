@@ -22,7 +22,7 @@ main {
     overflow-y: scroll;
     overflow-x: hidden;
     display: grid;
-    grid-template-columns: 1fr 85vw 1fr;
+    grid-template-columns: 1fr 90vw 1fr;
     grid-template-rows: 1fr;
 }
 
@@ -49,5 +49,19 @@ main {
 @media only screen and (min-device-width: 700px) {
     main {
         grid-template-columns: 1fr 70vw 1fr;
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 700px) {
+    main {
+        grid-template-columns: 1fr 60vw 1fr;
+    }
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 1000px) {
+    main {
+        grid-template-columns: 1fr 550px 1fr;
     }
 }
