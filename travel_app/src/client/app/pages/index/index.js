@@ -1,9 +1,15 @@
 import './index.scss';
 import { IndexServices } from './services';
+import { createHeroSlideLocation } from '../../components/hero-slide-location/hero-slide-location';
 import { createTripCards } from '../../components/trip-card/trip-card';
 
-const user = IndexServices.getInstance().getUser('richi_bonilla10');
+const services = IndexServices.getInstance();
+let user;
+services.getUser('richi_bonilla10').then(data => {
+    user = data;
+    createTripCards(); //TODO check if it is ok to call the function here.
+}).catch(err => {
+    alert(err);
+});
 
-createTripCards(); //TODO check if it is ok to call the function here.
-
-export { user };
+export { services, user, createHeroSlideLocation };

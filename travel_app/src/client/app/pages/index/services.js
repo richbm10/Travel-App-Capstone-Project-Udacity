@@ -6,6 +6,7 @@ const IndexServices = (function() {
                 instance = {
                     user: {},
                     baseUserEndpoint: '/user/',
+                    baseLocationImageEndpoint: '/image/location/',
                     setHttpRequest: function(httpMethod, httpBodyData = {}) {
                         return {
                             method: httpMethod,
@@ -16,7 +17,7 @@ const IndexServices = (function() {
                             body: JSON.stringify(httpBodyData)
                         };
                     },
-                    getUser: function(username) {
+                    getUser: async function(username) {
                         const response = await fetch(this.baseUserEndpoint + username, this.setHttpRequest('GET'));
                         try {
                             const resData = await response.json();
@@ -24,6 +25,23 @@ const IndexServices = (function() {
                         } catch (error) {
                             console.log("Parsing Error", error);
                         }
+                    },
+                    getLocationImage: async function(location) {
+                        const query = `${location}/1`;
+                        const response = await fetch(this.baseUserEndpoint + query, this.setHttpRequest('GET'));
+                        try {
+                            const resData = await response.json();
+                            return resData;
+                        } catch (error) {
+                            console.log("Parsing Error", error);
+                        }
+                    },
+                    getTripImages: async function(locations) {
+                        const promises = [];
+                        locations.forEach(location => {
+                            promises.push(getLocationImage(location.location));
+                        });
+                        const results = await Promise.all(promises);
                     }
                 };
             }

@@ -1,5 +1,7 @@
 import moreHorizontal from '../../../assets/icons/more_horiz-24px.svg';
 
+const MAX_NOTES_CHARS = 78;
+
 function createActionsButton() {
     const actions = document.createElement('object');
     actions.setAttribute('type', 'image/svg+xml');
@@ -8,17 +10,29 @@ function createActionsButton() {
     return actions;
 }
 
+function setContent(trip) {
+    const text = `<span>${trip.name}</span> </br > `;
+    const notesLength = trip.notes.length;
+    if (notesLength > MAX_NOTES_CHARS) {
+        text += `${trip.notes.substring(0, notesLength)} <span class="more">...more</span>`;
+    } else {
+        text += trip.notes;
+    }
+    return text;
+}
+
 function createContent(trip) {
     const content = document.createElement('div');
     content.classList.add('content');
     const p = document.createElement('p');
     p.classList.add('text-C');
     p.insertAdjacentHTML('afterbegin', setContent(trip));
+    return content;
 }
 
-function setTripCard(tripCard, trip) {
+async function setTripCard(tripCard, trip) {
     tripCard.appendChild(createActionsButton());
-    tripCard.appendChild(Client.createHeroSlideLocation(trip)); //TODO create it as a document fragment
+    tripCard.appendChild(await Client.createHeroSlideLocation(trip.locations)); //TODO create it as a document fragment
     tripCard.appendChild(createContent(trip));
     const date = document.createElement('span');
     date.classList.add('text-D');
@@ -27,16 +41,12 @@ function setTripCard(tripCard, trip) {
 }
 
 function createTripCards() {
-    if (Client.user.hasOwnProperty('trips')) {
-        const container = document.querySelector('#trip-cards-container');
-        Client.user.trips.forEach(trip => {
-            const tripCard = document.createElement('div');
-            setTripCard(tripCard, trip);
-            container.appendChild(tripCard);
-        });
-    } else {
-        console.log('User property trips not found.');
-    }
+    const container = document.querySelector('#trip-cards-container');
+    Client.user.trips.forEach(trip => {
+        const tripCard = document.createElement('div');
+        setTripCard(tripCard, trip);
+        container.appendChild(tripCard);
+    });
 }
 
 export { createTripCards };
