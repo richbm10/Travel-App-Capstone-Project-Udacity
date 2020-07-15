@@ -12,13 +12,13 @@ function createSlideLocationLabel(country) {
     return createSlideLocationLabel;
 }
 
-function createSlideElement(location, imageUrl) {
+function createSlideElement(location, image) {
     const slideElement = document.createElement('div');
     slideElement.classList.add('__slide-element');
-    const image = document.createElement('img');
-    image.setAttribute('alt', location.location);
-    //image.setAttribute('src'); check response
-    slideElement.appendChild(image);
+    const img = document.createElement('img');
+    img.setAttribute('alt', location.location);
+    img.setAttribute('src', image.webformatURL);
+    slideElement.appendChild(img);
     slideElement.appendChild(createSlideLocationLabel(location.country));
     return slideElement;
 }
@@ -26,6 +26,7 @@ function createSlideElement(location, imageUrl) {
 async function createSlideElements(locations) {
     try {
         const locationsImages = await Client.services.getTripImages(locations);
+        console.log(locationsImages);
         const heroSlideLocation = document.createElement('div');
         heroSlideLocation.classList.add('hero-slide-location');
         for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {

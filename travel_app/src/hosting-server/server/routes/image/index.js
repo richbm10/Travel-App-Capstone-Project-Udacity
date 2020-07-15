@@ -8,7 +8,7 @@ module.exports = (param) => {
 
     router.get('/location/:address/:top', async(req, res, next) => {
         try {
-            const images = await imageServices.getImages(req.params.address);
+            const images = (await imageServices.getImages(req.params.address)).responseImages;
             const data = [];
             for (let i = 0; i < req.params.top; i++) {
                 data.push(images[i]);

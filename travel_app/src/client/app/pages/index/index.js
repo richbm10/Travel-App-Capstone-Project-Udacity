@@ -7,6 +7,7 @@ const services = IndexServices.getInstance();
 let user;
 services.getUser('richi_bonilla10').then(data => {
     user = data;
+    console.log(user);
     createTripCards(); //TODO check if it is ok to call the function here.
 }).catch(err => {
     alert(err);
