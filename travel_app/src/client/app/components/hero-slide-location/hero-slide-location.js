@@ -1,14 +1,17 @@
 const MAX_SLIDE_ELEMENTS = 3;
 
-function createSlideLocationLabel(country) {
+function createSlideLocationLabel(location) {
     const createSlideLocationLabel = document.createElement('div');
-    rowContainer.classList.add('row-container');
+    createSlideLocationLabel.classList.add('row-container');
     const span = document.createElement('span');
     span.classList.add('text-C');
-    const object = document.createElement('object');
-    object.setAttribute('type', 'image/svg+xml');
-    object.setAttribute('data', `https://restcountries.eu/data/${country}.svg`);
-    object.classList.add('avatar');
+    span.textContent = location.location;
+    const obj = document.createElement('object');
+    obj.setAttribute('type', 'image/svg+xml');
+    obj.setAttribute('data', `https://restcountries.eu/data/${location.country}.svg`);
+    obj.classList.add('avatar');
+    createSlideLocationLabel.appendChild(span);
+    createSlideLocationLabel.appendChild(obj);
     return createSlideLocationLabel;
 }
 
@@ -19,22 +22,23 @@ function createSlideElement(location, image) {
     img.setAttribute('alt', location.location);
     img.setAttribute('src', image.webformatURL);
     slideElement.appendChild(img);
-    slideElement.appendChild(createSlideLocationLabel(location.country));
+    slideElement.appendChild(createSlideLocationLabel(location));
     return slideElement;
 }
 
 async function createSlideElements(locations) {
     try {
         const locationsImages = await Client.services.getTripImages(locations);
-        console.log(locationsImages);
         const heroSlideLocation = document.createElement('div');
         heroSlideLocation.classList.add('hero-slide-location');
         for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
+            console.log(i, locations.length);
             if (i === locations.lenght) break;
             heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i]));
         }
         return heroSlideLocation;
     } catch (err) {
+        console.log('ERROR', err);
         alert(err);
     }
 }

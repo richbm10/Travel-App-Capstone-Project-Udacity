@@ -7,6 +7,16 @@ const IndexServices = (function() {
                     user: {},
                     baseUserEndpoint: '/user/',
                     baseLocationImageEndpoint: '/image/location/',
+                    setHttpRequest: function(httpMethod, httpBodyData = {}) {
+                        return {
+                            method: httpMethod,
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(httpBodyData)
+                        };
+                    },
                     getUser: async function(username) {
                         const response = await fetch(this.baseUserEndpoint + username);
                         try {
@@ -18,7 +28,7 @@ const IndexServices = (function() {
                     },
                     getLocationImage: async function(location) {
                         const query = `${location}/1`;
-                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const response = await fetch(this.baseUserEndpoint + query);
                         try {
                             const resData = await response.json();
                             return resData;
@@ -29,10 +39,9 @@ const IndexServices = (function() {
                     getTripImages: async function(locations) {
                         const promises = [];
                         locations.forEach(location => {
-                            promises.push(this.getLocationImage(location.location));
+                            promises.push(getLocationImage(location.location));
                         });
                         const results = await Promise.all(promises);
-                        return results;
                     }
                 };
             }

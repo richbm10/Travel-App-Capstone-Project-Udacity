@@ -44,6 +44,7 @@ function createTripCards() {
     const container = document.querySelector('#trip-cards-container');
     Client.user.trips.forEach(trip => {
         const tripCard = document.createElement('div');
+        tripCard.classList.add('trip-card');
         setTripCard(tripCard, trip);
         container.appendChild(tripCard);
     });

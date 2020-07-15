@@ -10,6 +10,7 @@ services.getUser('richi_bonilla10').then(data => {
     console.log(user);
     createTripCards(); //TODO check if it is ok to call the function here.
 }).catch(err => {
+    console.log('ERROR', err);
     alert(err);
 });
 
