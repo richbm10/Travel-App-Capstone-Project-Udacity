@@ -8,7 +8,8 @@ function createSlideLocationLabel(location) {
     span.textContent = location.location;
     const obj = document.createElement('object');
     obj.setAttribute('type', 'image/svg+xml');
-    obj.setAttribute('data', `https://restcountries.eu/data/${location.country}.svg`);
+    const flag = `https://restcountries.eu/data/${location.country}.svg`;
+    obj.style.backgroundImage = "url(\'" + flag + "\')";
     obj.classList.add('avatar');
     createSlideLocationLabel.appendChild(span);
     createSlideLocationLabel.appendChild(obj);
@@ -16,6 +17,7 @@ function createSlideLocationLabel(location) {
 }
 
 function createSlideElement(location, image) {
+    console.log(image);
     const slideElement = document.createElement('div');
     slideElement.classList.add('__slide-element');
     const img = document.createElement('img');
@@ -32,9 +34,8 @@ async function createSlideElements(locations) {
         const heroSlideLocation = document.createElement('div');
         heroSlideLocation.classList.add('hero-slide-location');
         for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
-            console.log(i, locations.length);
-            if (i === locations.lenght) break;
-            heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i]));
+            if (i === locations.length) break;
+            heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i][0])); //notice that each image response is an array
         }
         return heroSlideLocation;
     } catch (err) {
@@ -45,7 +46,7 @@ async function createSlideElements(locations) {
 
 function createProgressCircles(amount) {
     const rowContainer = document.createElement('div');
-    rowContainer.classList('row-container');
+    rowContainer.classList.add('row-container');
     let progressCircle;
     for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
         if (i === amount) break;
@@ -60,7 +61,7 @@ function createProgressCircles(amount) {
 async function createHeroSlideLocation(locations) {
     const documentFragment = new DocumentFragment();
     documentFragment.appendChild(await createSlideElements(locations));
-    documentFragment.appendChild(createProgressCircles(locations.lenght));
+    documentFragment.appendChild(createProgressCircles(locations.length));
     return documentFragment;
 }
 

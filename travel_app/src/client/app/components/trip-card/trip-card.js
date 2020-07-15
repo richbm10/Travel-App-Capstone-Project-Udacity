@@ -11,13 +11,14 @@ function createActionsButton() {
 }
 
 function setContent(trip) {
-    const text = `<span>${trip.name}</span> </br > `;
+    let text = `<span>${trip.name}</span> </br > `;
     const notesLength = trip.notes.length;
     if (notesLength > MAX_NOTES_CHARS) {
         text += `${trip.notes.substring(0, notesLength)} <span class="more">...more</span>`;
     } else {
         text += trip.notes;
     }
+    console.log(text);
     return text;
 }
 
@@ -27,6 +28,7 @@ function createContent(trip) {
     const p = document.createElement('p');
     p.classList.add('text-C');
     p.insertAdjacentHTML('afterbegin', setContent(trip));
+    content.appendChild(p);
     return content;
 }
 
@@ -36,7 +38,7 @@ async function setTripCard(tripCard, trip) {
     tripCard.appendChild(createContent(trip));
     const date = document.createElement('span');
     date.classList.add('text-D');
-    date.textContent = trip.fromDate;
+    date.textContent = trip.locations[0].fromDate; //the fromDate of the first location to visit
     tripCard.appendChild(date);
 }
 
