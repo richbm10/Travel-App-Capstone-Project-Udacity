@@ -20,8 +20,8 @@ const UserServices = (function() {
                                 country: 'usa',
                                 lat: 38.892062,
                                 lon: -77.019912,
-                                fromDate: '2020-07-10',
-                                toDate: '2020-07-17'
+                                fromDate: '7/7/2020',
+                                toDate: '7/28/2020'
                             }]
                         }]
                     }],
