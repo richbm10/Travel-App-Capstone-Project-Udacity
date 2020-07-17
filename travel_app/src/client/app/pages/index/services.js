@@ -9,22 +9,16 @@ const IndexServices = (function() {
                     baseLocationImageEndpoint: '/image/location/',
                     getUser: async function(username) {
                         const response = await fetch(this.baseUserEndpoint + username);
-                        try {
-                            const resData = await response.json();
-                            return resData;
-                        } catch (error) {
-                            console.log("Parsing Error", error);
-                        }
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
                     },
                     getLocationImage: async function(location) {
                         const query = `${location}/1`;
                         const response = await fetch(this.baseLocationImageEndpoint + query);
-                        try {
-                            const resData = await response.json();
-                            return resData;
-                        } catch (error) {
-                            console.log("Parsing Error", error);
-                        }
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
                     },
                     getTripImages: async function(locations) {
                         const promises = [];

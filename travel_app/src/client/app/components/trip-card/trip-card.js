@@ -18,7 +18,6 @@ function setContent(trip) {
     } else {
         text += trip.notes;
     }
-    console.log(text);
     return text;
 }
 
@@ -33,6 +32,7 @@ function createContent(trip) {
 }
 
 async function setTripCard(tripCard, trip) {
+    tripCard.classList.add('trip-card');
     tripCard.appendChild(createActionsButton());
     tripCard.appendChild(await Client.createHeroSlideLocation(trip.locations)); //TODO create it as a document fragment
     tripCard.appendChild(createContent(trip));
@@ -46,9 +46,12 @@ function createTripCards() {
     const container = document.querySelector('#trip-cards-container');
     Client.user.trips.forEach(trip => {
         const tripCard = document.createElement('div');
-        tripCard.classList.add('trip-card');
-        setTripCard(tripCard, trip);
-        container.appendChild(tripCard);
+        setTripCard(tripCard, trip).then(() => {
+            container.appendChild(tripCard);
+        }).catch(err => {
+            console.log('ERROR', err);
+            alert(err);
+        });
     });
 }
 

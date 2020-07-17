@@ -29,19 +29,14 @@ function createSlideElement(location, image) {
 }
 
 async function createSlideElements(locations) {
-    try {
-        const locationsImages = await Client.services.getTripImages(locations);
-        const heroSlideLocation = document.createElement('div');
-        heroSlideLocation.classList.add('hero-slide-location');
-        for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
-            if (i === locations.length) break;
-            heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i][0])); //notice that each image response is an array
-        }
-        return heroSlideLocation;
-    } catch (err) {
-        console.log('ERROR', err);
-        alert(err);
+    const locationsImages = await Client.services.getTripImages(locations);
+    const heroSlideLocation = document.createElement('div');
+    heroSlideLocation.classList.add('hero-slide-location');
+    for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
+        if (i === locations.length) break;
+        heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i][0])); //notice that each image response is an array
     }
+    return heroSlideLocation;
 }
 
 function createProgressCircles(amount) {
