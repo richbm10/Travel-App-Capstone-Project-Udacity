@@ -1,19 +1,28 @@
 import './trip.scss';
 import { TripServices } from './services';
 import { setFooter } from '../../components/footer/footer';
+import { createLineInput } from '../../components/line-input/line-input';
+import { setCheckList } from '../../components/check-list/check-list';
 
 const services = TripServices.getInstance();
-const user = window.localStorage.getItem('user');
-const data = {
-    id: -1,
+const data = window.localStorage.getItem('data');
+data['trip'] = {
     name: '',
     checkList: [],
     notes: '',
-    locations: []
+    locations: [],
+    setName: function(pName) {
+        this.name = pName;
+    },
+    setNotes: function(pNotes) {
+        this.notes = pNotes;
+    }
 };
 
-window.localStorage.setItem('data', data);
+setCheckList();
+
+setLocationCards();
 
 setFooter('../index/index.html');
 
-export { user, data, services };
+export { data, services, createLineInput };

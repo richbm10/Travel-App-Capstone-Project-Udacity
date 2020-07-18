@@ -34,7 +34,9 @@ const UserServices = (function() {
                         }
                         return data;
                     },
-                    createTrip: function(userId, trip) {
+                    createTrip: function(userId, newTrip) {
+                        const { name, checkList, notes, locations } = newTrip;
+                        const trip = { name, checkList, notes, locations };
                         for (let user of this.users) {
                             if (user.id == userId) {
                                 user.trips.push({ id: user.idCounter++, ...trip });
@@ -44,11 +46,13 @@ const UserServices = (function() {
                         throw new Error('The user is not registered.');
                     },
                     updateTrip: function(userId, pTrip) {
+                        const { id, name, checkList, notes, locations } = pTrip;
+                        const updateTrip = { id, name, checkList, notes, locations };
                         for (let user of this.users) {
                             if (user.id == userId) {
                                 for (let trip of user.trips) {
-                                    if (trip.id === pTrip.id) {
-                                        trip = pTrip;
+                                    if (trip.id === updateTrip.id) {
+                                        trip = updateTrip;
                                         return { success: { status: 200, message: 'The trip was updated.' } };
                                     }
                                 }

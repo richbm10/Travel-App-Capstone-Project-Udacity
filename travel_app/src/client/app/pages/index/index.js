@@ -4,16 +4,15 @@ import { createHeroSlideLocation } from '../../components/hero-slide-location/he
 import { createTripCards } from '../../components/trip-card/trip-card';
 
 const services = IndexServices.getInstance();
-let user;
-services.getUser('richi_bonilla10').then(data => {
-    user = data;
-    console.log(user);
+services.getUser('richi_bonilla10').then(user => {
+    const data = { user };
+    console.log(data);
     createTripCards();
     document.querySelector('#add-button-a').setAttribute('href', '../trip/trip.html');
-    window.localStorage.setItem('user', user);
+    window.localStorage.setItem('data', data);
 }).catch(err => {
     console.log('ERROR', err);
     alert(err);
 });
 
-export { services, user, createHeroSlideLocation };
+export { services, data, createHeroSlideLocation };
