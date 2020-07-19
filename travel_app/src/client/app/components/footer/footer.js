@@ -8,7 +8,7 @@ function decoratorDays(footer) {
     footer.querySelectorAll('span')[0].innerHTML = `${days} <span class="tag">days</span>`;
 }
 
-function decoratorAnchor(footer) {
+function decoratorAnchor(footer, referencePath) {
     footer.querySelector('a').addEventListener('click', () => {
         Client.data.trip.setName(document.querySelector('#trip-name-form').tripName.value);
         Client.data.trip.setNotes(document.querySelector('#notes').notes.value);
@@ -30,7 +30,7 @@ function setFooter(referencePath) {
         case /trip/.test(referencePath):
             decoratorDays(footer);
             footer.querySelectorAll('span')[1].innerHTML = `${Client.data.trip.locations.length} <span class="tag">locations</span>`;
-            decoratorAnchor(footer);
+            decoratorAnchor(footer, referencePath);
             break;
         default:
             break;

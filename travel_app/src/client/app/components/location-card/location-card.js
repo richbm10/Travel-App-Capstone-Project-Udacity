@@ -1,5 +1,3 @@
-import moreHorizontal from '../../../assets/icons/';
-
 async function createImage(location) {
     const image = await Client.services.getLocationImage(location);
     const img = document.createElement('img');
