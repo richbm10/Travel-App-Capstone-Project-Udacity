@@ -6,6 +6,7 @@ const TripServices = (function() {
                 instance = {
                     user: {},
                     baseUserTripEndpoint: '/user/trip/',
+                    baseLocationImageEndpoint: '/image/location/',
                     setHttpRequest: function(httpMethod, httpBodyData = {}) {
                         return {
                             method: httpMethod,
@@ -18,12 +19,16 @@ const TripServices = (function() {
                     },
                     createTrip: async function(userid, trip) {
                         const response = await fetch(this.baseUserTripEndpoint + userid, setHttpRequest('PUT', trip));
-                        try {
-                            const resData = await response.json();
-                            return resData;
-                        } catch (error) {
-                            console.log("Parsing Error", error);
-                        }
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
+                    },
+                    getLocationImage: async function(location) {
+                        const query = `${location}/1`;
+                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
                     }
                 };
             }

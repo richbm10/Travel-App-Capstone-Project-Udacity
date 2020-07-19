@@ -1,7 +1,9 @@
 function decoratorDays(footer) {
     let days = 0;
     Client.data.trip.locations.forEach(location => {
-        days += date2.getDate(location.toDate) - date1.getDate(location.fromDate);
+        const fromDate = new Date(location.fromDate);
+        const toDate = new Date(location.toDate);
+        days += toDate.getDate() - fromDate.getDate();
     });
     footer.querySelectorAll('span')[0].innerHTML = `${days} <span class="tag">days</span>`;
 }

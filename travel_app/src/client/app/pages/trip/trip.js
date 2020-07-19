@@ -3,6 +3,7 @@ import { TripServices } from './services';
 import { setFooter } from '../../components/footer/footer';
 import { createLineInput } from '../../components/line-input/line-input';
 import { setCheckList } from '../../components/check-list/check-list';
+import { setLocationCards } from '../../components/location-card/location-card';
 
 const services = TripServices.getInstance();
 const data = window.localStorage.getItem('data');
