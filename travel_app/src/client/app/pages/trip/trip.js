@@ -17,6 +17,9 @@ data['trip'] = {
     },
     setNotes: function(pNotes) {
         this.notes = pNotes;
+    },
+    setCheckList: function(callBack) {
+        callBack(this.checkList);
     }
 };
 
@@ -25,7 +28,7 @@ function main() {
 
     setLocationCards();
 
-    document.querySelector('#add-button-a').setAttribute('href', '../location/location.html');
+    document.querySelector('#add-button-a').setAttribute('href', '../../pages/location/location.html');
 
     setFooter('../../pages/index/index.html');
 }

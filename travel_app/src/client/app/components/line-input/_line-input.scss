@@ -7,10 +7,6 @@ form {
         border-bottom: 1px solid $third-color;
         color: $second-color;
         margin-top: 5%;
-        .pen {
-            width: 5vw;
-            height: 3vh;
-        }
         input[type='text'] {
             width: 95%;
             justify-self: start;
@@ -20,6 +16,13 @@ form {
             &::placeholder {
                 color: $third-color;
             }
+        }
+        .pen {
+            width: 5vw;
+            height: 3vh;
+        }
+        &.line-input--inactive {
+            opacity: 0.5;
         }
     }
 }

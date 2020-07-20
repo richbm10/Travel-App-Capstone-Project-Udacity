@@ -1,9 +1,13 @@
 function setCheckList() {
     const checkList = document.querySelector('#check-list');
-    Client.data.trip.checkList.forEach(text => {
-        const lineInput = Client.createLineInput(text);
-        checkList.insertAdjacentElement('afterbegin', lineInput);
-    });
+    if (Client.data.trip.checkList.length === 0) {
+        checkList.insertAdjacentElement('afterbegin', Client.createLineInput(''));
+    } else {
+        Client.data.trip.checkList.forEach(text => {
+            const lineInput = Client.createLineInput(text);
+            checkList.insertAdjacentElement('afterbegin', lineInput);
+        });
+    }
 }
 
 const addListElementBtn = document.querySelector('#add-element');
