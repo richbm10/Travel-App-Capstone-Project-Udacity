@@ -3,19 +3,21 @@ import { IndexServices } from './services';
 import { createHeroSlideLocation } from '../../components/hero-slide-location/hero-slide-location';
 import { createTripCards } from '../../components/trip-card/trip-card';
 
-const tripPageReference = '../trip/trip.html';
-
-document.querySelector('#add-button-a').setAttribute('href', tripPageReference);
-
 const services = IndexServices.getInstance();
-let user;
-services.getUser('richi_bonilla10').then(data => {
-    user = data;
-    console.log(user);
-    createTripCards();
-}).catch(err => {
-    console.log('ERROR', err);
-    alert(err);
-});
+let data = {};
 
-export { services, user, createHeroSlideLocation };
+function main() {
+    services.getUser('richi_bonilla10').then(user => {
+        data['user'] = user;
+        createTripCards();
+        document.querySelector('#add-button-a').setAttribute('href', '../../pages/trip/trip.html');
+        window.localStorage.setItem('data', JSON.stringify(data));
+    }).catch(err => {
+        console.log('ERROR', err);
+        alert(err);
+    });
+}
+
+setTimeout(main, 0);
+
+export { services, data, createHeroSlideLocation };

@@ -1,11 +1,10 @@
-const IndexServices = (function() {
+const TripServices = (function() {
     let instance;
     return {
         getInstance: () => {
             if (!instance) {
                 instance = {
-                    user: {},
-                    baseUserEndpoint: '/user/',
+                    baseUserTripEndpoint: '/user/trip/',
                     baseLocationImageEndpoint: '/image/location/',
                     setHttpRequest: function(httpMethod, httpBodyData = {}) {
                         return {
@@ -17,31 +16,18 @@ const IndexServices = (function() {
                             body: JSON.stringify(httpBodyData)
                         };
                     },
-                    getUser: async function(username) {
-                        const response = await fetch(this.baseUserEndpoint + username);
-                        try {
-                            const resData = await response.json();
-                            return resData;
-                        } catch (error) {
-                            console.log("Parsing Error", error);
-                        }
+                    createTrip: async function(userid, trip) {
+                        const response = await fetch(this.baseUserTripEndpoint + userid, setHttpRequest('PUT', trip));
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
                     },
                     getLocationImage: async function(location) {
                         const query = `${location}/1`;
-                        const response = await fetch(this.baseUserEndpoint + query);
-                        try {
-                            const resData = await response.json();
-                            return resData;
-                        } catch (error) {
-                            console.log("Parsing Error", error);
-                        }
-                    },
-                    getTripImages: async function(locations) {
-                        const promises = [];
-                        locations.forEach(location => {
-                            promises.push(getLocationImage(location.location));
-                        });
-                        const results = await Promise.all(promises);
+                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
                     }
                 };
             }
@@ -50,4 +36,4 @@ const IndexServices = (function() {
     };
 })();
 
-export { IndexServices };
+export { TripServices };

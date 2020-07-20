@@ -44,7 +44,7 @@ async function setTripCard(tripCard, trip) {
 
 function createTripCards() {
     const container = document.querySelector('#trip-cards-container');
-    Client.user.trips.forEach(trip => {
+    Client.data.user.trips.forEach(trip => {
         const tripCard = document.createElement('div');
         setTripCard(tripCard, trip).then(() => {
             container.appendChild(tripCard);
