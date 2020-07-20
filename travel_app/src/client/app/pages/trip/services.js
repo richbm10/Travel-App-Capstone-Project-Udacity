@@ -4,7 +4,6 @@ const TripServices = (function() {
         getInstance: () => {
             if (!instance) {
                 instance = {
-                    user: {},
                     baseUserTripEndpoint: '/user/trip/',
                     baseLocationImageEndpoint: '/image/location/',
                     setHttpRequest: function(httpMethod, httpBodyData = {}) {

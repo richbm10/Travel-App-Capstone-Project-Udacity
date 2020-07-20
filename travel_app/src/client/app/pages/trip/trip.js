@@ -20,12 +20,16 @@ data['trip'] = {
     }
 };
 
-setCheckList();
+function main() {
+    setCheckList();
 
-setLocationCards();
+    setLocationCards();
 
-document.querySelector('#add-button-a').setAttribute('href', '../location/location.html');
+    document.querySelector('#add-button-a').setAttribute('href', '../location/location.html');
 
-setFooter('../index/index.html');
+    setFooter('../../pages/index/index.html');
+}
+
+setTimeout(main, 0);
 
 export { services, data, createLineInput };

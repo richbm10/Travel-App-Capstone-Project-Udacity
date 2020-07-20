@@ -23,17 +23,13 @@ function decoratorAnchor(footer, referencePath) {
 
 function setFooter(referencePath) {
     const footer = document.querySelector('footer');
-    switch (referencePath) {
-        case /location-calendar/.test(referencePath):
-            decoratorDays(footer);
-            break;
-        case /trip/.test(referencePath):
-            decoratorDays(footer);
-            footer.querySelectorAll('span')[1].innerHTML = `${Client.data.trip.locations.length} <span class="tag">locations</span>`;
-            decoratorAnchor(footer, referencePath);
-            break;
-        default:
-            break;
+    const currentPath = window.location.pathname;
+    if (/location-calendar/.test(currentPath)) {
+        decoratorDays(footer);
+    } else if (/trip/.test(currentPath)) {
+        decoratorDays(footer);
+        footer.querySelectorAll('span')[1].innerHTML = `${Client.data.trip.locations.length} <span class="tag">locations</span>`;
+        decoratorAnchor(footer, referencePath);
     }
 }
 
