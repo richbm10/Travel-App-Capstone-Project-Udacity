@@ -21,24 +21,36 @@ function comboClickCallback(optionsContainer, searchBox) {
     }
 };
 
-function buildSelectCombo(selectCombo) {
-    const selected = document.querySelector(`${selectCombo} > .select-combo__selected`);
-    const optionsContainer = document.querySelector(`${selectCombo} > .select-combo__options-container`);
-    const searchBox = document.querySelector(`${selectCombo} > .select-combo__search-box input`);
+function setCountryOptions(optionsContainer, selected) {
+    const optionList = optionsContainer.querySelectorAll('.select-combo__option');
+    optionList.forEach((option) => {
+        option.addEventListener("click", () => {
+            selected.querySelector('span').textContent = option.querySelector('label').textContent;
+            optionsContainer.classList.remove("select-combo__options-container--active");
+        });
+    });
+}
+
+function setLocationOptions() {}
+
+function setSelectCombo(selectCombo) {
+    const selected = document.querySelector(`${selectCombo} .select-combo__selected`);
+    const optionsContainer = document.querySelector(`${selectCombo} .select-combo__options-container`);
+    const searchBox = document.querySelector(`${selectCombo} .select-combo__search-box input`);
 
     selected.addEventListener('click', () => {
         comboClickCallback(optionsContainer, searchBox);
     });
-    const optionList = optionsContainer.querySelectorAll(`${selectCombo} .select-combo__option`);
-    optionList.forEach((option) => {
-        option.addEventListener("click", () => {
-            selected.querySelector(`${selectCombo} span`).textContent = option.querySelector(`${selectCombo} label`).textContent;
-            optionsContainer.classList.remove("select-combo__options-container--active");
-        });
-    });
+
     searchBox.addEventListener("keyup", (e) => {
         filterList(optionsContainer, e.target.value);
     });
+
+    if (selectCombo === '#country-search') {
+        setCountryOptions(optionsContainer, selected);
+    } else if (selectCombo === '#location-search') {
+        setLocationOptions(optionsContainer, selected);
+    }
 }
 
-export { buildSelectCombo };
+export { setSelectCombo };

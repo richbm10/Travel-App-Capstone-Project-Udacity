@@ -9,14 +9,12 @@ header {
     z-index: 1;
     span {
         color: $second-color;
+        grid-area: 1/2/2/3;
     }
     a {
         color: $confirm-color;
         font-weight: bold;
         width: 150%;
-    }
-    #back {
-        width: 10vw;
-        height: 5vh;
+        grid-area: 1/3/2/4;
     }
 }
