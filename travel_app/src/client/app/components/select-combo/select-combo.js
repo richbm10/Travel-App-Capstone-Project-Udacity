@@ -32,14 +32,6 @@ function createFlagObject(flag) {
     return object;
 }
 
-function createLocationObject() {
-    const object = document.createElement('object');
-    object.classList.add('location');
-    object.setAttribute('type', 'image/svg+xml');
-    object.data = locationIcon;
-    return object;
-}
-
 function createInputLabel(name) {
     const documentFragment = new DocumentFragment();
     const input = document.createElement('input');
@@ -56,7 +48,7 @@ function createInputLabel(name) {
 
 function createOption(optionsContainer, selected, isCountry = false) {
     const option = document.createElement('div');
-    option.classList.add(['row-container', 'select-combo__option']);
+    option.classList.add('row-container', 'select-combo__option');
     option.addEventListener("click", () => {
         const selectedContent = option.querySelector('label').textContent;
         if (isCountry) selectedCountry = selectedContent;
@@ -81,11 +73,11 @@ function setCountryOptions(selected, optionsContainer, searchBox) {
 function setLocationOptions(selected, optionsContainer, searchBox) {
     searchBox.addEventListener("keyup", (event) => {
         if (event.keyCode === 13) {
-            Client.services.getAddressLocations().then(locations => {
-                locations.forEach(location => {
+            Client.services.getAddressLocations(event.target.value).then(data => {
+                data.responseLocations.forEach(location => {
                     const option = createOption(optionsContainer, selected);
-                    const locationDisplayText = `${location.city},${location.state}${ location.county !== '' ? (' ' + location.county) : ''}`;
-                    option.appendChild(createLocationObject());
+                    const locationDisplayText = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
+                    option.insertAdjacentHTML('afterbegin', '<svg class="location" xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20"><style type="text/css">  .st0{fill:none;} .st1{fill:#707070;} </style><path class="st0" d="M0 0h24v24H0V0z"/><path class="st1" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.8 7-13C19 5.1 15.9 2 12 2zM12 11.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>');
                     option.appendChild(createInputLabel(locationDisplayText));
                     optionsContainer.appendChild(option);
                 });
@@ -93,6 +85,8 @@ function setLocationOptions(selected, optionsContainer, searchBox) {
                 console.log('ERROR', err);
                 alert(err);
             });
+        } else {
+            filterList(optionsContainer, event.target.value);
         }
     });
 }

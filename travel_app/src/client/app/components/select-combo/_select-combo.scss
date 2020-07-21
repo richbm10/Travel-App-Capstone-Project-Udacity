@@ -102,7 +102,7 @@ $component: 'select-combo';
         input {
             height: 0;
             opacity: 0;
-            transition: all 0.8s;
+            transition: all 0.4s;
             flex-grow: 2;
             z-index: 100;
             border: none;
@@ -125,7 +125,7 @@ $component: 'select-combo';
             height: 0;
             width: 0;
             opacity: 0;
-            transition: all 0.8s;
+            transition: all 0.4s;
             width: 8vw;
         }
     }
