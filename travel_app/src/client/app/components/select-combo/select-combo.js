@@ -19,16 +19,40 @@ function comboClickCallback(optionsContainer, searchBox) {
     if (optionsContainer.classList.contains("select-combo__options-container--active")) {
         searchBox.focus();
     }
-};
+}
 
-function setCountryOptions(optionsContainer, selected) {
-    const optionList = optionsContainer.querySelectorAll('.select-combo__option');
-    optionList.forEach((option) => {
-        option.addEventListener("click", () => {
-            selected.querySelector('span').textContent = option.querySelector('label').textContent;
-            optionsContainer.classList.remove("select-combo__options-container--active");
-        });
+function createObject(flag) {
+    const object = document.createElement('object');
+    object.classList.add('avatar');
+    object.setAttribute('type', 'image/svg+xml');
+    object.style.backgroundImage = "url(\'" + flag + "\')";
+    return object;
+}
+
+function createInputLabel(countryName) {
+    const documentFragment = new DocumentFragment();
+    const input = document.createElement('input');
+    input.setAttribute('type', 'radio');
+    const countryTagName = countryName.replace(/\s/g, '');
+    input.id = countryTagName;
+    const label = document.createElement('label');
+    label.htmlFor = countryTagName;
+    label.textContent = countryName;
+    documentFragment.appendChild(input);
+    documentFragment.appendChild(label);
+    return documentFragment;
+}
+
+function createOption(country, optionsContainer, selected) {
+    const option = document.createElement('div');
+    option.classList.add(['row-container', 'select-combo__option']);
+    option.appendChild(createObject(country.flag));
+    option.appendChild(createInputLabel(country.name));
+    option.addEventListener("click", () => {
+        selected.querySelector('span').textContent = option.querySelector('label').textContent;
+        optionsContainer.classList.remove("select-combo__options-container--active");
     });
+    return option;
 }
 
 function setLocationOptions() {}
@@ -42,12 +66,13 @@ function setSelectCombo(selectCombo) {
         comboClickCallback(optionsContainer, searchBox);
     });
 
-    searchBox.addEventListener("keyup", (e) => {
-        filterList(optionsContainer, e.target.value);
-    });
-
     if (selectCombo === '#country-search') {
-        setCountryOptions(optionsContainer, selected);
+        Client.services.countries.forEach(country => {
+            optionsContainer.appendChild(createOption(country, optionsContainer, selected));
+        });
+        searchBox.addEventListener("keyup", (e) => {
+            filterList(optionsContainer, e.target.value);
+        });
     } else if (selectCombo === '#location-search') {
         setLocationOptions(optionsContainer, selected);
     }
