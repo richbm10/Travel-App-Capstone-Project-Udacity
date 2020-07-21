@@ -1,3 +1,6 @@
+import locationIcon from '../../../assets/icons/location_on-24px.svg';
+let selectedCountry = '';
+
 function filterList(optionsContainer, searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     optionsContainer.querySelectorAll(".select-combo__option").forEach(option => {
@@ -21,7 +24,7 @@ function comboClickCallback(optionsContainer, searchBox) {
     }
 }
 
-function createObject(flag) {
+function createFlagObject(flag) {
     const object = document.createElement('object');
     object.classList.add('avatar');
     object.setAttribute('type', 'image/svg+xml');
@@ -29,33 +32,70 @@ function createObject(flag) {
     return object;
 }
 
-function createInputLabel(countryName) {
+function createLocationObject() {
+    const object = document.createElement('object');
+    object.classList.add('location');
+    object.setAttribute('type', 'image/svg+xml');
+    object.data = locationIcon;
+    return object;
+}
+
+function createInputLabel(name) {
     const documentFragment = new DocumentFragment();
     const input = document.createElement('input');
     input.setAttribute('type', 'radio');
-    const countryTagName = countryName.replace(/\s/g, '');
+    const countryTagName = name.replace(/\s/g, '');
     input.id = countryTagName;
     const label = document.createElement('label');
     label.htmlFor = countryTagName;
-    label.textContent = countryName;
+    label.textContent = name;
     documentFragment.appendChild(input);
     documentFragment.appendChild(label);
     return documentFragment;
 }
 
-function createOption(country, optionsContainer, selected) {
+function createOption(optionsContainer, selected, isCountry = false) {
     const option = document.createElement('div');
     option.classList.add(['row-container', 'select-combo__option']);
-    option.appendChild(createObject(country.flag));
-    option.appendChild(createInputLabel(country.name));
     option.addEventListener("click", () => {
-        selected.querySelector('span').textContent = option.querySelector('label').textContent;
+        const selectedContent = option.querySelector('label').textContent;
+        if (isCountry) selectedCountry = selectedContent;
+        selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
     });
     return option;
 }
 
-function setLocationOptions() {}
+function setCountryOptions(selected, optionsContainer, searchBox) {
+    Client.services.countries.forEach(country => {
+        const option = createOption(optionsContainer, selected, true);
+        option.appendChild(createFlagObject(country.flag));
+        option.appendChild(createInputLabel(country.name));
+        optionsContainer.appendChild(option);
+    });
+    searchBox.addEventListener("keyup", (event) => {
+        filterList(optionsContainer, event.target.value);
+    });
+}
+
+function setLocationOptions(selected, optionsContainer, searchBox) {
+    searchBox.addEventListener("keyup", (event) => {
+        if (event.keyCode === 13) {
+            Client.services.getAddressLocations().then(locations => {
+                locations.forEach(location => {
+                    const option = createOption(optionsContainer, selected);
+                    const locationDisplayText = `${location.city},${location.state}${ location.county !== '' ? (' ' + location.county) : ''}`;
+                    option.appendChild(createLocationObject());
+                    option.appendChild(createInputLabel(locationDisplayText));
+                    optionsContainer.appendChild(option);
+                });
+            }).catch(err => {
+                console.log('ERROR', err);
+                alert(err);
+            });
+        }
+    });
+}
 
 function setSelectCombo(selectCombo) {
     const selected = document.querySelector(`${selectCombo} .select-combo__selected`);
@@ -67,14 +107,9 @@ function setSelectCombo(selectCombo) {
     });
 
     if (selectCombo === '#country-search') {
-        Client.services.countries.forEach(country => {
-            optionsContainer.appendChild(createOption(country, optionsContainer, selected));
-        });
-        searchBox.addEventListener("keyup", (e) => {
-            filterList(optionsContainer, e.target.value);
-        });
+        setCountryOptions(selected, optionsContainer, searchBox);
     } else if (selectCombo === '#location-search') {
-        setLocationOptions(optionsContainer, selected);
+        setLocationOptions(selected, optionsContainer, searchBox);
     }
 }
 
