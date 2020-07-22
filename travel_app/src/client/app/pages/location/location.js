@@ -1,6 +1,7 @@
 import './location.scss';
 import { LocationServices } from './services';
 import { setSelectCombo } from '../../components/select-combo/select-combo';
+import { setCurrentWeather } from '../../components/current-weather/current-weather';
 
 const services = LocationServices.getInstance();
 
@@ -19,4 +20,4 @@ function main() {
 
 setTimeout(main, 0);
 
-export { services };
+export { services, setCurrentWeather };
