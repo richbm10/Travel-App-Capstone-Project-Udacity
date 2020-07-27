@@ -64,9 +64,16 @@ function createLocationOption(location, optionsContainer, selected) {
         const selectedContent = option.querySelector('label').textContent;
         selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
-        Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng).then(currentWeather => {
-            console.log(currentWeather);
+        const promises = [];
+        promises.push(Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng));
+        promises.push(Client.createHeroSlideLocation([selectedContent.replace(/\s/g, ',')]));
+        Promise.all(promises).then(data => {
+            console.log(data);
+            const currentWeather = data[0];
+            const heroSlide = data[1];
+            Client.removeLocationData();
             Client.setCurrentWeather(currentWeather);
+            Client.setLocationPhotos(heroSlide);
         }).catch(err => {
             console.log('ERROR', err);
             alert(err);
@@ -91,7 +98,8 @@ function setLocationOptions(selected, optionsContainer, searchBox) {
     searchBox.addEventListener("keyup", (event) => {
         const eventTargetValue = event.target.value;
         if (event.keyCode === 13) {
-            Client.services.getAddressLocations((eventTargetValue !== '' ? eventTargetValue + ' ' : '') + selectedCountry).then(data => {
+            const queryLocation = (eventTargetValue !== '' ? eventTargetValue + ' ' : '') + selectedCountry;
+            Client.services.getAddressLocations(queryLocation.replace(/\s/g, ',')).then(data => {
                 data.responseLocations.forEach(location => {
                     const option = createLocationOption(location, optionsContainer, selected);
                     const locationDisplayText = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;

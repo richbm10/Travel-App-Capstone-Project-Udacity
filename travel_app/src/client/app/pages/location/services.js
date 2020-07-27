@@ -6,6 +6,7 @@ const LocationServices = (function() {
                 instance = {
                     temperatureUnit: 'kelvin',
                     countries: [],
+                    baseLocationImageEndpoint: '/image/location/',
                     baseLocationCountriesEndpoint: '/location/countries',
                     baseLocationEndpoint: '/location/',
                     baseWeatherEndpoint: '/weather/current/',
@@ -41,6 +42,14 @@ const LocationServices = (function() {
                         resData.main.temp_max = this.convertTemperature(resData.main.temp_max);
                         resData.weather = resData.weather[0];
                         return resData;
+                    },
+                    getImages: async function(locations) {
+                        const location = locations[0];
+                        const query = `${location}/3`;
+                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return [resData];
                     },
                     setCountries: function(pCountries) {
                         this.countries = pCountries;

@@ -80,14 +80,20 @@ function createDescription(currentWeather) {
     return description;
 }
 
-function setCurrentWeather(currentWeatherData) {
-    const currentWeather = document.querySelector('.current-weather');
-    currentWeather.innerHTML = '';
+function createCurrentWeather(currentWeatherData) {
+    const container = new DocumentFragment();
+    const header = document.createElement('h2');
+    header.classList.add('text-A');
+    header.textContent = 'Current Weather';
+    const currentWeather = document.createElement('div');
+    currentWeather.classList.add('current-weather', 'text-C');
     const children = [createTemp(currentWeatherData.main.temp), createSunriseSunset(currentWeatherData.sys), createDescription(currentWeatherData)];
     for (let child of children) {
         currentWeather.appendChild(child);
     }
-    return currentWeather;
+    container.appendChild(header);
+    container.appendChild(currentWeather);
+    return container;
 }
 
-export { setCurrentWeather };
+export { createCurrentWeather };
