@@ -4,6 +4,7 @@ import { setSelectCombo } from '../../components/select-combo/select-combo';
 import { setCurrentWeather } from '../../components/current-weather/current-weather';
 
 const services = LocationServices.getInstance();
+services.setTemperatureUnit('celcius');
 
 function main() {
     services.getCountries().then(countries => {

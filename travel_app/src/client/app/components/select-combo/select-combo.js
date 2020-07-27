@@ -65,6 +65,7 @@ function createLocationOption(location, optionsContainer, selected) {
         selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
         Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng).then(currentWeather => {
+            console.log(currentWeather);
             Client.setCurrentWeather(currentWeather);
         }).catch(err => {
             console.log('ERROR', err);
