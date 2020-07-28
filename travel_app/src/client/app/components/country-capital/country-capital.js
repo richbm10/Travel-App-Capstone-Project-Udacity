@@ -30,10 +30,10 @@ function formatNumber(x) { //Taken from https://gist.github.com/cfjedimaster/306
 function createContentRow(icon, label) {
     const rowContainer = document.createElement('div');
     rowContainer.classList.add('row-container');
-    const obj = document.createElement('obj');
+    const obj = document.createElement('object');
     obj.classList.add('country-capital__icon');
-    obj.setAttribute('type', 'image/svg+xml');
     obj.data = icon;
+    obj.setAttribute('type', 'image/svg+xml');
     const span = document.createElement('span');
     span.textContent = label;
     rowContainer.appendChild(obj);
@@ -60,7 +60,8 @@ function createCountryCapitalContent(countryDetails) {
 
 function createCountryCapital(countryDetails) {
     const countryCapital = document.createElement('div');
-    Client.getImage(countryDetails.capital).then(capitalImage => {
+    Client.services.getLocationImage(countryDetails.capital).then(capitalImage => {
+        console.log(capitalImage);
         countryCapital.classList.add('country-capital');
         const image = document.createElement('img');
         image.alt = countryDetails.capital;

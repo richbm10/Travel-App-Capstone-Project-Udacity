@@ -39,9 +39,6 @@ main {
         align-self: flex-start;
         margin-top: 2vh;
     }
-    .current-weather {
-        width: 90%;
-    }
     .forecast-weather {
         flex: 0 0 auto;
     }
@@ -64,10 +61,7 @@ main {
 
 .hero-header {
     grid-area: 2/1/3/2;
-    .avatar {
-        background-image: url('https://restcountries.eu/data/col.svg');
-    }
-    #hero-header__user {
+    #hero-header__content {
         bottom: 20%;
     }
     .hero-slide-location {

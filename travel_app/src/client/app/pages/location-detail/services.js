@@ -7,6 +7,8 @@ const LocationDetailServices = (function() {
                     temperatureUnit: 'kelvin',
                     countries: [],
                     baseLocationCountryEndpoint: '/location/country/',
+                    baseWeatherEndpoint: '/weather/current/',
+                    baseLocationImageEndpoint: '/image/location/',
                     convertTemperature: function(temperature) {
                         switch (this.temperatureUnit) {
                             case 'celcius':
@@ -34,6 +36,21 @@ const LocationDetailServices = (function() {
                         resData.main.feels_like = this.convertTemperature(resData.main.feels_like);
                         resData.weather = resData.weather[0];
                         return resData;
+                    },
+                    getLocationImage: async function(location) {
+                        const query = `${location}/1`;
+                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData[0];
+                    },
+                    getImages: async function(locations) {
+                        const location = locations[0];
+                        const query = `${location}/3`;
+                        const response = await fetch(this.baseLocationImageEndpoint + query);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return [resData];
                     },
                     setTemperatureUnit: function(unit) {
                         this.temperatureUnit = unit;
