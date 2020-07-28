@@ -6,6 +6,15 @@ import { createHeroSlideLocation } from '../../components/hero-slide-location/he
 
 const services = LocationServices.getInstance();
 services.setTemperatureUnit('celcius');
+const data = JSON.parse(window.localStorage.getItem('data'));
+data['location'] = {
+    location: '',
+    country: '',
+    lat: null,
+    lon: null,
+    fromDate: '',
+    toDate: ''
+};
 
 function setCurrentWeather(currentWeatherData) {
     const locationData = document.querySelector('#location-data');
@@ -32,6 +41,13 @@ function removeLocationData() {
 }
 
 function main() {
+    document.querySelector('header a').addEventListener('click', () => {
+        if (data.location.location !== '') {
+            window.localStorage.setItem('data', JSON.stringify(data));
+            window.location.href = '../../pages/location-detail/location-detail.html';
+        }
+    });
+
     services.getCountries().then(countries => {
         services.setCountries(countries);
 
@@ -46,4 +62,4 @@ function main() {
 
 setTimeout(main, 0);
 
-export { services, setCurrentWeather, createHeroSlideLocation, setLocationPhotos, removeLocationData };
+export { services, setCurrentWeather, createHeroSlideLocation, setLocationPhotos, removeLocationData, data };

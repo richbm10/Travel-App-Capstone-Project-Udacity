@@ -1,5 +1,13 @@
 let selectedCountry = '';
 
+function setSelectedLocation(location) {
+    const locationData = Client.data.location;
+    locationData.location = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
+    locationData.country = location.country;
+    locationData.lat = location.latLng.lat;
+    locationData.lon = location.latLng.lng;
+}
+
 function filterList(optionsContainer, searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     optionsContainer.querySelectorAll(".select-combo__option").forEach(option => {
@@ -61,6 +69,7 @@ function createLocationOption(location, optionsContainer, selected) {
     const option = document.createElement('div');
     option.classList.add('row-container', 'select-combo__option');
     option.addEventListener("click", () => {
+        setSelectedLocation(location);
         const selectedContent = option.querySelector('label').textContent;
         selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
@@ -68,7 +77,6 @@ function createLocationOption(location, optionsContainer, selected) {
         promises.push(Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng));
         promises.push(Client.createHeroSlideLocation([selectedContent]));
         Promise.all(promises).then(data => {
-            console.log(data);
             const currentWeather = data[0];
             const heroSlide = data[1];
             Client.removeLocationData();
