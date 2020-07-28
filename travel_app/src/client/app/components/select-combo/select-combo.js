@@ -1,13 +1,5 @@
 let selectedCountry = '';
 
-// function setSelectedLocation(location) {
-//     const locationData = Client.data.location;
-//     locationData.location = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
-//     locationData.country = location.country;
-//     locationData.lat = location.latLng.lat;
-//     locationData.lon = location.latLng.lng;
-// }
-
 function filterList(optionsContainer, searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     optionsContainer.querySelectorAll(".select-combo__option").forEach(option => {

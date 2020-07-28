@@ -24,6 +24,17 @@ const LocationDetailServices = (function() {
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
                         return resData;
                     },
+                    getCurrentWeather: async function(latitude, longitude) {
+                        const response = await fetch(`${this.baseWeatherEndpoint}${latitude}/${longitude}`);
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        resData.main.temp = this.convertTemperature(resData.main.temp);
+                        resData.main.temp_min = this.convertTemperature(resData.main.temp_min);
+                        resData.main.temp_max = this.convertTemperature(resData.main.temp_max);
+                        resData.main.feels_like = this.convertTemperature(resData.main.feels_like);
+                        resData.weather = resData.weather[0];
+                        return resData;
+                    },
                     setTemperatureUnit: function(unit) {
                         this.temperatureUnit = unit;
                     }

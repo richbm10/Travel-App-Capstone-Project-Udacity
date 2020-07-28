@@ -44,6 +44,7 @@ function main() {
         if (data.location.location !== '') {
             data.location['fromDate'] = '';
             data.location['toDate'] = '';
+            data.location['flag'] = '';
             window.localStorage.setItem('data', JSON.stringify(data));
             window.location.href = '../../pages/location-detail/location-detail.html';
         }
