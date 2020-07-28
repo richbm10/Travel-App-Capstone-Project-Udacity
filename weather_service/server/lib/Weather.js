@@ -8,7 +8,7 @@ const WeatherServices = (function() {
                 instance = {
                     apis: {
                         weatherbitAPI: 'https://api.weatherbit.io/v2.0/',
-                        openWeatherMapAPI: 'http://samples.openweathermap.org/data/2.5/'
+                        openWeatherMapAPI: 'http://api.openweathermap.org/data/2.5/'
                     },
                     queryLocationCurrentWeather: function(latitude, longitude) {
                         return `weather?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_MAP_KEY}`;

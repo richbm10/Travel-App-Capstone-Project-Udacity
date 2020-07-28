@@ -20,7 +20,7 @@ const IndexServices = (function() {
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
                         return resData;
                     },
-                    getTripImages: async function(locations) {
+                    getImages: async function(locations) {
                         const promises = [];
                         locations.forEach(location => {
                             promises.push(this.getLocationImage(location.location));

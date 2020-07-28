@@ -2,7 +2,7 @@ $component: 'current-weather';
 .#{$component} {
     margin-top: 2vh;
     display: grid;
-    width: 90%;
+    width: 100%;
     grid-template-columns: 60% 40%;
     grid-template-rows: 15vh 10vh;
     color: $first-color;
@@ -31,8 +31,8 @@ $component: 'current-weather';
         justify-content: space-evenly;
     }
     ##{$component}__temp-icon {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
     }
     ##{$component}__sunrise-icon,
     ##{$component}__sunset-icon {

@@ -16,30 +16,47 @@ function createSlideLocationLabel(location) {
     return createSlideLocationLabel;
 }
 
+function addSlideElementContent(slideElement, location) {
+    const currentPath = window.location.pathname;
+    switch (true) {
+        case /location-detail/.test(currentPath):
+            break;
+        case /location/.test(currentPath):
+            break;
+        default:
+            slideElement.appendChild(createSlideLocationLabel(location));
+            break;
+    }
+}
+
 function createSlideElement(location, image) {
-    console.log(image);
     const slideElement = document.createElement('div');
     slideElement.classList.add('__slide-element');
     const img = document.createElement('img');
     img.setAttribute('alt', location.location);
     img.setAttribute('src', image.webformatURL);
     slideElement.appendChild(img);
-    slideElement.appendChild(createSlideLocationLabel(location));
+    addSlideElementContent(slideElement, location);
     return slideElement;
 }
 
 async function createSlideElements(locations) {
-    const locationsImages = await Client.services.getTripImages(locations);
+    const locationsImages = await Client.services.getImages(locations);
     const heroSlideLocation = document.createElement('div');
+    let progressCircles = 0;
     heroSlideLocation.classList.add('hero-slide-location');
     for (let i = 0; i < MAX_SLIDE_ELEMENTS; i++) {
         if (i === locations.length) break;
-        heroSlideLocation.appendChild(createSlideElement(locations[i], locationsImages[i][0])); //notice that each image response is an array
+        for (let image of locationsImages[i]) {
+            if (image === null) break;
+            progressCircles += 1;
+            heroSlideLocation.appendChild(createSlideElement(locations[i], image));
+        }
     }
-    return heroSlideLocation;
+    return [heroSlideLocation, progressCircles];
 }
 
-function createProgressCircles(amount) {
+function createProgressCircles(amount = -1) {
     const rowContainer = document.createElement('div');
     rowContainer.classList.add('row-container');
     let progressCircle;
@@ -55,8 +72,9 @@ function createProgressCircles(amount) {
 
 async function createHeroSlideLocation(locations) {
     const documentFragment = new DocumentFragment();
-    documentFragment.appendChild(await createSlideElements(locations));
-    documentFragment.appendChild(createProgressCircles(locations.length));
+    const [heroSlide, amountProgressCircles] = await createSlideElements(locations);
+    documentFragment.appendChild(heroSlide);
+    documentFragment.appendChild(createProgressCircles(amountProgressCircles));
     return documentFragment;
 }
 

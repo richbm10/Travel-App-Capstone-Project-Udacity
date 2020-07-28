@@ -32,7 +32,7 @@ const LocationServices = (function() {
                             url: `http://${ip}:${port}/location/countries`
                         });
                     },
-                    getAddress: async function(address) {
+                    getAddressLocations: async function(address) {
                         const { ip, port } = await this.getService('location_service');
                         return this.callService({
                             method: 'get',
