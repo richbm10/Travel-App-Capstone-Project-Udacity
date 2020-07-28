@@ -70,7 +70,7 @@ function createDescription(currentWeather) {
     columnContainer = columnContainer.cloneNode();
     if (currentWeather.main.feels_like !== undefined) {
         span = span.cloneNode(false);
-        span.textContent = `Feels like ${currentWeather.main.feels_like}°`;
+        span.textContent = `Sense ${currentWeather.main.feels_like}°C`;
         columnContainer.appendChild(span);
     }
     span = span.cloneNode(false);

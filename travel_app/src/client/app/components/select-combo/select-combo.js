@@ -66,7 +66,7 @@ function createLocationOption(location, optionsContainer, selected) {
         optionsContainer.classList.remove("select-combo__options-container--active");
         const promises = [];
         promises.push(Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng));
-        promises.push(Client.createHeroSlideLocation([selectedContent.replace(/\s/g, ',')]));
+        promises.push(Client.createHeroSlideLocation([selectedContent]));
         Promise.all(promises).then(data => {
             console.log(data);
             const currentWeather = data[0];
@@ -99,7 +99,7 @@ function setLocationOptions(selected, optionsContainer, searchBox) {
         const eventTargetValue = event.target.value;
         if (event.keyCode === 13) {
             const queryLocation = (eventTargetValue !== '' ? eventTargetValue + ' ' : '') + selectedCountry;
-            Client.services.getAddressLocations(queryLocation.replace(/\s/g, ',')).then(data => {
+            Client.services.getAddressLocations(queryLocation).then(data => {
                 data.responseLocations.forEach(location => {
                     const option = createLocationOption(location, optionsContainer, selected);
                     const locationDisplayText = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;

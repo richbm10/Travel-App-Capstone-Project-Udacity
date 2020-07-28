@@ -40,6 +40,7 @@ const LocationServices = (function() {
                         resData.main.temp = this.convertTemperature(resData.main.temp);
                         resData.main.temp_min = this.convertTemperature(resData.main.temp_min);
                         resData.main.temp_max = this.convertTemperature(resData.main.temp_max);
+                        resData.main.feels_like = this.convertTemperature(resData.main.feels_like);
                         resData.weather = resData.weather[0];
                         return resData;
                     },
