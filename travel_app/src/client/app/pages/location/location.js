@@ -8,12 +8,11 @@ const services = LocationServices.getInstance();
 services.setTemperatureUnit('celcius');
 const data = JSON.parse(window.localStorage.getItem('data'));
 data['location'] = {
-    location: '',
+    city: '',
+    county: '',
+    state: '',
     country: '',
-    lat: null,
-    lon: null,
-    fromDate: '',
-    toDate: ''
+    latLng: { lat: null, lng: null }
 };
 
 function setCurrentWeather(currentWeatherData) {
@@ -43,6 +42,8 @@ function removeLocationData() {
 function main() {
     document.querySelector('header a').addEventListener('click', () => {
         if (data.location.location !== '') {
+            data.location['fromDate'] = '';
+            data.location['toDate'] = '';
             window.localStorage.setItem('data', JSON.stringify(data));
             window.location.href = '../../pages/location-detail/location-detail.html';
         }

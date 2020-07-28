@@ -5,7 +5,8 @@ function createSlideLocationLabel(location) {
     createSlideLocationLabel.classList.add('row-container');
     const span = document.createElement('span');
     span.classList.add('text-C');
-    span.textContent = location.location;
+    console.log(location);
+    span.textContent = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}`;
     const obj = document.createElement('object');
     obj.setAttribute('type', 'image/svg+xml');
     const flag = `https://restcountries.eu/data/${location.country}.svg`;

@@ -16,12 +16,14 @@ const UserServices = (function() {
                             checkList: ['Pack my pills', 'Exchange my cash into dollars in the airport'],
                             notes: 'Hotel: Marriott\nReservation: 1123412',
                             locations: [{
-                                location: 'Washington,DC',
+                                city: 'Washington',
+                                county: 'District of Columbia',
+                                state: 'DC',
                                 country: 'usa',
-                                lat: 38.892062,
-                                lon: -77.019912,
+                                latLng: { lat: 38.892062, lng: -77.019912 },
                                 fromDate: '7/7/2020',
-                                toDate: '7/28/2020'
+                                toDate: '7/28/2020',
+                                flag: "https://restcountries.eu/data/usa.svg"
                             }]
                         }]
                     }],

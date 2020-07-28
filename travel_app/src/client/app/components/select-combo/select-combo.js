@@ -1,12 +1,12 @@
 let selectedCountry = '';
 
-function setSelectedLocation(location) {
-    const locationData = Client.data.location;
-    locationData.location = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
-    locationData.country = location.country;
-    locationData.lat = location.latLng.lat;
-    locationData.lon = location.latLng.lng;
-}
+// function setSelectedLocation(location) {
+//     const locationData = Client.data.location;
+//     locationData.location = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
+//     locationData.country = location.country;
+//     locationData.lat = location.latLng.lat;
+//     locationData.lon = location.latLng.lng;
+// }
 
 function filterList(optionsContainer, searchTerm) {
     searchTerm = searchTerm.toLowerCase();
@@ -69,7 +69,7 @@ function createLocationOption(location, optionsContainer, selected) {
     const option = document.createElement('div');
     option.classList.add('row-container', 'select-combo__option');
     option.addEventListener("click", () => {
-        setSelectedLocation(location);
+        Client.data.location = location;
         const selectedContent = option.querySelector('label').textContent;
         selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
