@@ -1,11 +1,11 @@
 import climateIcon from '../../../assets/icons/climate.svg';
 import waterIcon from '../../../assets/icons/water.svg';
 
-const currentDayOfWeek = (new Date()).getDay();
-const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
 function dayOfWeek(index) {
-    const day = currentDayOfWeek + index;
+    const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+    const currentDayOfWeek = (new Date()).getDay();
+    const day = (currentDayOfWeek + (index % 7)) % 7;
+    return daysOfWeek[day];
 }
 
 function createObject(cssClass, icon) {
@@ -28,11 +28,11 @@ function createRain(rainProbability) {
     return rain;
 }
 
-function createForecastWeatherDay(day) {
+function createForecastWeatherDay(day, dayIndex) {
     const forecastWeatherDay = document.createElement('div');
     forecastWeatherDay.classList.add('column-container-A', 'forecast-weather__day');
     let span = document.createElement('span');
-    span.textContent = 'Th'; //TODO make it dynamic
+    span.textContent = dayOfWeek(dayIndex);
     forecastWeatherDay.appendChild(span);
     const obj = createObject('forecast-weather__temp-icon', climateIcon);
     forecastWeatherDay.appendChild(obj);
@@ -54,7 +54,7 @@ function createForecastWeatherDays(forecastWeatherData, index, limit) {
     const forecastWeatherDays = document.createElement('div');
     forecastWeatherDays.classList.add('row-container', 'forecast-weather__days');
     for (let i = index; i < limit; i++) {
-        forecastWeatherDays.appendChild(createForecastWeatherDay(forecastWeatherData[i]));
+        forecastWeatherDays.appendChild(createForecastWeatherDay(forecastWeatherData[i], i));
     }
     return forecastWeatherDays;
 }
