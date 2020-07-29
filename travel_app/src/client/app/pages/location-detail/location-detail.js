@@ -4,6 +4,7 @@ import { createHeroContent } from '../../components/hero-header/hero-header';
 import { createHeroSlideLocation } from '../../components/hero-slide-location/hero-slide-location';
 import { createCountryCapital } from '../../components/country-capital/country-capital';
 import { createCurrentWeather } from '../../components/current-weather/current-weather';
+import { createForecastWeather } from '../../components/forecast-weather/forecast-weather';
 
 const services = LocationDetailServices.getInstance();
 services.setTemperatureUnit('celcius');
@@ -17,13 +18,16 @@ function main() {
     promises.push(createHeroSlideLocation([queryLocation]));
     promises.push(services.getCountryDetails(data.location.country));
     promises.push(services.getCurrentWeather(data.location.latLng.lat, data.location.latLng.lng));
+    promises.push(services.getForecastWeather(data.location.latLng.lat, data.location.latLng.lng));
     Promise.all(promises).then(data => {
         const heroSlide = data[0];
         const countryDetails = data[1];
         const currentWeatherData = data[2];
+        const forecastWeatherData = data[3];
         heroHeader.appendChild(createHeroContent(heroSlide));
         mainContainer.appendChild(createCountryCapital(countryDetails));
         mainContainer.appendChild(createCurrentWeather(currentWeatherData));
+        mainContainer.appendChild(createForecastWeather(forecastWeatherData));
     }).catch(err => {
         console.log('ERROR', err);
         alert(err);
