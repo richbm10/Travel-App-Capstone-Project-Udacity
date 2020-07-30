@@ -11,7 +11,7 @@ $component: 'country-capital';
         height: 100%;
     }
     .column-container-A {
-        width: 40%;
+        width: 50%;
         height: 100%;
         background-color: $second-color;
         opacity: 0.8;
@@ -20,11 +20,12 @@ $component: 'country-capital';
         justify-content: space-evenly;
         ##{$component}__country {
             align-self: flex-start;
-            margin-left: 10%;
+            margin-left: 5%;
         }
         .row-container {
             margin-top: 5%;
-            width: 100%;
+            margin-left: 5%;
+            width: 95%;
         }
     }
     .#{$component}__icon {
@@ -43,28 +44,3 @@ $component: 'country-capital';
         }
     }
 }
-
-//Ipad Pro
-// @media only screen and (min-device-width: 1000px) {
-//     .location-card {
-//         .avatar {
-//             width: 40px;
-//             height: 40px;
-//         }
-//         .row-container {
-//             .actions {
-//                 width: 45px;
-//                 height: 45px;
-//             }
-//         }
-//     }
-// }
-//Desktop
-// @media only screen and (min-device-width: 1200px) {
-//     .location-card {
-//         .avatar {
-//             width: 30px;
-//             height: 30px;
-//         }
-//     }
-// }

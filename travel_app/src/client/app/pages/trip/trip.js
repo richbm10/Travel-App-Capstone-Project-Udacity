@@ -28,7 +28,10 @@ function main() {
 
     setLocationCards();
 
-    document.querySelector('#add-button-a').setAttribute('href', '../../pages/location/location.html');
+    document.querySelector('#add-button-a').addEventListener('click', () => {
+        window.localStorage.setItem('data', JSON.stringify(data));
+        window.location.href = '../../pages/location/location.html';
+    });
 
     setFooter('../../pages/index/index.html');
 }

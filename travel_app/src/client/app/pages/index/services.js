@@ -23,7 +23,7 @@ const IndexServices = (function() {
                     getImages: async function(locations) {
                         const promises = [];
                         locations.forEach(location => {
-                            promises.push(this.getLocationImage(location.location));
+                            promises.push(this.getLocationImage(`${ location.city !== '' ? (location.city + ', ') : ''}${location.state}, ${location.country}`));
                         });
                         const results = await Promise.all(promises);
                         return results;

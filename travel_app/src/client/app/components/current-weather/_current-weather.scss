@@ -2,7 +2,7 @@ $component: 'current-weather';
 .#{$component} {
     margin-top: 2vh;
     display: grid;
-    width: 100%;
+    width: 95%;
     grid-template-columns: 60% 40%;
     grid-template-rows: 15vh 10vh;
     color: $first-color;

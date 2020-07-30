@@ -61,6 +61,7 @@ function createLocationOption(location, optionsContainer, selected) {
     const option = document.createElement('div');
     option.classList.add('row-container', 'select-combo__option');
     option.addEventListener("click", () => {
+        Client.data.location = location;
         const selectedContent = option.querySelector('label').textContent;
         selected.querySelector('span').textContent = selectedContent;
         optionsContainer.classList.remove("select-combo__options-container--active");
@@ -68,7 +69,6 @@ function createLocationOption(location, optionsContainer, selected) {
         promises.push(Client.services.getCurrentWeather(location.latLng.lat, location.latLng.lng));
         promises.push(Client.createHeroSlideLocation([selectedContent]));
         Promise.all(promises).then(data => {
-            console.log(data);
             const currentWeather = data[0];
             const heroSlide = data[1];
             Client.removeLocationData();
