@@ -7,7 +7,7 @@ const LocationDetailServices = (function() {
                     temperatureUnit: 'kelvin',
                     countries: [],
                     baseLocationCountryEndpoint: '/location/country/',
-                    baseWeatherEndpoint: '/weather/current/',
+                    baseWeatherEndpoint: '/weather/',
                     baseLocationImageEndpoint: '/image/location/',
                     convertTemperature: function(temperature) {
                         switch (this.temperatureUnit) {
@@ -27,7 +27,7 @@ const LocationDetailServices = (function() {
                         return resData;
                     },
                     getCurrentWeather: async function(latitude, longitude) {
-                        const response = await fetch(`${this.baseWeatherEndpoint}${latitude}/${longitude}`);
+                        const response = await fetch(`${this.baseWeatherEndpoint}current/${latitude}/${longitude}`);
                         const resData = await response.json();
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
                         resData.main.temp = this.convertTemperature(resData.main.temp);
@@ -38,14 +38,10 @@ const LocationDetailServices = (function() {
                         return resData;
                     },
                     getForecastWeather: async function(latitude, longitude) {
-                        const response = await fetch(`${this.baseWeatherEndpoint}${latitude}/${longitude}`);
+                        const response = await fetch(`${this.baseWeatherEndpoint}forecast/${latitude}/${longitude}`);
                         const resData = await response.json();
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
-                        const convertedForecast = resData.responseDailyWeather.map(day => {
-                            day.min_temp = this.convertTemperature(day.min_temp);
-                            day.max_temp = this.convertTemperature(day.max_temp);
-                        });
-                        return convertedForecast;
+                        return resData.responseDailyWeather;
                     },
                     getLocationImage: async function(location) {
                         const query = `${location}/1`;

@@ -11,6 +11,7 @@ services.setTemperatureUnit('celcius');
 const data = JSON.parse(window.localStorage.getItem('data'));
 
 function main() {
+    document.querySelector('header a').href = '../../pages/location-calendar/location-calendar.html';
     const mainContainer = document.querySelector('#main-container');
     const heroHeader = document.querySelector('.hero-header');
     const promises = [];

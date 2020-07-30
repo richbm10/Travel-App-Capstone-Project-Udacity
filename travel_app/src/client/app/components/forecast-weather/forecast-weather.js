@@ -53,8 +53,9 @@ function createForecastWeatherDay(day, dayIndex) {
 function createForecastWeatherDays(forecastWeatherData, index, limit) {
     const forecastWeatherDays = document.createElement('div');
     forecastWeatherDays.classList.add('row-container', 'forecast-weather__days');
-    for (let i = index; i < limit; i++) {
-        forecastWeatherDays.appendChild(createForecastWeatherDay(forecastWeatherData[i], i));
+    for (let i = 0; i < limit; i++) {
+        forecastWeatherDays.appendChild(createForecastWeatherDay(forecastWeatherData[index], index));
+        index += 1;
     }
     return forecastWeatherDays;
 }
