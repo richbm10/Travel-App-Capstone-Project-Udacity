@@ -1,4 +1,5 @@
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+const footer = document.querySelector('footer');
 let daysIndex = 0;
 let fromDayIndex = null;
 let toDayIndex = null;
@@ -31,23 +32,19 @@ function selectDays() {
 function dayClicked(daySpan, date) {
     if (!daySpan.classList.contains('calendar__day-reserved')) {
         const dayIndex = numberOfId(daySpan.id);
-        if (fromDayIndex === null) {
-            Client.data.location.fromDate = date;
-            fromDayIndex = dayIndex;
-        } else if (fromDayIndex < dayIndex && !resetSelectDays) {
-            Client.data.location.toDate = date;
-            toDayIndex = dayIndex;
-            resetSelectDays = true;
-        } else if ((fromDayIndex >= dayIndex) || resetSelectDays) {
+        if ((fromDayIndex === null) || (fromDayIndex >= dayIndex) || resetSelectDays) {
             Client.data.location.toDate = date;
             toDayIndex = dayIndex;
             Client.data.location.fromDate = date;
             fromDayIndex = dayIndex;
             resetSelectDays = false;
+        } else if (fromDayIndex < dayIndex && !resetSelectDays) {
+            Client.data.location.toDate = date;
+            toDayIndex = dayIndex;
+            resetSelectDays = true;
         }
-        if (toDayIndex !== null) {
-            selectDays();
-        } else if (!daySpan.classList.contains('calendar__day-selected')) daySpan.classList.add('calendar__day-selected');
+        selectDays();
+        Client.setFooterDays(footer);
     }
 }
 
