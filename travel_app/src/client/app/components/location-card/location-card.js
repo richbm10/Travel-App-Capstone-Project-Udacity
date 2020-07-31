@@ -1,5 +1,6 @@
 async function createImage(location) {
-    const image = await Client.services.getLocationImage(location);
+    console.log(location);
+    const image = (await Client.services.getLocationImage(location))[0];
     const img = document.createElement('img');
     img.src = image.webformatURL;
     img.alt = location;
@@ -14,11 +15,10 @@ function createTopBar(location) {
     locationLabel.classList.add('row-container');
     const span = document.createElement('span');
     span.classList.add('text-C');
-    span.textContent = location.location;
+    span.textContent = `${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`;
     const obj = document.createElement('object');
     obj.setAttribute('type', 'image/svg+xml');
-    const flag = `https://restcountries.eu/data/${location.country}.svg`;
-    obj.style.backgroundImage = "url(\'" + flag + "\')";
+    obj.style.backgroundImage = "url(\'" + location.flag + "\')";
     obj.classList.add('avatar');
     locationLabel.appendChild(span);
     locationLabel.appendChild(obj);
@@ -46,7 +46,7 @@ function createSchedule(fromDate, toDate) {
 async function createLocationCard(location) {
     const locationCard = document.createElement('div');
     locationCard.classList.add('location-card');
-    const image = await createImage(location.location);
+    const image = await createImage(`${ location.city !== '' ? (location.city + ', ') : ''}${location.state}${ location.county !== '' ? (' ' + location.county) : '' }`);
     const topBar = createTopBar(location);
     const schedule = createSchedule(location.fromDate, location.toDate);
     locationCard.appendChild(image);
@@ -55,9 +55,9 @@ async function createLocationCard(location) {
     return locationCard;
 }
 
-function setLocationCards() {
-    const container = document.querySelector('#locations');
+function setLocationCards(container) {
     Client.data.trip.locations.forEach(location => {
+        console.log(location);
         createLocationCard(location).then(locationCard => {
             container.appendChild(locationCard);
         }).catch(err => {

@@ -11,22 +11,13 @@ if (data.trip === undefined) data['trip'] = {
     name: '',
     checkList: [],
     notes: '',
-    locations: [],
-    setName: function(pName) {
-        this.name = pName;
-    },
-    setNotes: function(pNotes) {
-        this.notes = pNotes;
-    },
-    setCheckList: function(callBack) {
-        callBack(this.checkList);
-    }
+    locations: []
 };
 
 function main() {
-    setCheckList();
+    setCheckList(document.querySelector('#check-list'));
 
-    setLocationCards();
+    setLocationCards(document.querySelector('#locations'));
 
     document.querySelector('#add-button-a').addEventListener('click', () => {
         window.localStorage.setItem('data', JSON.stringify(data));
