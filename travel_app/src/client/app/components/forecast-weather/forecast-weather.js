@@ -1,8 +1,10 @@
 import climateIcon from '../../../assets/icons/climate.svg';
 import waterIcon from '../../../assets/icons/water.svg';
+import navigateNext from '../../../assets/icons/navigate_next-24px.svg';
 
 function dayOfWeek(index) {
     const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+    if (index === 0) return 'Today';
     const currentDayOfWeek = (new Date()).getDay();
     const day = (currentDayOfWeek + (index % 7)) % 7;
     return daysOfWeek[day];
@@ -39,13 +41,13 @@ function createForecastWeatherDay(day, dayIndex) {
     const rain = createRain(day.pop);
     forecastWeatherDay.appendChild(rain);
     span = span.cloneNode(false);
-    span.textContent = day.max_temp;
+    span.textContent = `${day.max_temp}°`;
     forecastWeatherDay.appendChild(span);
     const line = document.createElement('div');
     line.classList.add('forecast-weather__v-line');
     forecastWeatherDay.appendChild(line);
     span = span.cloneNode(false);
-    span.textContent = day.min_temp;
+    span.textContent = `${day.min_temp}°`;
     forecastWeatherDay.appendChild(span);
     return forecastWeatherDay;
 }
@@ -85,11 +87,16 @@ function createForecastWeather(forecastWeatherData) {
     const header = document.createElement('h2');
     header.classList.add('text-A');
     header.textContent = 'Daily Forecast';
+    const forecastWeatherContainer = document.createElement('div');
+    forecastWeatherContainer.id = 'forecast-weather-container';
+    forecastWeatherContainer.classList.add('row-container');
     const forecastWeather = document.createElement('div');
     forecastWeather.classList.add('forecast-weather', 'text-C');
     forecastWeather.appendChild(createForecastWeatherContent(forecastWeatherData));
+    forecastWeatherContainer.appendChild(forecastWeather);
+    forecastWeatherContainer.appendChild(createObject('forecast-weather-container__next-icon-R', navigateNext));
     container.appendChild(header);
-    container.appendChild(forecastWeather);
+    container.appendChild(forecastWeatherContainer);
     return container;
 }
 

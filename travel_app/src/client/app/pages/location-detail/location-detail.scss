@@ -119,6 +119,14 @@ main {
     main {
         grid-template-columns: 1fr 60vw 1fr;
     }
+    #main-container {
+        #forecast-weather-container {
+            .forecast-weather-container__next-icon-L,
+            .forecast-weather-container__next-icon-R {
+                right: -5%;
+            }
+        }
+    }
 }
 
 //Desktop
