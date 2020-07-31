@@ -7,7 +7,7 @@ import { setFooter } from '../../components/footer/footer';
 
 const services = TripServices.getInstance();
 const data = JSON.parse(window.localStorage.getItem('data'));
-data['trip'] = {
+if (data.trip === undefined) data['trip'] = {
     name: '',
     checkList: [],
     notes: '',
@@ -33,7 +33,7 @@ function main() {
         window.location.href = '../../pages/location/location.html';
     });
 
-    setFooter('../../pages/index/index.html');
+    setFooter(document.querySelector('footer'), '../../pages/index/index.html');
 }
 
 setTimeout(main, 0);
