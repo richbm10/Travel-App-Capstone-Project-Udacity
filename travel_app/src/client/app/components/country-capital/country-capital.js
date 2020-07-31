@@ -61,7 +61,6 @@ function createCountryCapitalContent(countryDetails) {
 function createCountryCapital(countryDetails) {
     const countryCapital = document.createElement('div');
     Client.services.getLocationImage(countryDetails.capital).then(capitalImage => {
-        console.log(capitalImage);
         countryCapital.classList.add('country-capital');
         const image = document.createElement('img');
         image.alt = countryDetails.capital;

@@ -17,7 +17,7 @@ const TripServices = (function() {
                         };
                     },
                     createTrip: async function(userid, trip) {
-                        const response = await fetch(this.baseUserTripEndpoint + userid, setHttpRequest('PUT', trip));
+                        const response = await fetch(this.baseUserTripEndpoint + userid, this.setHttpRequest('PUT', trip));
                         const resData = await response.json();
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
                         return resData;

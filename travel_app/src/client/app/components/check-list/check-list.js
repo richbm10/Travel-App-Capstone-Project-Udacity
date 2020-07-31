@@ -1,5 +1,4 @@
-function setCheckList() {
-    const checkList = document.querySelector('#check-list');
+function setCheckList(checkList) {
     if (Client.data.trip.checkList.length === 0) {
         checkList.insertAdjacentElement('afterbegin', Client.createLineInput(''));
     } else {

@@ -18,14 +18,13 @@ function decoratorDays(footer) {
 }
 
 function registerTrip(referencePath) {
-    Client.data.trip.setName(document.querySelector('#trip-name-form').tripName.value);
-    Client.data.trip.setNotes(document.querySelector('#notes').notes.value);
-    Client.data.trip.setCheckList((checkList) => {
-        document.querySelectorAll('.line-input input[type=text]').forEach(input => {
-            if ((!input.parentElement.classList.contains('line-input--inactive')) && input.value !== '') checkList.push(input.value);
-        });
+    Client.data.trip.name = document.querySelector('#trip-name-form').tripName.value;
+    Client.data.trip.notes = document.querySelector('#notes').notes.value;
+    document.querySelectorAll('.line-input input[type=text]').forEach(input => {
+        if ((!input.parentElement.classList.contains('line-input--inactive')) && input.value !== '') Client.data.trip.checkList.push(input.value);
     });
     Client.services.createTrip(Client.data.user.id, Client.data.trip).then(() => {
+        console.log(referencePath);
         window.location.href = referencePath;
     }).catch(err => {
         console.log('ERROR', err);
@@ -49,6 +48,7 @@ function decoratorLocationAnchor(footer, referencePath) {
             alert('You must select the days in which you will be in the location.');
         } else {
             Client.data.trip.locations.push(Client.data.location);
+            delete Client.data['location'];
             window.localStorage.setItem('data', JSON.stringify(Client.data));
             window.location.href = referencePath;
         }
