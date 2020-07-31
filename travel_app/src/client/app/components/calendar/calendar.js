@@ -1,7 +1,8 @@
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 let daysIndex = 0;
-let fromDayIndex = 0;
-let toDayIndex = 0;
+let fromDayIndex = null;
+let toDayIndex = null;
+let resetSelectDays = false;
 
 function numberOfId(string) {
     return parseInt(string.substring(string.indexOf('-') + 1, string.length));
@@ -11,28 +12,42 @@ function daysInMonth(month, year) {
     return new Date(year, month, 0).getDate();
 }
 
-function selectDays(exclude) {
-    console.log('selectDays');
-    let dayIndex = fromDayIndex;
-    while (dayIndex <= toDayIndex) {
-        if (dayIndex !== exclude) document.querySelector(`#day-${dayIndex}`).classList.toggle('calendar__day-selected');
-        dayIndex++;
+function selectDays() {
+    let day = null;
+    for (let i = 0; i < fromDayIndex; i++) {
+        day = document.querySelector(`#day-${i}`);
+        if (day.classList.contains('calendar__day-selected')) day.classList.remove('calendar__day-selected');
+    }
+    for (let i = fromDayIndex; i <= toDayIndex; i++) {
+        day = document.querySelector(`#day-${i}`);
+        if (!day.classList.contains('calendar__day-selected')) day.classList.add('calendar__day-selected');
+    }
+    for (let i = toDayIndex + 1; i < daysIndex; i++) {
+        day = document.querySelector(`#day-${i}`);
+        if (day.classList.contains('calendar__day-selected')) day.classList.remove('calendar__day-selected');
     }
 }
 
 function dayClicked(daySpan, date) {
     if (!daySpan.classList.contains('calendar__day-reserved')) {
-        daySpan.classList.toggle('calendar__day-selected');
-        if ((Client.data.location.fromDate === '' && Client.data.location.toDate === '') ||
-            ((new Date(Client.data.location.toDate)).getTime() > (new Date(date)).getTime())) {
+        const dayIndex = numberOfId(daySpan.id);
+        if (fromDayIndex === null) {
             Client.data.location.fromDate = date;
-            fromDayIndex = numberOfId(daySpan.id);
-        }
-        if ((new Date(Client.data.location.fromDate)).getTime() < (new Date(date)).getTime()) {
+            fromDayIndex = dayIndex;
+        } else if (fromDayIndex < dayIndex && !resetSelectDays) {
             Client.data.location.toDate = date;
-            toDayIndex = numberOfId(daySpan.id);
+            toDayIndex = dayIndex;
+            resetSelectDays = true;
+        } else if ((fromDayIndex >= dayIndex) || resetSelectDays) {
+            Client.data.location.toDate = date;
+            toDayIndex = dayIndex;
+            Client.data.location.fromDate = date;
+            fromDayIndex = dayIndex;
+            resetSelectDays = false;
         }
-        selectDays(numberOfId(daySpan.id));
+        if (toDayIndex !== null) {
+            selectDays();
+        } else if (!daySpan.classList.contains('calendar__day-selected')) daySpan.classList.add('calendar__day-selected');
     }
 }
 
