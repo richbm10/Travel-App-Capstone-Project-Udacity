@@ -26,7 +26,7 @@ module.exports = (param) => {
 
     router.get('/:address', async(req, res, next) => {
         try {
-            const data = await locationServices.getAddress(req.params.address);
+            const data = await locationServices.getAddressLocations(req.params.address);
             return res.send(data);
         } catch (err) {
             return next(err);

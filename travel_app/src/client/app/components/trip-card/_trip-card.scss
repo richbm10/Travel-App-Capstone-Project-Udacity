@@ -2,7 +2,7 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
     display: grid;
     grid-template-columns: 90vw;
-    grid-template-rows: 5vh 30vh 3vh 12vh 4vh;
+    grid-template-rows: 5vh 30vh 3vh 1fr 4vh; //content 1fr adjusted to its height
     justify-items: center;
     margin-top: 2vh;
     .actions {

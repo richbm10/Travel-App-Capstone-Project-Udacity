@@ -16,12 +16,14 @@ const UserServices = (function() {
                             checkList: ['Pack my pills', 'Exchange my cash into dollars in the airport'],
                             notes: 'Hotel: Marriott\nReservation: 1123412',
                             locations: [{
-                                location: 'Washington,DC',
+                                city: 'Washington',
+                                county: 'District of Columbia',
+                                state: 'DC',
                                 country: 'usa',
-                                lat: 38.892062,
-                                lon: -77.019912,
-                                fromDate: '2020-07-10',
-                                toDate: '2020-07-17'
+                                latLng: { lat: 38.892062, lng: -77.019912 },
+                                fromDate: '7/7/2020',
+                                toDate: '7/28/2020',
+                                flag: "https://restcountries.eu/data/usa.svg"
                             }]
                         }]
                     }],
@@ -34,7 +36,9 @@ const UserServices = (function() {
                         }
                         return data;
                     },
-                    createTrip: function(userId, trip) {
+                    createTrip: function(userId, newTrip) {
+                        const { name, checkList, notes, locations } = newTrip;
+                        const trip = { name, checkList, notes, locations };
                         for (let user of this.users) {
                             if (user.id == userId) {
                                 user.trips.push({ id: user.idCounter++, ...trip });
@@ -44,11 +48,14 @@ const UserServices = (function() {
                         throw new Error('The user is not registered.');
                     },
                     updateTrip: function(userId, pTrip) {
+                        const { id, name, checkList, notes, locations } = pTrip;
+                        const updateTrip = { id, name, checkList, notes, locations };
                         for (let user of this.users) {
                             if (user.id == userId) {
-                                for (let trip of user.trips) {
-                                    if (trip.id === pTrip.id) {
-                                        trip = pTrip;
+                                for (let i = 0; i < user.trips.length; i++) {
+                                    const trip = user.trips[i];
+                                    if (trip.id === updateTrip.id) {
+                                        user.trips[i] = updateTrip;
                                         return { success: { status: 200, message: 'The trip was updated.' } };
                                     }
                                 }

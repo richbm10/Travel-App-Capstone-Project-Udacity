@@ -1,6 +1,7 @@
 const express = require('express');
 const configs = require('../config');
 const routes = require('./routes');
+const path = require('path');
 
 const app = express();
 
@@ -12,9 +13,6 @@ app.use(bodyParser.json());
 // Cors for cross origin allowance
 const cors = require('cors');
 app.use(cors());
-
-/* Initializing the main project folder */
-app.use(express.static('dist'));
 
 /* Set environment variables */
 const dotenv = require('dotenv');
@@ -53,6 +51,9 @@ if (app.get('env') === 'development') {
         return next();
     });
 }
+
+/* Initializing the main project folder */
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/', routes({
     locationServices,
