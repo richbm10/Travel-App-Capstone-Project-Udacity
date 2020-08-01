@@ -43,8 +43,9 @@ async function createTripCard(trip) {
     tripCard.appendChild(date);
     tripCard.addEventListener('click', () => {
         Client.data['trip'] = trip;
+        Client.data['editTrip'] = true;
         window.localStorage.setItem('data', JSON.stringify(Client.data));
-        window.location.href = '../../pages/trip/trip.html?edit=' + 'true';
+        window.location.href = '../../pages/trip/trip.html';
     });
     return tripCard;
 }

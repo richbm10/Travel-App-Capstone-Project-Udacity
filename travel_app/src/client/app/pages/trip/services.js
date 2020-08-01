@@ -22,6 +22,12 @@ const TripServices = (function() {
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
                         return resData;
                     },
+                    updateTrip: async function(userid, trip) {
+                        const response = await fetch(this.baseUserTripEndpoint + userid, this.setHttpRequest('POST', trip));
+                        const resData = await response.json();
+                        if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        return resData;
+                    },
                     getLocationImage: async function(location) {
                         const query = `${location}/1`;
                         const response = await fetch(this.baseLocationImageEndpoint + query);

@@ -20,33 +20,43 @@ function decoratorDays(footer) {
 function registerTrip(referencePath) {
     Client.data.trip.name = document.querySelector('#trip-name-form').tripName.value;
     Client.data.trip.notes = document.querySelector('#notes').notes.value;
+    Client.data.trip.checkList = [];
     document.querySelectorAll('#check-list-section .line-input input[type=text]').forEach(input => {
         if ((!input.parentElement.classList.contains('line-input--inactive')) && input.value !== '') Client.data.trip.checkList.push(input.value);
     });
-    Client.services.createTrip(Client.data.user.id, Client.data.trip).then(() => {
-        delete Client.data['trip'];
-        window.location.href = referencePath;
-    }).catch(err => {
-        console.log('ERROR', err);
-        alert(err);
-    });
+    if (Client.data.editTrip) {
+        Client.services.updateTrip(Client.data.user.id, Client.data.trip).then(() => {
+            delete Client.data['trip'];
+            window.location.href = referencePath;
+        }).catch(err => {
+            console.log('ERROR', err);
+            alert(err);
+        });
+    } else {
+        Client.services.createTrip(Client.data.user.id, Client.data.trip).then(() => {
+            delete Client.data['trip'];
+            window.location.href = referencePath;
+        }).catch(err => {
+            console.log('ERROR', err);
+            alert(err);
+        });
+    }
 }
 
 function decoratorTripAnchor(footer, referencePath) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const edit = urlParams.get('edit');
-    console.log(edit);
     const anchor = footer.querySelector('a');
-    if (edit === 'false') {
+    if (Client.data['editTrip']) {
+        anchor.textContent = 'Update Trip';
+    } else {
         anchor.textContent = 'Add Trip';
-        anchor.addEventListener('click', () => {
-            if (Client.data.trip.locations === 0) {
-                alert('You must register locations to add the trip.');
-            } else {
-                registerTrip(referencePath);
-            }
-        });
     }
+    anchor.addEventListener('click', () => {
+        if (Client.data.trip.locations === 0) {
+            alert('You must register locations to add the trip.');
+        } else {
+            registerTrip(referencePath);
+        }
+    });
 }
 
 function decoratorLocationAnchor(footer, referencePath) {
