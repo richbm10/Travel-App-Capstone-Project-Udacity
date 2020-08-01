@@ -1,5 +1,5 @@
 form {
-    &.check-list {
+    &#check-list {
         input[type='checkbox'] {
             width: 5vw;
             height: 3vh;
@@ -20,7 +20,7 @@ form {
 //Desktop
 @media only screen and (min-device-width: 1200px) and (min-width: 700px) {
     form {
-        &.check-list {
+        &#check-list {
             .line-input {
                 grid-template-columns: 1fr minmax(300px, 500px) 1fr;
             }

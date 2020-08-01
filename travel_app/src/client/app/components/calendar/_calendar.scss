@@ -26,6 +26,7 @@ $component: 'calendar';
             height: 100%;
             .#{$component}__days {
                 @extend %calendar-grid;
+                grid-auto-rows: 5vh;
                 color: $second-color;
                 margin-top: 4vh;
                 margin-bottom: 3vh;
