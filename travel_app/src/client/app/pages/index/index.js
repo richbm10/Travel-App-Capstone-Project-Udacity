@@ -5,6 +5,7 @@ import { createTripCards } from '../../components/trip-card/trip-card';
 
 const services = IndexServices.getInstance();
 let data = {};
+data['editTrip'] = false;
 
 function main() {
     services.getUser('richi_bonilla10').then(user => {

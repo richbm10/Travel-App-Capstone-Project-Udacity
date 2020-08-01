@@ -36,6 +36,7 @@ function main() {
     document.querySelector('#add-button-a').addEventListener('click', () => {
         data.trip.name = document.querySelector('#trip-name-form').tripName.value;
         data.trip.notes = document.querySelector('#notes').notes.value;
+        data.trip.checkList = [];
         document.querySelectorAll('#check-list-section .line-input input[type=text]').forEach(input => {
             if ((!input.parentElement.classList.contains('line-input--inactive')) && input.value !== '') data.trip.checkList.push(input.value);
         });

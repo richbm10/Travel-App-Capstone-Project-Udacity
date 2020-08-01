@@ -52,9 +52,10 @@ const UserServices = (function() {
                         const updateTrip = { id, name, checkList, notes, locations };
                         for (let user of this.users) {
                             if (user.id == userId) {
-                                for (let trip of user.trips) {
+                                for (let i = 0; i < user.trips.length; i++) {
+                                    const trip = user.trips[i];
                                     if (trip.id === updateTrip.id) {
-                                        trip = updateTrip;
+                                        user.trips[i] = updateTrip;
                                         return { success: { status: 200, message: 'The trip was updated.' } };
                                     }
                                 }
