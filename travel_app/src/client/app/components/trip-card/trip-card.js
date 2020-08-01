@@ -40,6 +40,11 @@ async function setTripCard(tripCard, trip) {
     date.classList.add('text-D');
     date.textContent = trip.locations[0].fromDate; //the fromDate of the first location to visit
     tripCard.appendChild(date);
+    tripCard.addEventListener('click', () => {
+        Client.data['trip'] = trip;
+        window.localStorage.setItem('data', JSON.stringify(Client.data));
+        window.location.href = '../../pages/trip/trip.html?edit=' + 'true';
+    });
 }
 
 function createTripCards() {

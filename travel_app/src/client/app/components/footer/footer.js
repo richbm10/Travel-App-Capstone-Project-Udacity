@@ -20,11 +20,11 @@ function decoratorDays(footer) {
 function registerTrip(referencePath) {
     Client.data.trip.name = document.querySelector('#trip-name-form').tripName.value;
     Client.data.trip.notes = document.querySelector('#notes').notes.value;
-    document.querySelectorAll('.line-input input[type=text]').forEach(input => {
+    document.querySelectorAll('#check-list-section .line-input input[type=text]').forEach(input => {
         if ((!input.parentElement.classList.contains('line-input--inactive')) && input.value !== '') Client.data.trip.checkList.push(input.value);
     });
     Client.services.createTrip(Client.data.user.id, Client.data.trip).then(() => {
-        console.log(referencePath);
+        delete Client.data['trip'];
         window.location.href = referencePath;
     }).catch(err => {
         console.log('ERROR', err);
@@ -33,13 +33,20 @@ function registerTrip(referencePath) {
 }
 
 function decoratorTripAnchor(footer, referencePath) {
-    footer.querySelector('a').addEventListener('click', () => {
-        if (Client.data.trip.locations === 0) {
-            alert('You must register locations to add the trip.');
-        } else {
-            registerTrip(referencePath);
-        }
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+    const edit = urlParams.get('edit');
+    console.log(edit);
+    const anchor = footer.querySelector('a');
+    if (edit === 'false') {
+        anchor.textContent = 'Add Trip';
+        anchor.addEventListener('click', () => {
+            if (Client.data.trip.locations === 0) {
+                alert('You must register locations to add the trip.');
+            } else {
+                registerTrip(referencePath);
+            }
+        });
+    }
 }
 
 function decoratorLocationAnchor(footer, referencePath) {

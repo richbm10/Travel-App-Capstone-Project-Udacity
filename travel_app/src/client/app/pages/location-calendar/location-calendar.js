@@ -6,7 +6,7 @@ const data = JSON.parse(window.localStorage.getItem('data'));
 
 function main() {
     setCalendarMonths(document.querySelector('#calendar__months'), 4);
-    setFooter(document.querySelector('footer'), '../../pages/trip/trip.html');
+    setFooter(document.querySelector('footer'), '../../pages/trip/trip.html?edit' + 'false');
 }
 
 setTimeout(main, 0);

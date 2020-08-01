@@ -1,5 +1,4 @@
 async function createImage(location) {
-    console.log(location);
     const image = (await Client.services.getLocationImage(location))[0];
     const img = document.createElement('img');
     img.src = image.webformatURL;
@@ -56,14 +55,17 @@ async function createLocationCard(location) {
 }
 
 function setLocationCards(container) {
+    const promises = [];
     Client.data.trip.locations.forEach(location => {
-        console.log(location);
-        createLocationCard(location).then(locationCard => {
+        promises.push(createLocationCard(location));
+    });
+    Promise.all(promises).then(locationCards => {
+        locationCards.forEach(locationCard => {
             container.appendChild(locationCard);
-        }).catch(err => {
-            console.log('ERROR', err);
-            alert(err);
         });
+    }).catch(err => {
+        console.log('ERROR', err);
+        alert(err);
     });
 }
 
