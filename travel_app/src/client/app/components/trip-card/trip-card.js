@@ -52,7 +52,9 @@ async function createTripCard(trip) {
 function createTripCards() {
     const container = document.querySelector('#trip-cards-container');
     const promises = [];
-    Client.data.user.trips.forEach(trip => {
+    const trips = Client.data.user.trips;
+    trips.reverse();
+    trips.forEach(trip => {
         promises.push(createTripCard(trip));
     });
     Promise.all(promises).then(tripCards => {
