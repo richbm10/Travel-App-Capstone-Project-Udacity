@@ -31,7 +31,8 @@ function createContent(trip) {
     return content;
 }
 
-async function setTripCard(tripCard, trip) {
+async function createTripCard(trip) {
+    const tripCard = document.createElement('div');
     tripCard.classList.add('trip-card');
     tripCard.appendChild(createActionsButton());
     tripCard.appendChild(await Client.createHeroSlideLocation(trip.locations)); //TODO create it as a document fragment
@@ -45,18 +46,22 @@ async function setTripCard(tripCard, trip) {
         window.localStorage.setItem('data', JSON.stringify(Client.data));
         window.location.href = '../../pages/trip/trip.html?edit=' + 'true';
     });
+    return tripCard;
 }
 
 function createTripCards() {
     const container = document.querySelector('#trip-cards-container');
+    const promises = [];
     Client.data.user.trips.forEach(trip => {
-        const tripCard = document.createElement('div');
-        setTripCard(tripCard, trip).then(() => {
+        promises.push(createTripCard(trip));
+    });
+    Promise.all(promises).then(tripCards => {
+        tripCards.forEach(tripCard => {
             container.appendChild(tripCard);
-        }).catch(err => {
-            console.log('ERROR', err);
-            alert(err);
         });
+    }).catch(err => {
+        console.log('ERROR', err);
+        alert(err);
     });
 }
 
