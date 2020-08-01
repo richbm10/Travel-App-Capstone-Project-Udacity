@@ -14,16 +14,18 @@ const IndexServices = (function() {
                         return resData;
                     },
                     getLocationImage: async function(location) {
+                        console.log(location);
                         const query = `${location}/1`;
                         const response = await fetch(this.baseLocationImageEndpoint + query);
                         const resData = await response.json();
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
+                        console.log(resData);
                         return resData;
                     },
                     getImages: async function(locations) {
                         const promises = [];
                         locations.forEach(location => {
-                            promises.push(this.getLocationImage(`${ location.city !== '' ? (location.city + ', ') : ''}${location.state}, ${location.country}`));
+                            promises.push(this.getLocationImage(`${ location.city !== '' ? (location.city + ', ') : ''}${location.state}`));
                         });
                         const results = await Promise.all(promises);
                         return results;
