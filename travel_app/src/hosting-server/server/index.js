@@ -36,11 +36,11 @@ userServices.setInstance(config);
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
-app.get('/service-worker.js', (req, res) => res.sendStatus(404));
+// app.get('/service-worker.js', (req, res) => res.sendStatus(404));
 
-app.get('/service-worker.js.map', (req, res) => res.sendStatus(404));
+// app.get('/service-worker.js.map', (req, res) => res.sendStatus(404));
 
-app.get('/workbox-64f1e998.js.map', (req, res) => res.sendStatus(404));
+// app.get('/workbox-64f1e998.js.map', (req, res) => res.sendStatus(404));
 
 const log = config.log();
 

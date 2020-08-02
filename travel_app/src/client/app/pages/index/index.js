@@ -11,7 +11,7 @@ function main() {
     services.getUser('richi_bonilla10').then(user => {
         data['user'] = user;
         createTripCards();
-        document.querySelector('#add-button-a').setAttribute('href', '../../pages/trip/trip.html?edit=' + 'false');
+        document.querySelector('#add-button-a').setAttribute('href', '../../pages/trip/trip.html');
         window.localStorage.setItem('data', JSON.stringify(data));
     }).catch(err => {
         console.log('ERROR', err);
