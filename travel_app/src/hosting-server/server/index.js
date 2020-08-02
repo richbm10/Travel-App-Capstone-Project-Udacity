@@ -36,11 +36,11 @@ userServices.setInstance(config);
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
-app.get('/service-worker.js', (req, res) => res.sendStatus(404));
+// app.get('/service-worker.js', (req, res) => res.sendStatus(404));
 
-app.get('/service-worker.js.map', (req, res) => res.sendStatus(404));
+// app.get('/service-worker.js.map', (req, res) => res.sendStatus(404));
 
-app.get('/workbox-64f1e998.js.map', (req, res) => res.sendStatus(404));
+// app.get('/workbox-64f1e998.js.map', (req, res) => res.sendStatus(404));
 
 const log = config.log();
 
@@ -55,6 +55,7 @@ if (app.get('env') === 'development') {
 /* Initializing the main project folder */
 app.use(express.static(path.join(__dirname, 'dist')));
 
+/*Adds the endpoints for requesting each micro-service of the micro-services architecture*/
 app.use('/', routes({
     locationServices,
     weatherServices,

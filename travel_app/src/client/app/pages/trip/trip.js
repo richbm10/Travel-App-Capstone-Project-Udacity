@@ -15,7 +15,7 @@ if (data.trip === undefined) data['trip'] = {
 };
 
 function setTripName() {
-    const tripName = document.querySelector('#trip-name-form .line-input input[type=text]');
+    const tripName = document.querySelector('#trip-name-form .line-input input');
     tripName.value = data.trip.name;
 }
 

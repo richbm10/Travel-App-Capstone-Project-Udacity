@@ -1,3 +1,14 @@
+/*
+Singleton Pattern Design for requesting user data on each micro-service endpoint. It is used as a simulation of a user database
+during program execution.
+Services:
+    - getUser: retrieves user data based on the given username.
+    - createTrip: stores a given trip to the respective user based on the given user id.
+    - updateTrip: updates the user trip that has the same id as the given update trip, for the user that has the given user id.
+    - deleteTrip (NOT IMPLEMENTED IN THE FRONT END): deletes the user trip that has the same id as the given trip, for the user
+    that has the given user id.
+*/
+
 const UserServices = (function() {
     let instance;
     return {

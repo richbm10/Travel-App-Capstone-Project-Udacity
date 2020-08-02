@@ -13,6 +13,13 @@ const server = http.createServer(service);
 // Important - a service should not have a fixed port but should randomly choose one
 server.listen(0); //with 0 node.js selects randomly a free port
 
+/*
+When the micro-service starts running, it registers itself in the running service registry so that the clients can know
+the micro service: name, version, IP, and port.
+If the program is going to be ended first the micro-service unregister itself from the service registry, to avoid
+the request of data to the micro service when it ends.
+*/
+
 server.on('listening', () => {
     const registerService = () => axios.put(`http://localhost:3000/register/${config.name}/${config.version}/${server.address().port}`).catch((err) => { log.error(err) });
     const unregisterService = () => axios.delete(`http://localhost:3000/register/${config.name}/${config.version}/${server.address().port}`).catch((err) => { log.error(err) });

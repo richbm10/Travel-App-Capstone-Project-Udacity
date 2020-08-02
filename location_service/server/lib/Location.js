@@ -1,3 +1,12 @@
+/*
+Singleton Pattern Design for requesting locations data on each micro-service endpoint.
+Services:
+    - getCountries: if the query is queryCountries retrieves all the countries from the restcountriesAPI, and if
+    the query is queryCountry retrieves: capital, currency, population, and country name of a given country iso code.
+    - getAddress: retrieves city, state, county, country, latitude, and longitude from the MapQuestGeocodingAPI based on a given address.
+*/
+
+
 const axios = require('axios');
 
 const LocationServices = (function() {

@@ -5,6 +5,11 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
+/*
+Singleton Pattern Design for requesting the weather micro-service from the ServiceRegistry, for then
+calling it to get the weather data for each endpoint.
+*/
+
 const WeatherServices = (function() {
     let instance;
     return {

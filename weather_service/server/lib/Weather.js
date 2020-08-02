@@ -1,3 +1,11 @@
+/*
+Singleton Pattern Design for requesting weather data on each micro-service endpoint.
+Services:
+    - getCurrentWeather: retrieves the current weather from the OpenWeatherMapAPI based on a given latitude and longitude of a location.
+    - getForecastWeather: retrieves the forecast weather from the WeatherbitAPI based on a given latitude and longitude of a location. It
+    is a daily forecast of a max of 16 days.
+*/
+
 const axios = require('axios');
 
 const WeatherServices = (function() {
