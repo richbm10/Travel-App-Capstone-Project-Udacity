@@ -1,5 +1,12 @@
 const semver = require('semver'); //for micro services version control
 
+/*
+ServiceRegistry class that register each micro-service that requests to be registered on the services attribute, and the same 
+for the unregister. The class also has a cleanup method for removed those micro-services that haven't sent a register request 
+in the specified lapse of time in the timeout attribute. The get method is used to retrieve the IP and port of a micro-service 
+version.
+*/
+
 class ServiceRegistry {
     constructor(log) {
         this.log = log;

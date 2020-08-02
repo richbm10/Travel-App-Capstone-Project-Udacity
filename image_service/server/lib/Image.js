@@ -1,3 +1,9 @@
+/*
+Singleton Pattern Design for requesting images on each micro-service endpoint.
+Services:
+    - getImages: retrieves images from the PixabayAPI based on a given address. The images are sorted from the most to the least viewed image.
+*/
+
 const axios = require('axios');
 
 const ImageServices = (function() {

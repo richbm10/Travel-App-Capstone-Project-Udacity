@@ -5,6 +5,11 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
+/*
+Singleton Pattern Design for requesting the image micro-service from the ServiceRegistry, for then
+calling it to get the images data for each endpoint.
+*/
+
 const ImageServices = (function() {
     let instance;
     return {

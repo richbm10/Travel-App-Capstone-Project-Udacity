@@ -5,6 +5,11 @@ const crypto = require('crypto');
 const CircuitBraker = require('../CircuitBraker');
 const circuitBraker = new CircuitBraker();
 
+/*
+Singleton Pattern Design for requesting the location micro-service from the ServiceRegistry, for then
+calling it to get the locations data for each endpoint.
+*/
+
 const LocationServices = (function() {
     let instance;
     return {
