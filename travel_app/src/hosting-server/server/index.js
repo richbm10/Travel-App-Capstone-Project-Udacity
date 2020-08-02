@@ -55,6 +55,7 @@ if (app.get('env') === 'development') {
 /* Initializing the main project folder */
 app.use(express.static(path.join(__dirname, 'dist')));
 
+/*Adds the endpoints for requesting each micro-service of the micro-services architecture*/
 app.use('/', routes({
     locationServices,
     weatherServices,
