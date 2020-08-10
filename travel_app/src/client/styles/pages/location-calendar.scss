@@ -1,10 +1,10 @@
-@import '../../resets';
-@import '../../global';
-@import '../../theme/theme-color';
-@import '../../theme/theme-font';
-@import '../../components/header/header';
-@import '../../components/calendar/calendar';
-@import '../../components/footer/footer';
+@import '../resets';
+@import '../global';
+@import '../theme/theme-color';
+@import '../theme/theme-font';
+@import '../components/header';
+@import '../components/calendar';
+@import '../components/footer';
 body {
     display: grid;
     grid-template-columns: 1fr;

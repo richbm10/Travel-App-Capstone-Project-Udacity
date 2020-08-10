@@ -9,11 +9,11 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: {
-        'pages/index/index': ['babel-polyfill', './src/client/app/pages/index/index.js'],
-        'pages/trip/trip': ['babel-polyfill', './src/client/app/pages/trip/trip.js'],
-        'pages/location/location': ['babel-polyfill', './src/client/app/pages/location/location.js'],
-        'pages/location-detail/location-detail': ['babel-polyfill', './src/client/app/pages/location-detail/location-detail.js'],
-        'pages/location-calendar/location-calendar': ['babel-polyfill', './src/client/app/pages/location-calendar/location-calendar.js']
+        'pages/index/index': ['babel-polyfill', './src/client/js/pages/index/index.js'],
+        'pages/trip/trip': ['babel-polyfill', './src/client/js/pages/trip/trip.js'],
+        'pages/location/location': ['babel-polyfill', './src/client/js/pages/location/location.js'],
+        'pages/location-detail/location-detail': ['babel-polyfill', './src/client/js/pages/location-detail/location-detail.js'],
+        'pages/location-calendar/location-calendar': ['babel-polyfill', './src/client/js/pages/location-calendar/location-calendar.js']
     },
     mode: 'production',
     output: {
@@ -62,27 +62,27 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/index/index.html",
+            template: "./src/client/views/index.html",
             filename: "./pages/index/index.html",
             chunks: ['pages/index/index']
         }),
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/trip/trip.html",
+            template: "./src/client/views/trip.html",
             filename: "./pages/trip/trip.html",
             chunks: ['pages/trip/trip']
         }),
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/location/location.html",
+            template: "./src/client/views/location.html",
             filename: "./pages/location/location.html",
             chunks: ['pages/location/location']
         }),
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/location-detail/location-detail.html",
+            template: "./src/client/views/location-detail.html",
             filename: "./pages/location-detail/location-detail.html",
             chunks: ['pages/location-detail/location-detail']
         }),
         new HtmlWebPackPlugin({
-            template: "./src/client/app/pages/location-calendar/location-calendar.html",
+            template: "./src/client/views/location-calendar.html",
             filename: "./pages/location-calendar/location-calendar.html",
             chunks: ['pages/location-calendar/location-calendar']
         }),

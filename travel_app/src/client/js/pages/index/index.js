@@ -1,7 +1,7 @@
-import './index.scss';
+import '../../../styles/pages/index.scss';
 import { IndexServices } from './services';
-import { createHeroSlideLocation } from '../../../components/hero-slide-location/hero-slide-location';
-import { createTripCards } from '../../../components/trip-card/trip-card';
+import { createHeroSlideLocation } from '../../components/hero-slide-location';
+import { createTripCards } from '../../components/trip-card';
 
 const services = IndexServices.getInstance();
 let data = {};

@@ -1,4 +1,4 @@
-import pen from '../../../assets/icons/edit-24px.svg';
+import pen from '../../assets/icons/edit-24px.svg';
 
 function createCheckBox(input) {
     const checkBox = document.createElement('input');

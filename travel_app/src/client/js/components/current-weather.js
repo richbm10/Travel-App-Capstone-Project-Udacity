@@ -1,6 +1,6 @@
-import sunriseIcon from '../../../assets/icons/sun.svg';
-import sunsetIcon from '../../../assets/icons/sunset.svg';
-import climateIcon from '../../../assets/icons/climate.svg';
+import sunriseIcon from '../../assets/icons/sun.svg';
+import sunsetIcon from '../../assets/icons/sunset.svg';
+import climateIcon from '../../assets/icons/climate.svg';
 
 function createObj(id, icon) {
     const obj = document.createElement('object');

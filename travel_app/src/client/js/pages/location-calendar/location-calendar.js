@@ -1,6 +1,6 @@
-import './location-calendar.scss';
+import '../../../styles/pages/location-calendar.scss';
 import { setCalendarMonths } from '../../components/calendar';
-import { setFooter, setFooterDays } from '../../../components/footer/footer';
+import { setFooter, setFooterDays } from '../../components/footer';
 
 const data = JSON.parse(window.localStorage.getItem('data'));
 

@@ -1,6 +1,6 @@
-import locationCityIcon from '../../../assets/icons/location_city-24px.svg';
-import peopleAltIcon from '../../../assets/icons/people_alt-24px.svg';
-import paymentsIcon from '../../../assets/icons/payments-24px.svg';
+import locationCityIcon from '../../assets/icons/location_city-24px.svg';
+import peopleAltIcon from '../../assets/icons/people_alt-24px.svg';
+import paymentsIcon from '../../assets/icons/payments-24px.svg';
 
 function formatNumber(x) { //Taken from https://gist.github.com/cfjedimaster/3060121#file-gistfile1-js
     if (isNaN(x)) return x;

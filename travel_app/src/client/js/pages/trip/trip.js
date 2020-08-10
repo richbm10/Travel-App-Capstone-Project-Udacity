@@ -1,9 +1,9 @@
-import './trip.scss';
+import '../../../styles/pages/trip.scss';
 import { TripServices } from './services';
-import { createLineInput } from '../../components/line-input/line-input';
-import { setCheckList } from '../../components/check-list/check-list';
-import { setLocationCards } from '../../components/location-card/location-card';
-import { setFooter } from '../../components/footer/footer';
+import { createLineInput } from '../../components/line-input';
+import { setCheckList } from '../../components/check-list';
+import { setLocationCards } from '../../components/location-card';
+import { setFooter } from '../../components/footer';
 
 const services = TripServices.getInstance();
 const data = JSON.parse(window.localStorage.getItem('data'));

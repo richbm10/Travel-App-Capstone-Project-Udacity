@@ -1,6 +1,6 @@
-import climateIcon from '../../../assets/icons/climate.svg';
-import waterIcon from '../../../assets/icons/water.svg';
-import navigateNext from '../../../assets/icons/navigate_next-24px.svg';
+import climateIcon from '../../assets/icons/climate.svg';
+import waterIcon from '../../assets/icons/water.svg';
+import navigateNext from '../../assets/icons/navigate_next-24px.svg';
 
 function dayOfWeek(index) {
     const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];

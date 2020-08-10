@@ -1,10 +1,10 @@
-import './location-detail.scss';
+import '../../../styles/pages/location-detail.scss';
 import { LocationDetailServices } from './services';
-import { createHeroContent } from '../../../components/hero-header/hero-header';
-import { createHeroSlideLocation } from '../../../components/hero-slide-location/hero-slide-location';
+import { createHeroContent } from '../../components/hero-header';
+import { createHeroSlideLocation } from '../../components/hero-slide-location';
 import { createCountryCapital } from '../../components/country-capital';
 import { createCurrentWeather } from '../../components/current-weather';
-import { createForecastWeather } from '../../../components/forecast-weather/forecast-weather';
+import { createForecastWeather } from '../../components/forecast-weather';
 
 const services = LocationDetailServices.getInstance();
 services.setTemperatureUnit('celcius');

@@ -1,4 +1,4 @@
-import moreHorizontal from '../../../assets/icons/more_horiz-24px.svg';
+import moreHorizontal from '../../assets/icons/more_horiz-24px.svg';
 
 const MAX_NOTES_CHARS = 78;
 

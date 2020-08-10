@@ -1,12 +1,12 @@
-@import '../../resets';
-@import '../../global';
-@import '../../theme/theme-color';
-@import '../../theme/theme-font';
-@import '../../components/hero-header/hero-header';
-@import '../../components/navbar/navbar';
-@import '../../components/trip-card/trip-card';
-@import '../../components/add-button/add-button';
-@import '../../components/hero-slide-location/hero-slide-location';
+@import '../resets';
+@import '../global';
+@import '../theme/theme-color';
+@import '../theme/theme-font';
+@import '../components/hero-header';
+@import '../components/navbar';
+@import '../components/trip-card';
+@import '../components/add-button';
+@import '../components/hero-slide-location';
 body {
     display: grid;
     grid-template-rows: 25vh 7vh 68vh;

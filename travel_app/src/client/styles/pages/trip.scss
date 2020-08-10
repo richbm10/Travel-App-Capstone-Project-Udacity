@@ -1,13 +1,13 @@
-@import '../../resets';
-@import '../../global';
-@import '../../theme/theme-color';
-@import '../../theme/theme-font';
-@import '../../components/header/header';
-@import '../../components/line-input/line-input';
-@import '../../components/check-list/check-list';
-@import '../../components/location-card/location-card';
-@import '../../components/add-button/add-button';
-@import '../../components/footer/footer';
+@import '../resets';
+@import '../global';
+@import '../theme/theme-color';
+@import '../theme/theme-font';
+@import '../components/header';
+@import '../components/line-input';
+@import '../components/check-list';
+@import '../components/location-card';
+@import '../components/add-button';
+@import '../components/footer';
 body {
     display: grid;
     grid-template-columns: 1fr 95vw 1fr;
