@@ -1,8 +1,8 @@
 import './location.scss';
 import { LocationServices } from './services';
-import { setSelectCombo } from '../../components/select-combo/select-combo';
-import { createCurrentWeather } from '../../components/current-weather/current-weather';
-import { createHeroSlideLocation } from '../../components/hero-slide-location/hero-slide-location';
+import { setSelectCombo } from '../../../components/select-combo/select-combo';
+import { createCurrentWeather } from '../../../components/current-weather/current-weather';
+import { createHeroSlideLocation } from '../../../components/hero-slide-location/hero-slide-location';
 
 const services = LocationServices.getInstance();
 services.setTemperatureUnit('celcius');

@@ -1,6 +1,6 @@
 const express = require('express');
-const configs = require('../config');
-const routes = require('./routes');
+const configs = require('./config');
+const routes = require('./server/routes');
 const path = require('path');
 
 const app = express();
@@ -18,10 +18,10 @@ app.use(cors());
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { LocationServices } = require('./lib/services/Location');
-const { WeatherServices } = require('./lib/services/Weather');
-const { ImageServices } = require('./lib/services/Image');
-const { UserServices } = require('./lib/services/User');
+const { LocationServices } = require('./server/lib/services/Location');
+const { WeatherServices } = require('./server/lib/services/Weather');
+const { ImageServices } = require('./server/lib/services/Image');
+const { UserServices } = require('./server/lib/services/User');
 
 const config = configs[app.get('env')];
 
