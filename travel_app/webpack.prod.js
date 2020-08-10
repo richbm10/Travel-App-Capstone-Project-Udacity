@@ -19,7 +19,7 @@ module.exports = {
     output: {
         libraryTarget: 'var',
         library: 'Client',
-        path: path.resolve(__dirname, 'src/hosting-server/server/dist'),
+        path: path.resolve(__dirname, 'src/server/dist'),
         filename: '[name].js',
     },
     optimization: {
