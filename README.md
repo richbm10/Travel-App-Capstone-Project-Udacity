@@ -19,13 +19,7 @@ request data.
 The environment variables are included in the repository so that the system can be reviewed. In a future, those files will be added
 in the .gitignore and then removed from the repository.
 
-For running the complete the architecture, follow the execution of the next scripts:
-1) travel_app folder: npm run start-hosting-server
-2) service_registry folder: npm run start
-3) user_service folder: npm run start
-4) location_service folder: npm run start
-5) image_service folder: npm run start
-6) weather_service folder: npm run start
+For running the complete the architecture, just from the root folder (Travel-App-Capstone-Project-Udacity) run the command: npm run start.
 
 After running those scripts, all the microservices will be registered on the service_registry. So they can be called from the
 hosting server of the travel_app.
