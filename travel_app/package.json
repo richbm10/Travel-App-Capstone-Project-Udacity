@@ -4,7 +4,7 @@
     "servicesVersion": "1.x.x",
     "description": "Travel application for organizing trips that have real locations with real time data. The application uses a micro services architecture, for requesting data from third party APIs, and storing data in the database.",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "start-hosting-server": "node src/server/index.js | bunyan",
         "build:dev": "webpack --config webpack.dev.js",
         "build:prod": "webpack --config webpack.prod.js",
@@ -34,7 +34,8 @@
         "bunyan": "^1.8.14",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "node-fetch": "^2.6.0"
     },
     "devDependencies": {
         "@babel/core": "^7.9.6",
@@ -42,11 +43,13 @@
         "babel-loader": "^8.1.0",
         "babel-plugin-syntax-async-functions": "^6.13.0",
         "babel-plugin-transform-regenerator": "^6.26.0",
+        "babel-preset-es2015": "^6.24.1",
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.5.3",
         "file-loader": "^6.0.0",
         "html-loader": "^1.1.0",
         "html-webpack-plugin": "^4.2.1",
+        "jest": "^26.3.0",
         "mini-css-extract-plugin": "^0.9.0",
         "node-sass": "^4.14.0",
         "optimize-css-assets-webpack-plugin": "^5.0.3",

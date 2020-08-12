@@ -12,8 +12,8 @@ const IndexServices = (function() {
             if (!instance) {
                 instance = {
                     user: {},
-                    baseUserEndpoint: '/user/',
-                    baseLocationImageEndpoint: '/image/location/',
+                    baseUserEndpoint: 'http://localhost:8030/user/',
+                    baseLocationImageEndpoint: 'http://localhost:8030/image/location/',
                     getUser: async function(username) {
                         const response = await fetch(this.baseUserEndpoint + username);
                         const resData = await response.json();
@@ -21,12 +21,10 @@ const IndexServices = (function() {
                         return resData;
                     },
                     getLocationImage: async function(location) {
-                        console.log(location);
                         const query = `${location}/1`;
                         const response = await fetch(this.baseLocationImageEndpoint + query);
                         const resData = await response.json();
                         if (resData.hasOwnProperty('error')) throw (`${resData.error.status} ${resData.error.message}`);
-                        console.log(resData);
                         return resData;
                     },
                     getImages: async function(locations) {
@@ -58,23 +56,32 @@ function servicesTestGetUser(testId, input, expectedOutput) {
     });
 }
 
-function servicesTestGetImages(testId, input, expectedOutput) {
-    it(`${testId}-[get-images]-[should retrieve an image for each location]`, () => {
-        expect.assertions(1);
-        return services.getImages(input).then(locationsImages => {
-            expect(locationsImages).toMatchObject(expectedOutput);
-        }).catch(err => {
-            console.log('ERROR', err);
-            expect(err).toMatchObject(expectedOutput);
-        });
-    });
-}
+describe("[index-services-test]", () => {
 
-describe("[submit form]", () => {
+    let expectedOutput = {
+        id: 0,
+        name: 'Ricardo',
+        lastName: 'Bonilla Morales',
+        username: 'richi_bonilla10',
+        idCounter: 1,
+        trips: [{
+            id: 0,
+            name: 'USA Trip',
+            checkList: ['Pack my pills', 'Exchange my cash into dollars in the airport'],
+            notes: 'Hotel: Marriott\nReservation: 1123412',
+            locations: [{
+                city: 'Washington',
+                county: 'District of Columbia',
+                state: 'DC',
+                country: 'usa',
+                latLng: { lat: 38.892062, lng: -77.019912 },
+                fromDate: '7/7/2020',
+                toDate: '7/28/2020',
+                flag: "https://restcountries.eu/data/usa.svg"
+            }]
+        }]
+    };
 
-    let expectedOutput = {};
     servicesTestGetUser('[TEST00]', 'richi_bonilla10', expectedOutput);
-
-
 
 });
