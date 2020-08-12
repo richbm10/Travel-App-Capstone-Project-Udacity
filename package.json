@@ -4,7 +4,7 @@
     "description": "Travel Application Project with Micro-services Architecture",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "concurrently \"cd travel_app && npm run start-hosting-server\" \"cd service_registry && npm run start\" \"cd location_service && npm run start\" \"cd image_service && npm run start\" \"cd user_service && npm run start\" \"cd weather_service && npm run start\" \"cd travel_app && npm run test\"",
         "start": "concurrently \"cd travel_app && npm run start-hosting-server\" \"cd service_registry && npm run start\" \"cd location_service && npm run start\" \"cd image_service && npm run start\" \"cd user_service && npm run start\" \"cd weather_service && npm run start\""
     },
     "repository": {
