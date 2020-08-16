@@ -1,0 +1,46 @@
+@import '../resets';
+@import '../global';
+@import '../theme/theme-color';
+@import '../theme/theme-font';
+@import '../components/hero-header';
+@import '../components/navbar';
+@import '../components/trip-card';
+@import '../components/add-button';
+@import '../components/hero-slide-location';
+body {
+    display: grid;
+    grid-template-rows: 25vh 7vh 68vh;
+    overflow: hidden;
+}
+
+main {
+    grid-area: 3/1/4/4;
+    padding-bottom: 5vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .column-container-A {
+        width: 100%;
+    }
+}
+
+.hero-header {
+    grid-area: 1/1/2/4;
+}
+
+.navbar {
+    grid-area: 2/1/3/4;
+}
+
+//Desktop
+@media only screen and (min-device-width: 1200px) and (min-width: 900px) {
+    body {
+        grid-template-rows: 35vh 7vh 68vh;
+    }
+    main {
+        .column-container-A {
+            justify-content: space-evenly;
+            flex-flow: row wrap;
+            height: fit-content;
+        }
+    }
+}

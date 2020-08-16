@@ -1,25 +1,26 @@
 {
-    "name": "travel_app",
+    "name": "travel-app-capstone-project-udacity",
     "version": "1.0.0",
-    "servicesVersion": "1.x.x",
-    "description": "Travel application for organizing trips that have real locations with real time data. The application uses a micro services architecture, for requesting data from third party APIs, and storing data in the database.",
+    "description": "Travel Application Project with Micro-services Architecture",
+    "main": "index.js",
     "scripts": {
-        "test": "jest",
-        "start-hosting-server": "node src/server/index.js | bunyan",
-        "build:dev": "webpack --config webpack.dev.js",
-        "build:prod": "webpack --config webpack.prod.js",
-        "start-dev-server": "webpack-dev-server  --config webpack.dev.js --open"
+        "test": "concurrently \"cd travel_app && npm run start-hosting-server\" \"cd service_registry && npm run start\" \"cd location_service && npm run start\" \"cd image_service && npm run start\" \"cd user_service && npm run start\" \"cd weather_service && npm run start\" \"cd travel_app && npm run test\"",
+        "start": "concurrently \"cd travel_app && npm run start-hosting-server\" \"cd service_registry && npm run start\" \"cd location_service && npm run start\" \"cd image_service && npm run start\" \"cd user_service && npm run start\" \"cd weather_service && npm run start\""
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/richbm10/Travel-App-Capstone-Project-Udacity.git"
     },
     "keywords": [
-        "Travel-app",
-        "Micro-services",
-        "APIs",
-        "Location",
-        "Weather"
+        "micro-services",
+        "apis",
+        "html5",
+        "css3",
+        "sass",
+        "node.js",
+        "javascript",
+        "responsive",
+        "pixel-perfect"
     ],
     "author": "Ricardo Bonilla Morales",
     "license": "ISC",
@@ -28,13 +29,15 @@
     },
     "homepage": "https://github.com/richbm10/Travel-App-Capstone-Project-Udacity#readme",
     "dependencies": {
+        "concurrently": "^5.3.0",
         "axios": "^0.19.2",
-        "babel-polyfill": "^6.26.0",
         "body-parser": "^1.19.0",
-        "bunyan": "^1.8.14",
+        "bunyan": "^1.8.12",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "express": "^4.16.4",
+        "semver": "^7.3.2",
+        "babel-polyfill": "^6.26.0",
         "node-fetch": "^2.6.0"
     },
     "devDependencies": {
